@@ -1,0 +1,272 @@
+diff --git a/src/BD.WTTS.Client.Avalonia/UI/App.Interface.cs b/src/BD.WTTS.Client.Avalonia/UI/App.Interface.cs
+index 47b2d534b..9446c712d 100644
+--- a/src/BD.WTTS.Client.Avalonia/UI/App.Interface.cs
++++ b/src/BD.WTTS.Client.Avalonia/UI/App.Interface.cs
+@@ -13,6 +13,10 @@ partial class App : IApplication
+ 
+     public void RestoreMainWindow()
+     {
++#if MACOS
++        // 恢复窗口显示前先恢复 Dock 栏图标
++        SetDockIconVisible(true);
++#endif
+         Window? mainWindow = null;
+ 
+     ReTry:
+diff --git a/src/BD.WTTS.Client.Avalonia/UI/App.TrayIcon.cs b/src/BD.WTTS.Client.Avalonia/UI/App.TrayIcon.cs
+index ce10f6d7b..ffd99d11e 100644
+--- a/src/BD.WTTS.Client.Avalonia/UI/App.TrayIcon.cs
++++ b/src/BD.WTTS.Client.Avalonia/UI/App.TrayIcon.cs
+@@ -26,7 +26,12 @@ partial class App
+         var s = Startup.Instance;
+         if (s.IsMainProcess)
+         {
+-            s.HasTrayIcon = GeneralSettings.TrayIcon.Value;
++            s.HasTrayIcon =
++#if MACOS
++                true; // macOS 常驻菜单栏图标：窗口关闭后仅能从菜单栏退出
++#else
++                GeneralSettings.TrayIcon.Value;
++#endif
+             if (s.HasTrayIcon)
+             {
+                 TrayIcon.SetIcons(this, TrayIcons);
+diff --git a/src/BD.WTTS.Client.Avalonia/UI/App.axaml.cs b/src/BD.WTTS.Client.Avalonia/UI/App.axaml.cs
+index 7424f16e3..1aaabf164 100644
+--- a/src/BD.WTTS.Client.Avalonia/UI/App.axaml.cs
++++ b/src/BD.WTTS.Client.Avalonia/UI/App.axaml.cs
+@@ -20,7 +20,25 @@ public sealed partial class App : Application
+         var menus = new NativeMenu();
+         menus.Add(new NativeMenuItem { Header = Strings.Settings, Command = ReactiveCommand.Create(() => { INavigationService.Instance.Navigate(typeof(SettingsPage)); }) });
+         menus.Add(new NativeMenuItemSeparator());
+-        menus.Add(new NativeMenuItem { Header = Strings.Exit, Command = ReactiveCommand.Create(() => { Shutdown(); }) });
++        menus.Add(new NativeMenuItem
++        {
++            Header = "隐藏窗口",
++            Gesture = new KeyGesture(Key.H, KeyModifiers.Meta),
++            Command = ReactiveCommand.Create(HideMainWindowToBackground),
++        });
++        menus.Add(new NativeMenuItem
++        {
++            Header = Strings.Minimize,
++            Gesture = new KeyGesture(Key.M, KeyModifiers.Meta),
++            Command = ReactiveCommand.Create(MinimizeMainWindow),
++        });
++        menus.Add(new NativeMenuItemSeparator());
++        menus.Add(new NativeMenuItem
++        {
++            Header = Strings.Exit,
++            Gesture = new KeyGesture(Key.Q, KeyModifiers.Meta),
++            Command = ReactiveCommand.Create(() => { Shutdown(); })
++        });
+         NativeMenu.SetMenu(this, menus);
+ #endif
+     }
+diff --git a/src/BD.WTTS.Client.Avalonia/UI/Views/Windows/MainWindow.axaml.cs b/src/BD.WTTS.Client.Avalonia/UI/Views/Windows/MainWindow.axaml.cs
+index 3442baec1..b557e5446 100644
+--- a/src/BD.WTTS.Client.Avalonia/UI/Views/Windows/MainWindow.axaml.cs
++++ b/src/BD.WTTS.Client.Avalonia/UI/Views/Windows/MainWindow.axaml.cs
+@@ -24,11 +24,17 @@ public sealed partial class MainWindow : ReactiveAppWindow<MainWindowViewModel>
+ 
+     protected override void OnClosing(WindowClosingEventArgs e)
+     {
++#if MACOS
++        // 点击关闭按钮时隐藏到后台并从 Dock 栏消失，保持后台运行，仅从菜单栏（托盘）退出
++        e.Cancel = true;
++        App.HideMainWindowToBackground();
++#else
+         if (GeneralSettings.TrayIcon.Value)
+         {
+             e.Cancel = true;
+             Hide();
+         }
++#endif
+         base.OnClosing(e);
+ 
+         if (Steamworks.SteamClient.IsValid)
+diff --git a/src/BD.WTTS.Client.Plugins.Accelerator/Services/Mvvm/ProxyService.cs b/src/BD.WTTS.Client.Plugins.Accelerator/Services/Mvvm/ProxyService.cs
+index 6e2a43d43..b6606a6ca 100644
+--- a/src/BD.WTTS.Client.Plugins.Accelerator/Services/Mvvm/ProxyService.cs
++++ b/src/BD.WTTS.Client.Plugins.Accelerator/Services/Mvvm/ProxyService.cs
+@@ -421,6 +421,16 @@ public sealed partial class ProxyService
+         }
+     }
+ 
++    /// <summary>
++    /// 仅保留的加速分组名称白名单：公共 CDN、Google 翻译、Github
++    /// </summary>
++    static readonly string[] WhitelistGroupNames =
++    [
++        "公共CDN",
++        "Google翻译",
++        "Github",
++    ];
++
+     public async Task InitializeAccelerateAsync()
+     {
+         ProxyDomains.Clear();
+@@ -434,62 +444,117 @@ public sealed partial class ProxyService
+         stopwatch.Stop();
+         Toast.Show(ToastIcon.Info, Strings.Info_LoadingAgentTakesTime____.Format(stopwatch.ElapsedMilliseconds, result.IsSuccess, result.Code, result.Content?.Count));
+ #endif
+-        if (result.IsSuccess)
++        if (result.IsSuccess && result.Content.Any_Nullable())
++        {
++            ProxyDomains.AddOrUpdate(FilterWhitelistGroups(result.Content!));
++            // 远端可能已删除白名单内的分组（如 Google 翻译），从本地缓存补回
++            MergeLocalWhitelistGroups();
++        }
++        else
+         {
+-            ProxyDomains.AddOrUpdate(result.Content!);
++            var localAccelerates = LoadLocalAccelerate();
++            if (localAccelerates.Any_Nullable())
++            {
++                ProxyDomains.AddOrUpdate(FilterWhitelistGroups(localAccelerates!));
++            }
+         }
+ 
+-        LoadOrSaveLocalAccelerate();
++        SaveLocalAccelerate();
+ 
+-        if (ProxySettings.SupportProxyServicesStatus.Value.Any_Nullable() && ProxyDomains.Items.Any_Nullable())
++        if (ProxyDomains.Items.Any_Nullable())
+         {
+-            var items = ProxyDomains.Items!.SelectMany(s => s.Items!);
++            var items = ProxyDomains.Items!.SelectMany(s => s.Items!).ToList();
+             var enableItems = ProxySettings.SupportProxyServicesStatus.Value;
+-            RestoreAccelerateEnableAllIds(items, enableItems);
++            if (enableItems.Any_Nullable())
++            {
++                RestoreAccelerateEnableAllIds(items, enableItems);
++            }
++            else
++            {
++                // 没有已保存的勾选记录（首次使用）时，默认全选保留的分组
++                RestoreAccelerateEnableAllIds(items, GetLeafIds(items).ToArray());
++            }
+         }
+     }
+ 
+     public static bool IsChangeSupportProxyServicesStatus { get; set; }
+ 
+-    private void LoadOrSaveLocalAccelerate()
++    static string NormalizeGroupName(string name) =>
++        string.Concat(name.Where(c => !char.IsWhiteSpace(c))).ToLowerInvariant();
++
++    static IEnumerable<AccelerateProjectGroupDTO> FilterWhitelistGroups(IEnumerable<AccelerateProjectGroupDTO> groups) =>
++        groups.Where(s => WhitelistGroupNames.Contains(NormalizeGroupName(s.Name ?? string.Empty)));
++
++    static IEnumerable<string> GetLeafIds(IEnumerable<AccelerateProjectDTO> nodes)
+     {
+-        var localAccelerateFilePath = Path.Combine(Plugin.Instance.AppDataDirectory,
+-            "LOCAL_ACCELERATE.json");
+-        if (ProxyDomains.Items.Any_Nullable())
++        foreach (var node in nodes)
+         {
+-            if (IOPath.TryOpen(localAccelerateFilePath,
+-                FileMode.Create, FileAccess.Write, FileShare.Read,
+-                out var fileStream, out var _))
++            if (node.Items.Any_Nullable())
++            {
++                foreach (var id in GetLeafIds(node.Items))
++                    yield return id;
++            }
++            else
+             {
+-                using var stream = fileStream;
+-                MessagePackSerializer.Serialize(stream, ProxyDomains.Items, options: Serializable.lz4Options);
++                yield return node.Id.ToString();
+             }
+         }
+-        else
++    }
++
++    /// <summary>
++    /// 从本地缓存补回远端缺失的白名单分组
++    /// </summary>
++    void MergeLocalWhitelistGroups()
++    {
++        var localAccelerates = LoadLocalAccelerate();
++        if (!localAccelerates.Any_Nullable())
++            return;
++        var exists = ProxyDomains.Items.Select(s => NormalizeGroupName(s.Name ?? string.Empty)).ToHashSet();
++        foreach (var group in FilterWhitelistGroups(localAccelerates!))
+         {
+-            if (File.Exists(localAccelerateFilePath) &&
+-                IOPath.TryOpenRead(localAccelerateFilePath,
+-                out var fileStream, out var _))
++            if (!exists.Contains(NormalizeGroupName(group.Name ?? string.Empty)))
+             {
+-                using var stream = fileStream;
+-                ProxyDomains.Clear();
+-                List<AccelerateProjectGroupDTO>? accelerates = null;
+-                try
+-                {
+-                    accelerates = MessagePackSerializer.Deserialize<List<AccelerateProjectGroupDTO>>(stream, options: Serializable.lz4Options);
+-                }
+-                catch (Exception ex)
+-                {
+-                    Log.Error(nameof(ProxyService), ex, nameof(LoadOrSaveLocalAccelerate));
+-                }
+-                if (accelerates.Any_Nullable())
+-                {
+-                    ProxyDomains.AddOrUpdate(accelerates!);
+-                }
++                ProxyDomains.AddOrUpdate(group);
+             }
+         }
+     }
+ 
++    List<AccelerateProjectGroupDTO>? LoadLocalAccelerate()
++    {
++        var localAccelerateFilePath = Path.Combine(Plugin.Instance.AppDataDirectory,
++            "LOCAL_ACCELERATE.json");
++        if (File.Exists(localAccelerateFilePath) &&
++            IOPath.TryOpenRead(localAccelerateFilePath,
++            out var fileStream, out var _))
++        {
++            using var stream = fileStream;
++            try
++            {
++                return MessagePackSerializer.Deserialize<List<AccelerateProjectGroupDTO>>(stream, options: Serializable.lz4Options);
++            }
++            catch (Exception ex)
++            {
++                Log.Error(nameof(ProxyService), ex, nameof(LoadLocalAccelerate));
++            }
++        }
++        return null;
++    }
++
++    void SaveLocalAccelerate()
++    {
++        if (!ProxyDomains.Items.Any_Nullable())
++            return;
++        var localAccelerateFilePath = Path.Combine(Plugin.Instance.AppDataDirectory,
++            "LOCAL_ACCELERATE.json");
++        if (IOPath.TryOpen(localAccelerateFilePath,
++            FileMode.Create, FileAccess.Write, FileShare.Read,
++            out var fileStream, out var _))
++        {
++            using var stream = fileStream;
++            MessagePackSerializer.Serialize(stream, ProxyDomains.Items, options: Serializable.lz4Options);
++        }
++    }
++
+     private IEnumerable<string> GetAccelerateEnableAllIds(IEnumerable<AccelerateProjectDTO>? nodes)
+     {
+         if (nodes == null)
+diff --git a/src/BD.WTTS.Client.Plugins.Accelerator/Settings/Abstractions/IProxySettings.cs b/src/BD.WTTS.Client.Plugins.Accelerator/Settings/Abstractions/IProxySettings.cs
+index 3fd16a83b..6d110ea85 100644
+--- a/src/BD.WTTS.Client.Plugins.Accelerator/Settings/Abstractions/IProxySettings.cs
++++ b/src/BD.WTTS.Client.Plugins.Accelerator/Settings/Abstractions/IProxySettings.cs
+@@ -193,7 +193,7 @@ public partial interface IProxySettings
+     /// <summary>
+     /// 程序启动时自动启动代理的默认值
+     /// </summary>
+-    const bool DefaultProgramStartupRunProxy = false;
++    const bool DefaultProgramStartupRunProxy = true;
+ 
+     /// <summary>
+     /// 系统代理模式端口的默认值

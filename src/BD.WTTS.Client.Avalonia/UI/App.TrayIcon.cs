@@ -26,7 +26,12 @@ partial class App
         var s = Startup.Instance;
         if (s.IsMainProcess)
         {
-            s.HasTrayIcon = GeneralSettings.TrayIcon.Value;
+            s.HasTrayIcon =
+#if MACOS
+                true; // macOS 常驻菜单栏图标：窗口关闭后仅能从菜单栏退出
+#else
+                GeneralSettings.TrayIcon.Value;
+#endif
             if (s.HasTrayIcon)
             {
                 TrayIcon.SetIcons(this, TrayIcons);

@@ -13,6 +13,10 @@ partial class App : IApplication
 
     public void RestoreMainWindow()
     {
+#if MACOS
+        // 恢复窗口显示前先恢复 Dock 栏图标
+        SetDockIconVisible(true);
+#endif
         Window? mainWindow = null;
 
     ReTry:

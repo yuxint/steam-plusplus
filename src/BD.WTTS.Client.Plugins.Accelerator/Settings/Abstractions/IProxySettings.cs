@@ -193,7 +193,7 @@ public partial interface IProxySettings
     /// <summary>
     /// 程序启动时自动启动代理的默认值
     /// </summary>
-    const bool DefaultProgramStartupRunProxy = false;
+    const bool DefaultProgramStartupRunProxy = true;
 
     /// <summary>
     /// 系统代理模式端口的默认值

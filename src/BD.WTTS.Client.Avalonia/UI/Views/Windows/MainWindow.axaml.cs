@@ -24,11 +24,17 @@ public sealed partial class MainWindow : ReactiveAppWindow<MainWindowViewModel>
 
     protected override void OnClosing(WindowClosingEventArgs e)
     {
+#if MACOS
+        // 点击关闭按钮时隐藏到后台并从 Dock 栏消失，保持后台运行，仅从菜单栏（托盘）退出
+        e.Cancel = true;
+        App.HideMainWindowToBackground();
+#else
         if (GeneralSettings.TrayIcon.Value)
         {
             e.Cancel = true;
             Hide();
         }
+#endif
         base.OnClosing(e);
 
         if (Steamworks.SteamClient.IsValid)

@@ -421,6 +421,16 @@ public sealed partial class ProxyService
         }
     }
 
+    /// <summary>
+    /// 仅保留的加速分组名称白名单：公共 CDN、Google 翻译、Github
+    /// </summary>
+    static readonly string[] WhitelistGroupNames =
+    [
+        "公共CDN",
+        "Google翻译",
+        "Github",
+    ];
+
     public async Task InitializeAccelerateAsync()
     {
         ProxyDomains.Clear();
@@ -434,59 +444,114 @@ public sealed partial class ProxyService
         stopwatch.Stop();
         Toast.Show(ToastIcon.Info, Strings.Info_LoadingAgentTakesTime____.Format(stopwatch.ElapsedMilliseconds, result.IsSuccess, result.Code, result.Content?.Count));
 #endif
-        if (result.IsSuccess)
+        if (result.IsSuccess && result.Content.Any_Nullable())
         {
-            ProxyDomains.AddOrUpdate(result.Content!);
+            ProxyDomains.AddOrUpdate(FilterWhitelistGroups(result.Content!));
+            // 远端可能已删除白名单内的分组（如 Google 翻译），从本地缓存补回
+            MergeLocalWhitelistGroups();
+        }
+        else
+        {
+            var localAccelerates = LoadLocalAccelerate();
+            if (localAccelerates.Any_Nullable())
+            {
+                ProxyDomains.AddOrUpdate(FilterWhitelistGroups(localAccelerates!));
+            }
         }
 
-        LoadOrSaveLocalAccelerate();
+        SaveLocalAccelerate();
 
-        if (ProxySettings.SupportProxyServicesStatus.Value.Any_Nullable() && ProxyDomains.Items.Any_Nullable())
+        if (ProxyDomains.Items.Any_Nullable())
         {
-            var items = ProxyDomains.Items!.SelectMany(s => s.Items!);
+            var items = ProxyDomains.Items!.SelectMany(s => s.Items!).ToList();
             var enableItems = ProxySettings.SupportProxyServicesStatus.Value;
-            RestoreAccelerateEnableAllIds(items, enableItems);
+            if (enableItems.Any_Nullable())
+            {
+                RestoreAccelerateEnableAllIds(items, enableItems);
+            }
+            else
+            {
+                // 没有已保存的勾选记录（首次使用）时，默认全选保留的分组
+                RestoreAccelerateEnableAllIds(items, GetLeafIds(items).ToArray());
+            }
         }
     }
 
     public static bool IsChangeSupportProxyServicesStatus { get; set; }
 
-    private void LoadOrSaveLocalAccelerate()
+    static string NormalizeGroupName(string name) =>
+        string.Concat(name.Where(c => !char.IsWhiteSpace(c))).ToLowerInvariant();
+
+    static IEnumerable<AccelerateProjectGroupDTO> FilterWhitelistGroups(IEnumerable<AccelerateProjectGroupDTO> groups) =>
+        groups.Where(s => WhitelistGroupNames.Contains(NormalizeGroupName(s.Name ?? string.Empty)));
+
+    static IEnumerable<string> GetLeafIds(IEnumerable<AccelerateProjectDTO> nodes)
+    {
+        foreach (var node in nodes)
+        {
+            if (node.Items.Any_Nullable())
+            {
+                foreach (var id in GetLeafIds(node.Items))
+                    yield return id;
+            }
+            else
+            {
+                yield return node.Id.ToString();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 从本地缓存补回远端缺失的白名单分组
+    /// </summary>
+    void MergeLocalWhitelistGroups()
+    {
+        var localAccelerates = LoadLocalAccelerate();
+        if (!localAccelerates.Any_Nullable())
+            return;
+        var exists = ProxyDomains.Items.Select(s => NormalizeGroupName(s.Name ?? string.Empty)).ToHashSet();
+        foreach (var group in FilterWhitelistGroups(localAccelerates!))
+        {
+            if (!exists.Contains(NormalizeGroupName(group.Name ?? string.Empty)))
+            {
+                ProxyDomains.AddOrUpdate(group);
+            }
+        }
+    }
+
+    List<AccelerateProjectGroupDTO>? LoadLocalAccelerate()
     {
         var localAccelerateFilePath = Path.Combine(Plugin.Instance.AppDataDirectory,
             "LOCAL_ACCELERATE.json");
-        if (ProxyDomains.Items.Any_Nullable())
+        if (File.Exists(localAccelerateFilePath) &&
+            IOPath.TryOpenRead(localAccelerateFilePath,
+            out var fileStream, out var _))
         {
-            if (IOPath.TryOpen(localAccelerateFilePath,
-                FileMode.Create, FileAccess.Write, FileShare.Read,
-                out var fileStream, out var _))
+            using var stream = fileStream;
+            try
             {
-                using var stream = fileStream;
-                MessagePackSerializer.Serialize(stream, ProxyDomains.Items, options: Serializable.lz4Options);
+                return MessagePackSerializer.Deserialize<List<AccelerateProjectGroupDTO>>(stream, options: Serializable.lz4Options);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(nameof(ProxyService), ex, nameof(LoadLocalAccelerate));
             }
         }
-        else
+        return null;
+    }
+
+    void SaveLocalAccelerate()
+    {
+        if (!ProxyDomains.Items.Any_Nullable())
+            return;
+        var localAccelerateFilePath = Path.Combine(Plugin.Instance.AppDataDirectory,
+            "LOCAL_ACCELERATE.json");
+        if (IOPath.TryOpen(localAccelerateFilePath,
+            FileMode.Create, FileAccess.Write, FileShare.Read,
+            out var fileStream, out var _))
         {
-            if (File.Exists(localAccelerateFilePath) &&
-                IOPath.TryOpenRead(localAccelerateFilePath,
-                out var fileStream, out var _))
-            {
-                using var stream = fileStream;
-                ProxyDomains.Clear();
-                List<AccelerateProjectGroupDTO>? accelerates = null;
-                try
-                {
-                    accelerates = MessagePackSerializer.Deserialize<List<AccelerateProjectGroupDTO>>(stream, options: Serializable.lz4Options);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(nameof(ProxyService), ex, nameof(LoadOrSaveLocalAccelerate));
-                }
-                if (accelerates.Any_Nullable())
-                {
-                    ProxyDomains.AddOrUpdate(accelerates!);
-                }
-            }
+            using var stream = fileStream;
+            MessagePackSerializer.Serialize(stream, ProxyDomains.Items, options: Serializable.lz4Options);
         }
     }
 

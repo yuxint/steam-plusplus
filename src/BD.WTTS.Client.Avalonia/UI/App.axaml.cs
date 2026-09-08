@@ -20,7 +20,25 @@ public sealed partial class App : Application
         var menus = new NativeMenu();
         menus.Add(new NativeMenuItem { Header = Strings.Settings, Command = ReactiveCommand.Create(() => { INavigationService.Instance.Navigate(typeof(SettingsPage)); }) });
         menus.Add(new NativeMenuItemSeparator());
-        menus.Add(new NativeMenuItem { Header = Strings.Exit, Command = ReactiveCommand.Create(() => { Shutdown(); }) });
+        menus.Add(new NativeMenuItem
+        {
+            Header = "隐藏窗口",
+            Gesture = new KeyGesture(Key.H, KeyModifiers.Meta),
+            Command = ReactiveCommand.Create(HideMainWindowToBackground),
+        });
+        menus.Add(new NativeMenuItem
+        {
+            Header = Strings.Minimize,
+            Gesture = new KeyGesture(Key.M, KeyModifiers.Meta),
+            Command = ReactiveCommand.Create(MinimizeMainWindow),
+        });
+        menus.Add(new NativeMenuItemSeparator());
+        menus.Add(new NativeMenuItem
+        {
+            Header = Strings.Exit,
+            Gesture = new KeyGesture(Key.Q, KeyModifiers.Meta),
+            Command = ReactiveCommand.Create(() => { Shutdown(); })
+        });
         NativeMenu.SetMenu(this, menus);
 #endif
     }

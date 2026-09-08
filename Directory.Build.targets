@@ -1,0 +1,19 @@
+<Project>
+	<!--
+		macos-lite 本地构建辅助：收窄每个工程的多目标列表，使 restore 图不触发
+		ios/android/maccatalyst 的 workload 校验（NETSDK1147），从而只需 macos workload 即可编译。
+		规则（只做减法）：目标列表含 net10.0-macos 的工程保留 net10.0 + net10.0-macos（net10.0 供
+		中立下游工程协商引用）；列表含移动平台条目的工程将其移除、中立目标全保留；
+		不含移动平台条目的工程完全不改动。
+	-->
+	<PropertyGroup Condition="'$(TargetFrameworks)' != ''">
+		<_MacOsLiteHasMacos Condition="$(TargetFrameworks.Contains('net10.0-macos'))">true</_MacOsLiteHasMacos>
+		<_MacOsLiteHasMobile Condition="$(TargetFrameworks.Contains('-ios')) OR $(TargetFrameworks.Contains('-android')) OR $(TargetFrameworks.Contains('-maccatalyst')) OR $(TargetFrameworks.Contains('-tvos')) OR $(TargetFrameworks.Contains('-windows'))">true</_MacOsLiteHasMobile>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFrameworks)' != '' and '$(_MacOsLiteHasMacos)' == 'true'">
+		<TargetFrameworks>net10.0;net10.0-macos</TargetFrameworks>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFrameworks)' != '' and '$(_MacOsLiteHasMacos)' != 'true' and '$(_MacOsLiteHasMobile)' == 'true'">
+		<TargetFrameworks>$(TargetFrameworks.Replace('net10.0-ios;', '').Replace('net10.0-android;', '').Replace('net10.0-maccatalyst;', '').Replace('net10.0-tvos;', '').Replace('net10.0-windows10.0.19041;', '').Replace(';net10.0-ios', '').Replace(';net10.0-android', '').Replace(';net10.0-maccatalyst', '').Replace(';net10.0-tvos', '').Replace(';net10.0-windows10.0.19041', '').Replace(';;', ';').Trim(';').Trim())</TargetFrameworks>
+	</PropertyGroup>
+</Project>
