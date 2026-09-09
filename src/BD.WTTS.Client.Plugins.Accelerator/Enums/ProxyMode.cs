@@ -17,11 +17,6 @@ public enum ProxyMode : byte
     Hosts,
 
     /// <summary>
-    /// 系统代理模式(Desktop Only)
-    /// </summary>
-    System,
-
-    /// <summary>
     /// VPN 代理模式(虚拟网卡)
     /// </summary>
     VPN,
@@ -31,8 +26,4 @@ public enum ProxyMode : byte
     /// </summary>
     ProxyOnly,
 
-    /// <summary>
-    /// PAC代理模式(Desktop Only)
-    /// </summary>
-    PAC,
 }

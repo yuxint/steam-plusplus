@@ -20,9 +20,6 @@ public partial class AcceleratorPage2 : PageBase<AcceleratorPageViewModel>
     /// </summary>
     public AcceleratorPage2()
     {
-        //Tabstrip有BUG会导致界面初始化后值被重置，所以这里先保存一下
-        var mode = ProxySettings.ProxyMode.Value;
-
         InitializeComponent();
         this.SetViewModel<AcceleratorPageViewModel>(true);
 
@@ -46,8 +43,6 @@ public partial class AcceleratorPage2 : PageBase<AcceleratorPageViewModel>
 
         AcceleratorTabs.SelectionChanged += AcceleratorTabs_SelectionChanged;
 
-        //重置回保存的值
-        ProxySettings.ProxyMode.Value = mode;
         this.WhenActivated(disposables =>
         {
             disposables.Add(

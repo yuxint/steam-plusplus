@@ -25,12 +25,6 @@ public sealed class ProxySettingsWindowViewModel : WindowViewModel
         PrimaryDNS_Cloudflare,
     };
 
-    public IEnumerable<string> SystemProxyIps { get; }
-        = new[] {
-            "0.0.0.0",
-            "127.0.0.1",
-        };
-
     public static IEnumerable<string> DohAddress { get; }
         = new[] {
             Dnspod_DohAddres,

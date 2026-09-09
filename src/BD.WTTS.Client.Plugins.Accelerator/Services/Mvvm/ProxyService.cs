@@ -547,8 +547,6 @@ public sealed partial class ProxyService
 
 #if WINDOWS
         {
-            await platformService.SetAsSystemProxyAsync(false);
-            await platformService.SetAsSystemPACProxyAsync(false);
             await reverseProxyService.StopProxyAsync();
             try
             {

@@ -6,18 +6,6 @@ namespace Microsoft.AspNetCore.Builder;
 static class ApplicationBuilderExtensions
 {
     /// <summary>
-    /// 使用 Http 代理 PAC 中间件
-    /// </summary>
-    /// <param name="app"></param>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static IApplicationBuilder UseHttpProxyPac(this IApplicationBuilder app)
-    {
-        var middleware = app.ApplicationServices.GetRequiredService<HttpProxyPacMiddleware>();
-        return app.Use(next => context => middleware.InvokeAsync(context, next));
-    }
-
-    /// <summary>
     /// 使用请求日志中间件
     /// </summary>
     /// <param name="app"></param>

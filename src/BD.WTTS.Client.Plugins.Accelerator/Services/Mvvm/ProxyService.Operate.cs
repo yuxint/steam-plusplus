@@ -155,35 +155,6 @@ partial class ProxyService
                     }
                 }
                 break;
-
-            case ProxyMode.System:
-                if (OperatingSystem.IsWindows() &&
-                    proxyIp_.Value.Equals(IPAddress.Any))
-                {
-                    SetProxyIp(IPAddress.Loopback);
-                }
-                var resultSetSystemProxy = await platformService.SetAsSystemProxyAsync(true,
-                    proxyIp_.Value,
-                    proxyPort);
-                if (!resultSetSystemProxy)
-                {
-                    return Strings.CommunityFix_SetAsSystemProxyFail;
-                }
-                break;
-
-            case ProxyMode.PAC:
-                if (OperatingSystem.IsWindows() &&
-                    proxyIp_.Value.Equals(IPAddress.Any))
-                {
-                    SetProxyIp(IPAddress.Loopback);
-                }
-                var pacUrl = $"http://{proxyIp_.Value}:{proxyPort}/pac";
-                var resultSetSystemPACProxy = await platformService.SetAsSystemPACProxyAsync(true, pacUrl);
-                if (!resultSetSystemPACProxy)
-                {
-                    return Strings.CommunityFix_SetAsSystemPACProxyFail;
-                }
-                break;
 #if WINDOWS && !REMOVE_DNS_INTERCEPT
             case ProxyMode.DNSIntercept:
                 {
@@ -296,14 +267,6 @@ partial class ProxyService
 
     async Task<OperateProxyServiceResult> StopProxyServiceCoreAsync(bool isExit)
     {
-        bool callSet = true;
-#if WINDOWS
-        if (isExit && !platformService.IsAdministrator)
-        {
-            // Windows 平台非管理员权限进程退出时候忽略，由管理员进程退出时执行清空系统代理配置
-            callSet = false;
-        }
-#endif
         switch (proxyMode) // 先停止接入代理流量
         {
 #if REMOVE_DNS_INTERCEPT
@@ -329,20 +292,6 @@ partial class ProxyService
                             return Strings.OperationHostsError_.Format(removeHostsResult.Message);
                         }
                     }
-                }
-                break;
-
-            case ProxyMode.System:
-                if (callSet)
-                {
-                    await platformService.SetAsSystemProxyAsync(false);
-                }
-                break;
-
-            case ProxyMode.PAC:
-                if (callSet)
-                {
-                    await platformService.SetAsSystemPACProxyAsync(false);
                 }
                 break;
 #if WINDOWS && !REMOVE_DNS_INTERCEPT

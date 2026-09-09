@@ -14,8 +14,6 @@ public static partial class ProxySettings
 #if !REMOVE_DNS_INTERCEPT
         yield return EProxyMode.DNSIntercept;
 #endif
-        yield return EProxyMode.PAC;
-        yield return EProxyMode.System;
 #elif ANDROID
             yield return EProxyMode.VPN;
             yield return EProxyMode.ProxyOnly;
@@ -25,7 +23,6 @@ public static partial class ProxySettings
 #endif
         {
             yield return EProxyMode.Hosts;
-            yield return EProxyMode.System;
         }
 #else
         return Array.Empty<EProxyMode>();
@@ -52,7 +49,6 @@ public static partial class ProxySettings
     {
         EProxyMode.DNSIntercept => AppResources.ProxyMode_DNSIntercept,
         EProxyMode.Hosts => AppResources.ProxyMode_Hosts,
-        EProxyMode.System => AppResources.ProxyMode_System,
         EProxyMode.VPN => AppResources.ProxyMode_VPN,
         EProxyMode.ProxyOnly => AppResources.ProxyMode_ProxyOnly,
         _ => string.Empty,

@@ -19,16 +19,6 @@
                 <Button Command="{Binding ResetSettings}" Content="{Binding Path=Res.Reset, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
             </ui:SettingsExpander.Footer>
             <ui:SettingsExpanderItem>
-                <TextBlock Text="{Binding Path=Res.Settings_Proxy_SystemProxyIp, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                <ui:SettingsExpanderItem.Footer>
-                    <ui:FAComboBox
-                        IsEditable="True"
-                        ItemsSource="{Binding SystemProxyIps}"
-                        Text="{Binding Source={x:Static ms:ProxySettings.SystemProxyIp}, Path=Value, Mode=TwoWay}" />
-                </ui:SettingsExpanderItem.Footer>
-            </ui:SettingsExpanderItem>
-
-            <ui:SettingsExpanderItem>
                 <TextBlock Text="{Binding Path=Res.Settings_Proxy_CustomDNS, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
                 <ui:SettingsExpanderItem.Footer>
                     <ui:FAComboBox
@@ -36,17 +26,6 @@
                         IsEnabled="{Binding Source={x:Static ms:ProxySettings.UseDoh}, Path=!Value}"
                         ItemsSource="{Binding ProxyDNSs}"
                         Text="{Binding Source={x:Static ms:ProxySettings.ProxyMasterDns}, Path=Value, Mode=TwoWay}" />
-                </ui:SettingsExpanderItem.Footer>
-            </ui:SettingsExpanderItem>
-
-            <ui:SettingsExpanderItem Description="{Binding Path=Res.Settings_Proxy_SystemProxyPortId_Tip, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
-                <TextBlock Text="{Binding Path=Res.Settings_Proxy_SystemProxyPortId, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                <ui:SettingsExpanderItem.Footer>
-                    <NumericUpDown
-                        MaxWidth="200"
-                        FormatString="0"
-                        Maximum="65535"
-                        Value="{Binding Source={x:Static ms:ProxySettings.SystemProxyPortId}, Path=Value, Mode=TwoWay}" />
                 </ui:SettingsExpanderItem.Footer>
             </ui:SettingsExpanderItem>
 

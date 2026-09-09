@@ -20,30 +20,6 @@ partial interface IPCPlatformService
         const byte Code_Ok = 200;
 #if !LIB_CLIENT_IPC && WINDOWS
 
-        switch (markKey)
-        {
-            case nameof(WindowsPlatformServiceImpl.SetAsSystemProxyAsync):
-                if (markValue == bool.TrueString)
-                {
-                    WindowsPlatformServiceImpl.SetAsSystemProxyStatus = true;
-                }
-                else if (markValue == bool.FalseString)
-                {
-                    WindowsPlatformServiceImpl.SetAsSystemProxyStatus = false;
-                }
-                break;
-            case nameof(WindowsPlatformServiceImpl.SetAsSystemPACProxyAsync):
-                if (markValue == bool.TrueString)
-                {
-                    WindowsPlatformServiceImpl.SetAsSystemPACProxyStatus = true;
-                }
-                else if (markValue == bool.FalseString)
-                {
-                    WindowsPlatformServiceImpl.SetAsSystemPACProxyStatus = false;
-                }
-                break;
-        }
-
         await WindowsPlatformServiceImpl.StartProcessRegeditCoreAsync(path, millisecondsDelay);
         return Code_Ok;
 #else

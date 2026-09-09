@@ -219,24 +219,6 @@
     </spp:PageBase.ActionContent>
     <spp:PageBase.PaneContent>
         <StackPanel Margin="15,20" Spacing="10">
-            <TextBlock Text="{x:Static spp:Strings.CommunityFix_ProxyMode}" Theme="{StaticResource BodyStrongTextBlockStyle}" />
-
-            <TabStrip
-                Name="ProxyModeTab"
-                Background="{DynamicResource ControlOnImageFillColorDefaultBrush}"
-                CornerRadius="{StaticResource ControlCornerRadius}"
-                IsEnabled="{Binding Source={x:Static s:ProxyService.Current}, Path=!ProxyStatus, Mode=OneWay}"
-                ItemContainerTheme="{StaticResource TabItemStyle}"
-                ItemsSource="{Binding Source={x:Static ms:ProxySettings.ProxyModes}, Path=., Mode=OneWay}"
-                SelectedItem="{Binding Source={x:Static ms:ProxySettings.ProxyMode}, Path=Value, Mode=TwoWay}"
-                Theme="{StaticResource TabStripStyle}">
-                <TabStrip.ItemTemplate>
-                    <DataTemplate DataType="spp:ProxyMode">
-                        <TextBlock Text="{Binding}" />
-                    </DataTemplate>
-                </TabStrip.ItemTemplate>
-            </TabStrip>
-
             <TextBlock Text="{x:Static spp:Strings.CommunityFix_MenuName}" Theme="{StaticResource BodyStrongTextBlockStyle}" />
 
             <ToggleSwitch
@@ -788,8 +770,6 @@
                     <TextBlock Text="加速不能用?" />
                 </StackPanel>
             </Button>
-            <TextBlock Text="{x:Static spp:Strings.CommunityFix_ProxyMode}" />
-            <TextBlock Text="{Binding Source={x:Static ms:ProxySettings.ProxyMode}, Path=Value, Mode=OneWay, Converter={StaticResource EnumLocalizationNameConverter}}" />
         </StackPanel>
 
         <spp:AdControl
