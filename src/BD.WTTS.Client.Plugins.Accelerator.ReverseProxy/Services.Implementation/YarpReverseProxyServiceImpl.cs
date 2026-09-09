@@ -247,7 +247,6 @@ sealed partial class YarpReverseProxyServiceImpl : ReverseProxyServiceImpl, IRev
     public async Task StopProxyAsync()
     {
         StopCertificateTimer();
-        Scripts = null;
         if (app == null) return;
         await app.StopAsync();
         if (app == null) return;

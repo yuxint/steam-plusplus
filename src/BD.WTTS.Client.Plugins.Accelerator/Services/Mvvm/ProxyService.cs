@@ -17,14 +17,12 @@ public sealed partial class ProxyService
     public static ProxyService Current => mCurrent.Value;
 
     readonly IReverseProxyService reverseProxyService = IReverseProxyService.Constants.Instance;
-    readonly IScriptManager scriptManager = IScriptManager.Instance;
     readonly IHostsFileService hostsFileService = IHostsFileService.Constants.Instance;
     readonly IPlatformService platformService = IPlatformService.Instance;
 
     ProxyService()
     {
         ProxyDomains = new SourceCache<AccelerateProjectGroupDTO, string>(s => s.Name);
-        ProxyScripts = new SourceList<ScriptDTO>();
 
         ProxyDomains
             .Connect()
@@ -76,27 +74,6 @@ public sealed partial class ProxyService
                   IsChangeSupportProxyServicesStatus = true;
                   ProxySettings.SupportProxyServicesStatus.Value = GetAccelerateEnableAllIds(EnableProxyDomains).ToImmutableHashSet();
               }));
-
-        this.WhenAnyValue(v => v.ProxyScripts)
-              .ObserveOn(RxApp.MainThreadScheduler)
-              .Subscribe(script => script?
-              .Connect()
-              .AutoRefresh(x => x.Disable)
-              .WhenPropertyChanged(x => x.Disable, false)
-              .Subscribe(async item =>
-              {
-                  await scriptManager.SaveEnableScriptAsync(item.Sender);
-                  //ProxySettings.ScriptsStatus.Value = EnableProxyScripts?.Where(w => w?.LocalId > 0).Select(k => k.LocalId).ToImmutableHashSet();
-                  //ProxySettings.ScriptsStatus.Value = ProxyScripts.Items.Where(x => x?.LocalId > 0).Select(k => k.LocalId).ToImmutableHashSet();
-                  if (reverseProxyService.ProxyRunning)
-                  {
-                      //await EnableProxyScripts.ContinueWith(e =>
-                      //{
-                      //    reverseProxyService.Scripts = e.Result?.ToImmutableArray();
-                      //});
-                      this.RaisePropertyChanged(nameof(EnableProxyScripts));
-                  }
-              }));
     }
 
     public SourceCache<AccelerateProjectGroupDTO, string> ProxyDomains { get; }
@@ -112,8 +89,6 @@ public sealed partial class ProxyService
         get => _SelectGroup;
         set => this.RaiseAndSetIfChanged(ref _SelectGroup, value);
     }
-
-    public SourceList<ScriptDTO> ProxyScripts { get; }
 
     public async Task StartOrStopProxyService(bool startOrStop)
     {
@@ -153,7 +128,6 @@ public sealed partial class ProxyService
 
             ProxyStarting = false;
             ProxyStatus = startOrStop;
-            IsAnyProxyScripts = ProxyStatus && IsEnableScript;
         }
     }
 
@@ -214,17 +188,6 @@ public sealed partial class ProxyService
         }
     }
 
-    public IEnumerable<ScriptDTO>? GetEnableProxyScripts()
-    {
-        //if (!IsEnableScript)
-        //return null;
-        if (!ProxyScripts.Items.Any_Nullable())
-            return null;
-        return ProxyScripts.Items!.Where(w => !w.Disable).OrderBy(x => x.Order);
-    }
-
-    public Task<IEnumerable<ScriptDTO>?> EnableProxyScripts => scriptManager.LoadingScriptContentAsync(GetEnableProxyScripts());
-
     private DateTimeOffset _StartAccelerateTime;
 
     [Reactive]
@@ -232,36 +195,6 @@ public sealed partial class ProxyService
 
     [Reactive]
     public TimeSpan AccelerateTime { get; set; }
-
-    public bool IsEnableScript
-    {
-        get => ProxySettings.IsEnableScript.Value;
-        set
-        {
-            ProxySettings.IsEnableScript.Value = value;
-            this.RaisePropertyChanged();
-            this.RaisePropertyChanged(nameof(EnableProxyScripts));
-        }
-    }
-
-    public bool IsOnlyWorkSteamBrowser
-    {
-        get
-        {
-            if (OperatingSystem.IsAndroid() || OperatingSystem.IsIOS()) return false;
-            return ProxySettings.IsOnlyWorkSteamBrowser.Value;
-        }
-
-        set
-        {
-            if (OperatingSystem.IsAndroid() || OperatingSystem.IsIOS()) return;
-            if (ProxySettings.IsOnlyWorkSteamBrowser.Value != value)
-            {
-                ProxySettings.IsOnlyWorkSteamBrowser.Value = value;
-                this.RaisePropertyChanged();
-            }
-        }
-    }
 
     #region HOSTS_PROXY_RUNNING_STATUS
 
@@ -290,16 +223,6 @@ public sealed partial class ProxyService
     [Reactive]
     public bool ProxyStatus { get; set; }
 
-    [Reactive]
-    public bool IsAnyProxyScripts { get; set; }
-
-    private bool CheckProxyScriptsEnable()
-    {
-        if (!ProxyScripts.Items.Any_Nullable())
-            return false;
-        return ProxyScripts.Items!.Any(w => !w.Disable);
-    }
-
     #endregion 代理状态启动退出
 
     static bool IsProgramStartupRunProxy()
@@ -325,17 +248,6 @@ public sealed partial class ProxyService
             Toast.LogAndShowT(ex, nameof(ProxyService),
                 msg: "Accelerate init fail.");
             return; // 加速项目初始化失败时，中止初始化
-        }
-
-        try
-        {
-            await InitializeScriptAsync();
-        }
-        catch (Exception ex)
-        {
-            Toast.LogAndShowT(ex, nameof(ProxyService),
-                msg: "Script init fail.");
-            return; // 脚本数据初始化失败时，中止初始化
         }
 
         try
@@ -628,212 +540,6 @@ public sealed partial class ProxyService
             }
         }
     }
-
-    #region 脚本相关
-
-    /// <summary>
-    /// 初始化脚本数据
-    /// </summary>
-    /// <returns></returns>
-    public async Task InitializeScriptAsync()
-    {
-        // 加载脚本数据
-
-        var scriptList = await scriptManager.GetAllScriptAsync();
-        var scriptList2 = await scriptManager.CheckFiles(scriptList);
-        ProxyScripts.AddRange(scriptList2);
-
-        //拉取 GM.js
-        await BasicsInfoAsync();
-        //初始化后检查脚本更新
-        CheckScriptUpdate();
-    }
-
-    /// <summary>
-    /// 找不到 GM.js 下载，有多个删除全部重新下载
-    /// </summary>
-    public async Task BasicsInfoAsync()
-    {
-        var basicsItems = ProxyScripts.Items.Where(x => x.Id == Guid.Parse("00000000-0000-0000-0000-000000000001")).ToArray();
-        var count = basicsItems.Length;
-        if (count == 1)
-            return;
-        else if (count > 1)
-        {
-            foreach (var item in basicsItems)
-            {
-                await scriptManager.DeleteScriptAsync(item);
-                ProxyScripts.Remove(item);
-            }
-        }
-        var basicsInfo = await IMicroServiceClient.Instance.Script.GM(Strings.Script_UpdateError);
-        if (basicsInfo.Code == ApiRspCode.OK && basicsInfo.Content != null)
-        {
-            var jspath = await scriptManager.DownloadScriptAsync(basicsInfo.Content.UpdateLink);
-            if (jspath.IsSuccess)
-            {
-                var build = await scriptManager.AddScriptAsync(jspath.Content!, basicsInfo.Content, isCompile: false, order: 1, deleteFile: true, pid: basicsInfo.Content.Id, ignoreCache: true);
-                if (build.IsSuccess)
-                {
-                    if (build.Content != null)
-                    {
-                        build.Content.IsBasics = true;
-                        ProxyScripts.Insert(0, build.Content);
-                    }
-                }
-                else
-                    Toast.Show(ToastIcon.Error, build.Message);
-            }
-            else
-                Toast.Show(ToastIcon.Error, jspath.GetMessageByFormat(Strings.Download_ScriptError_));
-        }
-    }
-
-    public async Task AddNewScriptAsync(string filePath)
-    {
-        var fileInfo = new FileInfo(filePath);
-        if (fileInfo.Exists)
-        {
-            var info = await scriptManager.ReadScriptAsync(filePath);
-            //ScriptDTO.TryParse(filename, out ScriptDTO? info);
-            if (info != null)
-            {
-                var scriptItem = ProxyScripts.Items.FirstOrDefault(x => x.Name == info.Name);
-                if (scriptItem != null)
-                {
-                    var result = MessageBox.ShowAsync(Strings.Script_ReplaceTips, button: MessageBox.Button.OKCancel).ContinueWith(async (s) =>
-                    {
-                        if (s.Result == MessageBox.Result.OK)
-                        {
-                            await AddNewScriptAsync(fileInfo, info, scriptItem);
-                        }
-                    });
-                }
-                else
-                {
-                    await AddNewScriptAsync(fileInfo, info);
-                }
-            }
-            else
-            {
-                await AddNewScriptAsync(fileInfo, info);
-            }
-        }
-        else
-        {
-            // $"文件不存在:{filePath}";
-            Toast.Show(ToastIcon.Error, Strings.Script_FileError_.Format(filePath));
-        }
-    }
-
-    public async Task AddNewScriptAsync(FileInfo fileInfo, ScriptDTO? info, ScriptDTO? oldInfo = null)
-    {
-        bool isCompile = true;
-        long order = 10;
-        if (oldInfo != null)
-        {
-            isCompile = oldInfo.IsCompile;
-            order = oldInfo.Order;
-        }
-        var item = await scriptManager.SaveScriptAsync(fileInfo, info, oldInfo, isCompile: isCompile, order: order);
-        if (item.IsSuccess)
-        {
-            if (item.Content != null)
-            {
-                if (oldInfo == null)
-                {
-                    ProxyScripts.Add(item.Content);
-                }
-                else
-                {
-                    ProxyScripts.Replace(oldInfo, item.Content);
-                }
-            }
-        }
-        Toast.Show(item.IsSuccess ? ToastIcon.Success : ToastIcon.Error, item.Message);
-        await RefreshScript();
-    }
-
-    /// <summary>
-    /// 刷新脚本列表
-    /// </summary>
-    public async Task RefreshScript()
-    {
-        var scriptList = await scriptManager.GetAllScriptAsync();
-        ProxyScripts.Clear();
-        ProxyScripts.AddRange(scriptList);
-
-        CheckScriptUpdate();
-    }
-
-    /// <summary>
-    /// 下载或更新JS 直接替换或新增进列表不需要刷新
-    /// </summary>
-    /// <param name="model"></param>
-    public async void DownloadScript(ScriptDTO model)
-    {
-        model.IsLoading = true;
-        var jspath = await scriptManager.DownloadScriptAsync(model.UpdateLink);
-        if (jspath.IsSuccess)
-        {
-            var build = await scriptManager.AddScriptAsync(jspath.Content!, model, isCompile: model.IsCompile, order: model.Order, deleteFile: true, pid: model.Id);
-            if (build.IsSuccess)
-            {
-                if (build.Content != null)
-                {
-                    model.IsUpdate = false;
-                    model.IsExist = true;
-                    build.Content.IsUpdate = false;
-                    build.Content.IsExist = true;
-                    var basicsItem = Current.ProxyScripts.Items.FirstOrDefault(x => x.Id == model.Id);
-                    if (basicsItem != null)
-                    {
-                        ProxyScripts.Replace(basicsItem, build.Content);
-                    }
-                    else
-                    {
-                        ProxyScripts.Add(build.Content);
-                    }
-                    Toast.Show(ToastIcon.Success, Strings.Download_ScriptOk);
-                }
-            }
-            else
-            {
-                Toast.Show(ToastIcon.Error, build.Message);
-            }
-        }
-        else
-        {
-            Toast.Show(ToastIcon.Error, jspath.GetMessageByFormat(Strings.Download_ScriptError_));
-        }
-        model.IsLoading = false;
-    }
-
-    /// <summary>
-    /// 检查 JS 更新
-    /// </summary>
-    public async void CheckScriptUpdate()
-    {
-        var items = ProxyScripts.Items.Where(x => x.Id.HasValue).Select(x => x.Id!.Value).ToList();
-        var client = IMicroServiceClient.Instance.Script;
-        var response = await client.GetInfoByIds(Strings.Script_UpdateError, items);
-        if (response.Code == ApiRspCode.OK && response.Content != null)
-        {
-            foreach (var item in ProxyScripts.Items)
-            {
-                var newItem = response.Content.FirstOrDefault(x => x.Id == item.Id);
-                if (newItem != null && item.Version != newItem.Version)
-                {
-                    item.NewVersion = newItem.Version;
-                    item.UpdateLink = newItem.UpdateLink;
-                    item.IsUpdate = true;
-                    ProxyScripts.Replace(item, item);
-                }
-            }
-        }
-    }
-
-    #endregion 脚本相关
 
     public async void FixNetwork()
     {

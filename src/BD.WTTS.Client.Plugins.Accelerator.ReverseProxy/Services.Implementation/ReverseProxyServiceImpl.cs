@@ -30,15 +30,6 @@ abstract class ReverseProxyServiceImpl : IReverseProxySettings
     /// <inheritdoc cref="IReverseProxyService.ProxyDomains"/>
     public IReadOnlyCollection<AccelerateProjectDTO>? ProxyDomains { get; set; }
 
-    /// <inheritdoc cref="IReverseProxyService.Scripts"/>
-    public IReadOnlyCollection<ScriptIPCDTO>? Scripts { get; set; }
-
-    /// <inheritdoc cref="IReverseProxyService.IsEnableScript"/>
-    public bool IsEnableScript { get; set; }
-
-    /// <inheritdoc cref="IReverseProxyService.IsOnlyWorkSteamBrowser"/>
-    public bool IsOnlyWorkSteamBrowser { get; set; }
-
     public const ushort DefaultProxyPort = 26501;
 
     /// <inheritdoc cref="IReverseProxyService.ProxyPort"/>
@@ -52,9 +43,6 @@ abstract class ReverseProxyServiceImpl : IReverseProxySettings
 
     /// <inheritdoc cref="IReverseProxyService.IsProxyGOG"/>
     public bool IsProxyGOG { get; set; }
-
-    /// <inheritdoc cref="IReverseProxyService.OnlyEnableProxyScript"/>
-    public bool OnlyEnableProxyScript { get; set; }
 
     /// <inheritdoc cref="IReverseProxyService.EnableHttpProxyToHttps"/>
     public bool EnableHttpProxyToHttps { get; set; }

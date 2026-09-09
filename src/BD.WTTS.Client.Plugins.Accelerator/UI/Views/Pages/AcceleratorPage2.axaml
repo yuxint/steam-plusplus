@@ -44,7 +44,6 @@
                                 </DataTemplate>
                             </ui:MenuFlyoutSubItem.ItemTemplate>
                         </ui:MenuFlyoutSubItem>-->
-                        <ui:ToggleMenuFlyoutItem IsChecked="{Binding Source={x:Static s:ProxyService.Current}, Path=IsEnableScript, Mode=TwoWay}" Text="启用脚本" />
                     </ui:FAMenuFlyout>
                 </SplitButton.Flyout>
                 <Panel>
@@ -239,13 +238,6 @@
             </TabStrip>
 
             <TextBlock Text="{x:Static spp:Strings.CommunityFix_MenuName}" Theme="{StaticResource BodyStrongTextBlockStyle}" />
-
-            <ToggleSwitch
-                VerticalAlignment="Center"
-                Classes="NoContent"
-                IsChecked="{Binding Source={x:Static s:ProxyService.Current}, Path=IsEnableScript, Mode=TwoWay}"
-                OffContent="{x:Static spp:Strings.CommunityFix_EnableScriptService}"
-                OnContent="{x:Static spp:Strings.CommunityFix_EnableScriptService}" />
 
             <ToggleSwitch
                 VerticalAlignment="Center"
@@ -463,7 +455,6 @@
                 </WrapPanel>-->
             </TabStripItem>
             <TabStripItem Content="{x:Static spp:Strings.CommunityFix_Services}" IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=ProxyStatus, Mode=OneWay}" />
-            <TabStripItem Content="加速脚本" IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=IsAnyProxyScripts, Mode=OneWay}" />
             <TabStripItem Content="{x:Static spp:Strings.CommunityFix_ProxyLog}" IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=ProxyStatus, Mode=OneWay}" />
             <TabStripItem Content="{x:Static spp:Strings.CommunityFix_FlowStatistics}" IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=ProxyStatus, Mode=OneWay}" />
             <TabStripItem Name="GameAccTab">
@@ -577,9 +568,6 @@
 
             <!--  加速服务  -->
             <spp:AcceleratorServiceStatus />
-
-            <!--  加速脚本  -->
-            <spp:ProxyServiceStatus />
 
             <!--  加速日志  -->
             <spp:ProxyLog Margin="5,0" />
@@ -802,9 +790,6 @@
             </Button>
             <TextBlock Text="{x:Static spp:Strings.CommunityFix_ProxyMode}" />
             <TextBlock Text="{Binding Source={x:Static ms:ProxySettings.ProxyMode}, Path=Value, Mode=OneWay, Converter={StaticResource EnumLocalizationNameConverter}}" />
-
-            <TextBlock Text="{x:Static spp:Strings.CommunityFix_EnableScriptService}" />
-            <TextBlock Text="{Binding Source={x:Static s:ProxyService.Current}, Path=IsEnableScript, Converter={StaticResource StringFormatConverter}}" />
         </StackPanel>
 
         <spp:AdControl

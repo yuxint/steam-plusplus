@@ -128,7 +128,6 @@ public static partial class ServiceCollectionExtensions
             //.AddSingleton<TlsRestoreMiddleware>()
 
             //http
-            .AddSingleton<HttpLocalRequestMiddleware>()
             .AddSingleton<HttpProxyPacMiddleware>()
             .AddSingleton<RequestLoggingMiddleware>()
             .AddSingleton<HttpReverseProxyMiddleware>();

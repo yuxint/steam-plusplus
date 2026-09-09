@@ -39,8 +39,6 @@ partial class YarpReverseProxyServiceImpl
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void StartupConfigure(IApplicationBuilder app)
     {
-        app.UseHttpLocalRequest();
-
         app.UseHttpProxyPac();
         app.UseRequestLogging();
         app.UseHttpReverseProxy();

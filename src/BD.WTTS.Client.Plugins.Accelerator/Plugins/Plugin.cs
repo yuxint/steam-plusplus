@@ -40,14 +40,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
             //IconKey = "SpeedHigh",
             IconKey = Icon,
         };
-
-        //yield return new MenuTabItemViewModel()
-        //{
-        //    ResourceKeyOrName = nameof(Strings.ScriptConfig),
-        //    PageType = typeof(ScriptPage),
-        //    IsResourceGet = true,
-        //    IconKey = "DuplexPortraitOneSided",
-        //};
     }
 
     readonly TaskCompletionSource<IReverseProxyService> reverseProxyService = new();
@@ -56,8 +48,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
 
     public override void ConfigureDemandServices(IServiceCollection services, Startup startup)
     {
-        services.TryAddScriptManager();
-
         if (startup.HasHttpProxy)
         {
 #if !DISABLE_ASPNET_CORE && (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
@@ -78,12 +68,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
             //services.AddSingleton(_ => acceleratorService.Task.GetAwaiter().GetResult());
             services.AddSingleton<IAcceleratorService, BackendAcceleratorServiceImpl>();
             services.AddSingleton<IXunYouAccelStateToFrontendCallback, XunYouAccelStateToFrontendCallbackImpl>();
-        }
-
-        if (startup.HasServerApiClient)
-        {
-            // 添加仓储服务
-            services.AddSingleton<IScriptRepository, ScriptRepository>();
         }
     }
 
@@ -157,11 +141,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
             await MainThread2.InvokeOnMainThreadAsync(ProxyService.Current.InitializeAsync);
             //}
         }
-    }
-
-    public override void OnAddAutoMapper(IMapperConfigurationExpression cfg)
-    {
-        cfg.AddProfile<AcceleratorAutoMapperProfile>();
     }
 
     public override async ValueTask OnExit()

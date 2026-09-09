@@ -34,11 +34,6 @@ public partial interface IReverseProxyService : IDisposable
 
         public const string LocalDomain = "local.steampp.net";
 
-        /// <summary>
-        /// 同源脚本注入路径前缀，避免使用外域 script src 造成页面脚本 publicPath 污染。
-        /// </summary>
-        public const string InjectScriptPathPrefix = "/WattToolkit_Inject/";
-
         public static IPAddress DefaultProxyIp => IPAddress.Any;
     }
 
@@ -46,9 +41,6 @@ public partial interface IReverseProxyService : IDisposable
     /// 当前代理服务是否正在运行
     /// </summary>
     bool ProxyRunning { get; }
-
-    /// <inheritdoc cref="IReverseProxySettings.Scripts"/>
-    IReadOnlyCollection<ScriptIPCDTO>? Scripts { get; set; }
 
     /// <summary>
     /// 启动代理服务
@@ -93,21 +85,6 @@ public partial interface IReverseProxySettings
     IReadOnlyCollection<AccelerateProjectDTO>? ProxyDomains { get; set; }
 
     /// <summary>
-    /// 当前勾选的脚本集
-    /// </summary>
-    IReadOnlyCollection<ScriptIPCDTO>? Scripts { get; set; }
-
-    /// <summary>
-    /// 是否启用脚本
-    /// </summary>
-    bool IsEnableScript { get; set; }
-
-    /// <summary>
-    /// 是否只针对 Steam 内置浏览器启用脚本
-    /// </summary>
-    bool IsOnlyWorkSteamBrowser { get; set; }
-
-    /// <summary>
     /// 代理服务器端口号
     /// </summary>
     ushort ProxyPort { get; set; }
@@ -126,11 +103,6 @@ public partial interface IReverseProxySettings
     /// 启用 GOG 插件代理
     /// </summary>
     bool IsProxyGOG { get; set; }
-
-    /// <summary>
-    /// 开启加速后仅代理脚本而不加速
-    /// </summary>
-    bool OnlyEnableProxyScript { get; set; }
 
     /// <summary>
     /// 启用 Http 链接转发到 Https
@@ -188,12 +160,6 @@ public partial interface IReverseProxySettings
 public readonly partial record struct ReverseProxySettings(
     [property: MP2Key(0)]
     IReadOnlyCollection<AccelerateProjectDTO>? ProxyDomains,
-    [property:MP2Key(1)]
-    IReadOnlyCollection<ScriptIPCDTO>? Scripts,
-    [property:MP2Key(2)]
-    bool IsEnableScript,
-    [property:MP2Key(3)]
-    bool IsOnlyWorkSteamBrowser,
     [property:MP2Key(4)]
     ushort ProxyPort,
     [property:MP2Key(5)]
@@ -202,8 +168,6 @@ public readonly partial record struct ReverseProxySettings(
     ProxyMode ProxyMode,
     [property:MP2Key(7)]
     bool IsProxyGOG,
-    [property:MP2Key(8)]
-    bool OnlyEnableProxyScript,
     [property:MP2Key(9)]
     bool EnableHttpProxyToHttps,
     [property:MP2Key(10)]
@@ -263,14 +227,10 @@ public readonly partial record struct ReverseProxySettings(
     internal void SetValue(IReverseProxySettings settings)
     {
         settings.ProxyDomains = ProxyDomains;
-        settings.Scripts = Scripts;
-        settings.IsEnableScript = IsEnableScript;
-        settings.IsOnlyWorkSteamBrowser = IsOnlyWorkSteamBrowser;
         settings.ProxyPort = ProxyPort == default ? ReverseProxyServiceImpl.DefaultProxyPort : ProxyPort;
         settings.ProxyIp = GetProxyIp();
         settings.ProxyMode = ProxyMode;
         settings.IsProxyGOG = IsProxyGOG;
-        settings.OnlyEnableProxyScript = OnlyEnableProxyScript;
         settings.EnableHttpProxyToHttps = EnableHttpProxyToHttps;
         settings.Socks5ProxyEnable = Socks5ProxyEnable;
         settings.Socks5ProxyPortId = Socks5ProxyPortId;

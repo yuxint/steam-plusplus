@@ -18,18 +18,6 @@ static class ApplicationBuilderExtensions
     }
 
     /// <summary>
-    /// 使用本地 Http 请求中间件
-    /// </summary>
-    /// <param name="app"></param>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static IApplicationBuilder UseHttpLocalRequest(this IApplicationBuilder app)
-    {
-        var middleware = app.ApplicationServices.GetRequiredService<HttpLocalRequestMiddleware>();
-        return app.Use(next => context => middleware.InvokeAsync(context, next));
-    }
-
-    /// <summary>
     /// 使用请求日志中间件
     /// </summary>
     /// <param name="app"></param>

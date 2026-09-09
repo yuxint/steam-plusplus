@@ -21,24 +21,9 @@ public partial interface IProxySettings
         => Ioc.Get_Nullable<IOptionsMonitor<IProxySettings>>()?.CurrentValue;
 
     /// <summary>
-    /// 启用脚本自动检查更新
-    /// </summary>
-    bool IsAutoCheckScriptUpdate { get; set; }
-
-    /// <summary>
-    /// 启用代理脚本
-    /// </summary>
-    bool IsEnableScript { get; set; }
-
-    /// <summary>
     /// 代理服务启用状态
     /// </summary>
     IReadOnlyCollection<string>? SupportProxyServicesStatus { get; set; }
-
-    /// <summary>
-    /// 脚本启用状态
-    /// </summary>
-    IReadOnlyCollection<int>? ScriptsStatus { get; set; }
 
     #region 代理设置
 
@@ -56,11 +41,6 @@ public partial interface IProxySettings
     /// 系统代理模式IP
     /// </summary>
     string? SystemProxyIp { get; set; }
-
-    /// <summary>
-    /// 开启加速后仅代理脚本而不加速
-    /// </summary>
-    bool OnlyEnableProxyScript { get; set; }
 
     /// <summary>
     /// 代理时使用的解析主DNS
@@ -138,11 +118,6 @@ public partial interface IProxySettings
     /// </summary>
     bool IsProxyGOG { get; set; }
 
-    /// <summary>
-    /// 是否只针对 Steam 内置浏览器启用脚本
-    /// </summary>
-    bool IsOnlyWorkSteamBrowser { get; set; }
-
 #endif
 
     /// <summary>
@@ -171,24 +146,9 @@ public partial interface IProxySettings
     bool ProxyBeforeDNSCheck { get; set; }
 
     /// <summary>
-    /// 启用脚本自动检查更新的默认值
-    /// </summary>
-    const bool DefaultIsAutoCheckScriptUpdate = true;
-
-    /// <summary>
-    /// 启用代理脚本的默认值
-    /// </summary>
-    const bool DefaultIsEnableScript = false;
-
-    /// <summary>
     /// 代理服务启用状态的默认值
     /// </summary>
     static readonly IReadOnlyCollection<string> DefaultSupportProxyServicesStatus = Array.Empty<string>();
-
-    /// <summary>
-    /// 脚本启用状态的默认值
-    /// </summary>
-    static readonly IReadOnlyCollection<int> DefaultScriptsStatus = Array.Empty<int>();
 
     /// <summary>
     /// 程序启动时自动启动代理的默认值
@@ -204,11 +164,6 @@ public partial interface IProxySettings
     /// 系统代理模式IP的默认值
     /// </summary>
     static readonly string DefaultSystemProxyIp = IPAddress.Any.ToString();
-
-    /// <summary>
-    /// 开启加速后仅代理脚本而不加速的默认值
-    /// </summary>
-    const bool DefaultOnlyEnableProxyScript = false;
 
     /// <summary>
     /// 代理时使用的解析主DNS的默认值
@@ -269,11 +224,6 @@ public partial interface IProxySettings
     /// 启用 GOG 插件代理的默认值
     /// </summary>
     const bool DefaultIsProxyGOG = false;
-
-    /// <summary>
-    /// 是否只针对 Steam 内置浏览器启用脚本的默认值
-    /// </summary>
-    const bool DefaultIsOnlyWorkSteamBrowser = false;
 
     /// <summary>
     /// 启用 DNS over HTTPS的默认值

@@ -13,12 +13,6 @@ sealed class LazyReverseProxyServiceImpl : IReverseProxyService
 
     public bool ProxyRunning => impl().ProxyRunning;
 
-    public IReadOnlyCollection<ScriptIPCDTO>? Scripts
-    {
-        get => impl().Scripts;
-        set => impl().Scripts = value;
-    }
-
     public void Dispose() => impl().Dispose();
 
     public byte[]? GetFlowStatistics_Bytes() => impl().GetFlowStatistics_Bytes();

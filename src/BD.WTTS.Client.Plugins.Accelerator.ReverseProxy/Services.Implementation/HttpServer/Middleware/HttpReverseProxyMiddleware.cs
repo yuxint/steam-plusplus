@@ -10,7 +10,7 @@ namespace BD.WTTS.Services.Implementation;
 /// <summary>
 /// 反向代理中间件
 /// </summary>
-sealed partial class HttpReverseProxyMiddleware
+sealed class HttpReverseProxyMiddleware
 {
     static readonly IDomainConfig defaultDomainConfig = new DomainConfig() { TlsSni = true, };
 
@@ -63,17 +63,6 @@ Actual value was {actualValue}.
         var url = context.Request.GetDisplayUrl();
         //var url = context.Request.GetDisplayUrl().Remove(0, context.Request.Scheme.Length + 3);
 
-        var isScriptInject = reverseProxyConfig.TryGetScriptConfig(url, out var scriptConfigs);
-
-        var originalBody = context.Response.Body;
-        MemoryStream? memoryStream = null;
-
-        if (isScriptInject)
-        {
-            memoryStream = new MemoryStream();
-            context.Response.Body = memoryStream;
-        }
-
         if (TryGetDomainConfig(url.Remove(0, context.Request.Scheme.Length + 3), out var domainConfig) == false)
         {
             if (reverseProxyConfig.Service.TwoLevelAgentEnable)
@@ -97,8 +86,7 @@ Actual value was {actualValue}.
             return;
         }
 
-        if (domainConfig == defaultDomainConfig &&
-            !reverseProxyConfig.Service.OnlyEnableProxyScript)
+        if (domainConfig == defaultDomainConfig)
         {
             // 部分运营商将奇怪的域名解析到 127.0.0.1 再此排除这些不支持的代理域名
             var ip = await reverseProxyConfig.DnsAnalysis.AnalysisDomainIpAsync(context.Request.Host.Value!, IDnsAnalysisService.DNS_Dnspods).FirstOrDefaultAsync();
@@ -161,10 +149,6 @@ Actual value was {actualValue}.
             {
                 await HandleErrorAsync(context, error);
             }
-            else if (isScriptInject)
-            {
-                await HandleScriptInject(context, scriptConfigs, memoryStream!, originalBody!);
-            }
         }
         else
         {
@@ -198,7 +182,7 @@ Actual value was {actualValue}.
     {
         domainConfig = null;
 
-        if (!reverseProxyConfig.Service.OnlyEnableProxyScript && reverseProxyConfig.TryGetDomainConfig(uri, out domainConfig) == true)
+        if (reverseProxyConfig.TryGetDomainConfig(uri, out domainConfig) == true)
         {
             return true;
         }
@@ -254,222 +238,6 @@ Actual value was {actualValue}.
         await context.Response.WriteAsync($"{error}:{context.GetForwarderErrorFeature()?.Exception?.Message}");
     }
 
-    /// <summary>
-    /// 处理脚本注入内容
-    /// </summary>
-    /// <param name="context"></param>
-    /// <param name="scripts"></param>
-    /// <param name="body"></param>
-    /// <param name="originalBody"></param>
-    /// <returns></returns>
-    async Task HandleScriptInject(HttpContext context, IEnumerable<IScriptConfig>? scripts, MemoryStream body, Stream originalBody)
-    {
-        async Task ResetBody()
-        {
-            body.Seek(0, SeekOrigin.Begin);
-            context.Response.ContentLength = body.Length;
-            await body.CopyToAsync(originalBody);
-            context.Response.Body = originalBody;
-        }
-
-        if (!scripts.Any_Nullable() ||
-            context.Request.Method != HttpMethods.Get ||
-            context.Response.StatusCode != StatusCodes.Status200OK ||
-            context.Response.ContentType == null ||
-            !context.Response.ContentType.Contains("text/html", StringComparison.OrdinalIgnoreCase))
-        {
-            await ResetBody();
-            return;
-        }
-
-        if (IReverseProxyService.Constants.Instance.IsOnlyWorkSteamBrowser && context.Request.UserAgent()?.Contains("Valve Steam") == false)
-        {
-            await ResetBody();
-            return;
-        }
-
-        if (!string.IsNullOrEmpty(context.Response.Headers.ContentSecurityPolicy))
-        {
-            //var csp = context.Response.Headers.ContentSecurityPolicy.ToString();
-            //var marks = new string[] { "default-src", "script-src", "connect-src" };
-
-            //foreach (var mark in marks)
-            //{
-            //    var cspIndex = csp.IndexOf(mark);
-            //    if (cspIndex >= 0)
-            //    {
-            //        context.Response.Headers.ContentSecurityPolicy = csp.Insert(cspIndex + mark.Length, " " + IReverseProxyService.Constants.LocalDomain);
-            //    }
-            //}
-            context.Response.Headers.Remove("Content-Security-Policy");
-        }
-
-        var isSetBody = false;
-
-        if (scripts.Any() && body.Length < int.MaxValue)
-        {
-            try
-            {
-                body.Seek(0, SeekOrigin.Begin);
-                // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding
-                var contentCompression = context.Response.Headers.ContentEncoding.ToString().ToLowerInvariant();
-                using Stream bodyDecompress = GetStreamByContentCompression(body, contentCompression, CompressionMode.Decompress, true) ?? body;
-
-                var buffer_ = await bodyDecompress.ToByteArrayAsync();
-
-                // https://github.com/dotnet/runtime/blob/v6.0.6/src/libraries/System.Net.Http/src/System/Net/Http/HttpContent.cs#L175
-                Encoding? encoding = context.Response.ContentTextEncoding();
-                if (encoding == null)
-                {
-                    if (!TryDetectEncoding(buffer_, out encoding))
-                    {
-                        encoding = Encoding.UTF8;
-                    }
-                }
-
-                var isGithubHost = IsGithubHost(context.Request.Host.Host);
-                var isFindPosition = isGithubHost
-                    ? FindScriptInjectInsertPositionForGithub(buffer_, encoding, out var buffer, out var position)
-                    : FindScriptInjectInsertPosition(buffer_, encoding, out buffer, out position);
-
-                if (isFindPosition)
-                {
-                    using var bodyWriter = new MemoryStream();
-                    using Stream? bodyCompress = GetStreamByContentCompression(bodyWriter, contentCompression, CompressionMode.Compress, true);
-
-                    if (bodyCompress != null)
-                    {
-                        await WriteAsync(bodyCompress);
-                        await bodyCompress.DisposeAsync(); // 不主动释放压缩流会有残余数据未写入
-                    }
-                    else
-                    {
-                        await WriteAsync(bodyWriter);
-                        context.Response.Headers.Remove("Content-Encoding");
-                    }
-
-                    async Task WriteAsync(Stream bodyCoreWriter)
-                    {
-                        var html_start = buffer[..position];
-                        //#if DEBUG
-                        //                        var html_start_string = encoding.GetString(html_start.Span);
-                        //#endif
-                        await bodyCoreWriter.WriteAsync(html_start);
-                        var script_xml_start = Encoding.ASCII.GetBytes($"<script type=\"text/javascript\" src=\"{IReverseProxyService.Constants.InjectScriptPathPrefix}");
-                        ReadOnlyMemory<byte> script_xml_end = ".js\"></script>"u8.ToArray();
-                        foreach (var script in scripts)
-                        {
-                            await bodyCoreWriter.WriteAsync(script_xml_start);
-                            await bodyCoreWriter.WriteAsync(encoding.GetBytes(script.LocalId.ToString()));
-                            await bodyCoreWriter.WriteAsync(script_xml_end);
-                        }
-                        var html_end = buffer[position..];
-                        //#if DEBUG
-                        //                        var html_end_string = encoding.GetString(html_end.Span);
-                        //#endif
-                        await bodyCoreWriter.WriteAsync(html_end);
-                    }
-
-                    isSetBody = true;
-                    await SetBodyAsync(bodyWriter);
-                }
-            }
-#if !DEBUG
-            catch
-#else
-            catch (Exception e)
-#endif
-            {
-#if DEBUG
-                var rawUrl = context.Request.RawUrl();
-                logger.LogError(e, "HandleScriptInject fail, rawUrl: {rawUrl}", rawUrl);
-#endif
-                await ResetBody();
-            }
-            finally
-            {
-                if (!isSetBody)
-                {
-                    await SetBodyAsync(body);
-                }
-                await body.DisposeAsync();
-            }
-
-            async Task SetBodyAsync(Stream stream)
-            {
-                context.Response.ContentLength = stream.Length;
-                stream.Seek(0, SeekOrigin.Begin);
-                await stream.CopyToAsync(originalBody);
-                context.Response.Body = originalBody;
-            }
-        }
-
-        static bool IsGithubHost(string? host)
-        {
-            if (string.IsNullOrWhiteSpace(host))
-                return false;
-
-            return host.Equals("github.com", StringComparison.OrdinalIgnoreCase) ||
-                host.EndsWith(".github.com", StringComparison.OrdinalIgnoreCase);
-        }
-    }
-
-    static Stream? GetStreamByContentCompression(Stream stream, string contentCompression, CompressionMode mode, bool leaveOpen) => contentCompression switch
-    {
-        "gzip" => new GZipStream(stream, mode, leaveOpen),
-        "deflate" => new DeflateStream(stream, mode, leaveOpen),
-        "br" => new BrotliStream(stream, mode, leaveOpen),
-        _ => null,
-    };
-
-    static bool TryDetectEncoding(byte[] data, [NotNullWhen(true)] out Encoding? encoding/*, out int preambleLength*/)
-    {
-        // https://github.com/dotnet/runtime/blob/v6.0.6/src/libraries/System.Net.Http/src/System/Net/Http/HttpContent.cs#L773
-
-        const long offset = 0L;
-        var dataLength = data.Length;
-
-        if (dataLength >= 2)
-        {
-            int first2Bytes = data[offset + 0] << 8 | data[offset + 1];
-
-            switch (first2Bytes)
-            {
-                case UTF8PreambleFirst2Bytes:
-                    if (dataLength >= UTF8PreambleLength && data[offset + 2] == UTF8PreambleByte2)
-                    {
-                        encoding = Encoding.UTF8;
-                        //preambleLength = UTF8PreambleLength;
-                        return true;
-                    }
-                    break;
-
-                case UTF32OrUnicodePreambleFirst2Bytes:
-                    // UTF32 not supported on Phone
-                    if (dataLength >= UTF32PreambleLength && data[offset + 2] == UTF32PreambleByte2 && data[offset + 3] == UTF32PreambleByte3)
-                    {
-                        encoding = Encoding.UTF32;
-                        //preambleLength = UTF32PreambleLength;
-                    }
-                    else
-                    {
-                        encoding = Encoding.Unicode;
-                        //preambleLength = UnicodePreambleLength;
-                    }
-                    return true;
-
-                case BigEndianUnicodePreambleFirst2Bytes:
-                    encoding = Encoding.BigEndianUnicode;
-                    //preambleLength = BigEndianUnicodePreambleLength;
-                    return true;
-            }
-        }
-
-        encoding = null;
-        //preambleLength = 0;
-        return false;
-    }
-
     static void SetWattHeaders(HttpContext context, string? token)
     {
         context.Request.Headers.TryAdd("X-Watt-Origin-Dest-Scheme", context.Request.Scheme);
@@ -478,18 +246,4 @@ Actual value was {actualValue}.
 
         context.Request.Headers.TryAdd("X-Watt-Token", token ?? string.Empty);
     }
-
-    const int UTF8PreambleLength = 3;
-    const byte UTF8PreambleByte2 = 0xBF;
-    const int UTF8PreambleFirst2Bytes = 0xEFBB;
-
-    const int UTF32PreambleLength = 4;
-    const byte UTF32PreambleByte2 = 0x00;
-    const byte UTF32PreambleByte3 = 0x00;
-    const int UTF32OrUnicodePreambleFirst2Bytes = 0xFFFE;
-
-    //const int UnicodePreambleLength = 2;
-
-    //const int BigEndianUnicodePreambleLength = 2;
-    const int BigEndianUnicodePreambleFirst2Bytes = 0xFEFF;
 }

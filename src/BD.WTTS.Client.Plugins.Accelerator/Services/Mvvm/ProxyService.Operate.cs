@@ -41,17 +41,12 @@ partial class ProxyService
 
         TracepointHelper.TrackEvent("StartProxy", new Dictionary<string, string> {
             { "ProxyType", ProxySettings.ProxyMode.Value.ToString() },
-            { "ProxyScriptStatus", ProxySettings.IsEnableScript.Value.ToString() },
         });
 
-        IReadOnlyCollection<ScriptIPCDTO>? scripts = default;
-        bool isEnableScript = ProxySettings.IsEnableScript.Value;
-        bool isOnlyWorkSteamBrowser = ProxySettings.IsOnlyWorkSteamBrowser.Value;
         ushort proxyPort = ProxySettings.SystemProxyPortId.Value == 0 ? ProxySettings.SystemProxyPortId.Default : ProxySettings.SystemProxyPortId.Value;
         string? proxyIp = ProxySettings.SystemProxyIp.Value;
         proxyMode = defaultProxyMode;
         bool isProxyGOG = ProxySettings.IsProxyGOG.Value;
-        bool onlyEnableProxyScript = ProxySettings.OnlyEnableProxyScript.Value;
         bool enableHttpProxyToHttps = ProxySettings.EnableHttpProxyToHttps.Value;
         bool socks5ProxyEnable = ProxySettings.Socks5ProxyEnable.Value ||
             (OperatingSystem.IsAndroid() && // Android VPN 模式使用 tun2socks
@@ -96,33 +91,11 @@ partial class ProxyService
             proxyIp = proxyIPAddress.ToString();
         }
 
-        if (isEnableScript)
-        {
-            await EnableProxyScripts.ContinueWith(e =>
-            {
-                scripts = e.Result?.Select(item => new ScriptIPCDTO(
-                               item.LocalId,
-                               item.CachePath,
-                               item.MatchDomainNamesArray,
-                               item.ExcludeDomainNames,
-                               item.Order)
-                          ).ToImmutableArray();
-                //.Select(item =>
-                //          new ScriptIPCDTO(
-                //               item.LocalId,
-                //               item.CachePath,
-                //               item.MatchDomainNamesArray,
-                //               item.ExcludeDomainNames)
-                //          );
-            });
-        }
-
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 #if MACCATALYST
                     if (OperatingSystem.IsMacOS())
 #endif
         {
-            isOnlyWorkSteamBrowser = ProxySettings.IsOnlyWorkSteamBrowser.Value;
             proxyMode = ProxySettings.ProxyMode.Value;
             if (!proxyMode.IsDefined())
                 proxyMode = defaultProxyMode;
@@ -139,7 +112,6 @@ partial class ProxyService
         //reverseProxyService.HostProxyPortId = ProxySettings.HostProxyPortId;
 
         this.RaisePropertyChanged(nameof(EnableProxyDomains));
-        this.RaisePropertyChanged(nameof(EnableProxyScripts));
 
         switch (proxyMode)
         {
@@ -232,9 +204,9 @@ partial class ProxyService
             }
         }
 
-        ReverseProxySettings reverseProxySettings = new(proxyDomains, scripts,
-            isEnableScript, isOnlyWorkSteamBrowser, proxyPort,
-            proxyIp, proxyMode, isProxyGOG, onlyEnableProxyScript,
+        ReverseProxySettings reverseProxySettings = new(proxyDomains,
+            proxyPort,
+            proxyIp, proxyMode, isProxyGOG,
             enableHttpProxyToHttps, socks5ProxyEnable, socks5ProxyPortId,
             twoLevelAgentEnable, twoLevelAgentProxyType, twoLevelAgentIp,
             twoLevelAgentPortId, twoLevelAgentUserName, twoLevelAgentPassword, proxyDNS, isSupportIpv6, useDoh, customDohAddres, proxyToken);
@@ -263,10 +235,6 @@ partial class ProxyService
                                 return new KeyValuePair<string, string>(host, localhost);
                             });
                         }).ToDictionaryIgnoreRepeat(x => x.Key, y => y.Value);
-                        if (isEnableScript)
-                        {
-                            hosts.TryAdd(IReverseProxyService.Constants.LocalDomain, localhost);
-                        }
                         var updateHostsResult = await hostsFileService.UpdateHosts(hosts);
                         if (updateHostsResult.ResultType != OperationResultType.Success)
                         {

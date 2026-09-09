@@ -55,10 +55,9 @@ public sealed class ProxySettingsWindowViewModel : WindowViewModel
         ProxySettings.EnableHttpProxyToHttps.Reset(save: false);
         ProxySettings.UseDoh.Reset(save: false);
         ProxySettings.CustomDohAddres2.Reset(save: false);
-        ProxySettings.OnlyEnableProxyScript.Reset(save: false);
 
         // 更改完成后保存一次
-        ProxySettings.OnlyEnableProxyScript.Save();
+        ProxySettings.CustomDohAddres2.Save();
 
         Toast.Show(ToastIcon.Success, "重置成功");
     }

@@ -103,13 +103,6 @@
                 <Label Content="自定义根证书" ></Label>
                 <Button Content="选择证书"/>
               </DockPanel>-->
-
-            <ui:SettingsExpanderItem Description="*该选项勾选后会导致程序的加速失效，请确认是配合二级代理实现仅需要脚本功能后再启用">
-                <TextBlock Text="{Binding Path=Res.CommunityFix_ProxyOnlyOnScript, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                <ui:SettingsExpanderItem.Footer>
-                    <ToggleSwitch Classes="LeftContent" IsChecked="{Binding Source={x:Static ms:ProxySettings.OnlyEnableProxyScript}, Path=Value, Mode=TwoWay}" />
-                </ui:SettingsExpanderItem.Footer>
-            </ui:SettingsExpanderItem>
         </ui:SettingsExpander>
 
 

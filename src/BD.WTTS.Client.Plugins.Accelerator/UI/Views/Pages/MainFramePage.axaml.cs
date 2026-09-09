@@ -15,7 +15,6 @@ public partial class MainFramePage : UserControl
         InitializeComponent();
 
         //Tabs.Items.Add(new TabStripItem { Content = Strings.CommunityFix, Tag = typeof(AcceleratorPage) });
-        //Tabs.Items.Add(new TabStripItem { Content = Strings.ScriptConfig, Tag = typeof(ScriptPage) });
 
         Tabs.SelectionChanged += Tabs_SelectionChanged;
     }
