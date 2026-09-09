@@ -36,11 +36,6 @@ public sealed partial class MainWindow : ReactiveAppWindow<MainWindowViewModel>
         }
 #endif
         base.OnClosing(e);
-
-        if (Steamworks.SteamClient.IsValid)
-        {
-            Steamworks.SteamFriends.ClearRichPresence();
-        }
     }
 
     DateTime lastOpenedTime;
@@ -75,10 +70,6 @@ public sealed partial class MainWindow : ReactiveAppWindow<MainWindowViewModel>
     protected override async void OnOpened(EventArgs e)
     {
         base.OnOpened(e);
-        if (Steamworks.SteamClient.IsValid)
-        {
-            Steamworks.SteamFriends.SetRichPresence("steam_display", "#Status_AtMainMenu");
-        }
         if (AppSplashScreen.IsInitialized)
         {
             SetStartDefaultPageName();
@@ -255,7 +246,6 @@ public sealed class AppSplashScreen : IApplicationSplashScreen
                     await IViewModelManager.Instance.MainWindow.Initialize();
 
                     App.Instance.CompositeDisposable.Add(IViewModelManager.Instance.MainWindow);
-                    App.Instance.CompositeDisposable.Add(SteamConnectService.Current.Dispose);
 
                     IsInitialized = true;
                 }

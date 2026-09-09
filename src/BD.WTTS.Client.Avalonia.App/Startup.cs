@@ -211,9 +211,6 @@ sealed partial class Program : Startup
         if (HasSteam)
         {
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-            // Steam 相关助手、工具类服务
-            services.AddSteamService2();
-
             // Steamworks LocalApi Service
             services.TryAddSteamworksLocalApiService();
 #endif

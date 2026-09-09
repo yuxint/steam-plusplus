@@ -37,14 +37,6 @@ partial class Startup // OnStartup
             //if (x.HasValue) // null 为默认值时不提示
             ShowSettingsModifiedRestartThisSoft();
         });
-
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-        if (string.IsNullOrWhiteSpace(SteamSettings.SteamProgramPath.Value))
-        {
-            SteamSettings.SteamProgramPath.Default =
-                Ioc.Get<ISteamService>().SteamProgramPath;
-        }
-#endif
     }
 
     public virtual void OnStartup()

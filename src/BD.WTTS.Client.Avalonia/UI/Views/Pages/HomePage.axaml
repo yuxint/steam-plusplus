@@ -96,34 +96,6 @@
                 VerticalAlignment="Top" />
 
             <WrapPanel Margin="5,0">
-                <WrapPanel IsVisible="{Binding Source={x:Static s:SteamConnectService.Current}, Path=CurrentSteamUser, Mode=OneWay, Converter={StaticResource IsNullConverter}, ConverterParameter=invert}">
-                    <spp:Image2
-                        DecodeWidth="36"
-                        Height="36"
-                        Margin="0,0,5,0"
-                        Source="{Binding Source={x:Static s:SteamConnectService.Current}, Path=CurrentSteamUser.AvatarMedium, Mode=OneWay}"
-                        Stretch="Uniform"
-                        VerticalAlignment="Center"
-                        Width="36">
-                        <spp:Image2.Clip>
-                            <EllipseGeometry Rect="0,0,36,36" />
-                        </spp:Image2.Clip>
-                    </spp:Image2>
-                    <TextBlock
-                        Text="{Binding Source={x:Static s:SteamConnectService.Current}, Path=CurrentSteamUser.SteamNickName, Mode=OneWay}"
-                        Theme="{StaticResource SubtitleTextBlockStyle}"
-                        VerticalAlignment="Center" />
-                    <TextBlock
-                        IsVisible="{Binding Source={x:Static s:SteamConnectService.Current}, Path=CurrentSteamUser.IPCountry, Mode=OneWay, Converter={StaticResource IsNullConverter}, ConverterParameter=invert}"
-                        Text="{Binding Source={x:Static s:SteamConnectService.Current}, Path=CurrentSteamUser.IPCountry, Mode=OneWay, StringFormat={}({0})}"
-                        Theme="{StaticResource SubtitleTextBlockStyle}"
-                        VerticalAlignment="Center" />
-                    <TextBlock
-                        Margin="0,0,10,0"
-                        Text=","
-                        Theme="{StaticResource SubtitleTextBlockStyle}"
-                        VerticalAlignment="Center" />
-                </WrapPanel>
                 <TextBlock Theme="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Center">
                     <Run Text="{Binding Path=Res.Welcome_User_, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
                 </TextBlock>

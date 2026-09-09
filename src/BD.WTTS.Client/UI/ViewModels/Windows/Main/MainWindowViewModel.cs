@@ -146,13 +146,6 @@ public sealed partial class MainWindowViewModel : WindowViewModel
             //}
 #endif
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-            {
-                SteamConnectService.Current.Initialize();
-                //SteamConnectService.Current.RefreshSteamUsers();
-            }
-#endif
-
             //Parallel.ForEach(TabItems, item =>
             //{
             //    item.Initialize();

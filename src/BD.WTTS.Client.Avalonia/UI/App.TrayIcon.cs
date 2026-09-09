@@ -1,7 +1,5 @@
 using Avalonia.Controls;
-using BD.SteamClient.Services;
 using BD.WTTS.Client.Resources;
-using BD.WTTS.Converters;
 using System.Collections.Specialized;
 using static BD.WTTS.Services.INotificationService;
 
@@ -124,30 +122,6 @@ partial class App
 
                 var defaultTrayMenus = new List<NativeMenuItemBase>()
                     {
-                        new NativeMenuItem
-                        {
-                            [!NativeMenuItem.HeaderProperty] = new MultiBinding {
-                                Bindings = new List<Avalonia.Data.IBinding>()
-                                {
-                                    new Binding { Path = "IsRunningSteamProcess", Source = SteamConnectService.Current, Mode = BindingMode.OneWay },
-                                    new Binding { Path = "Res.CloseSteam", Source = ResourceService.Current, Mode = BindingMode.OneWay },
-                                    new Binding { Path = "Res.StartSteam", Source = ResourceService.Current, Mode = BindingMode.OneWay },
-                                },
-                                Converter = (VisibleStringConverter)App.Instance.FindResource(nameof(VisibleStringConverter))!,
-                            },
-                            Command = ReactiveCommand.Create(async () =>
-                            {
-                                if(ISteamService.Instance.IsRunningSteamProcess)
-                                {
-                                   await ISteamService.Instance.TryKillSteamProcess();
-                                }
-                                else
-                                {
-                                    ISteamService.Instance.StartSteamWithParameter();
-                                }
-                            }),
-                        },
-                        //new NativeMenuItemSeparator(),
                         new NativeMenuItem
                         {
                             [!NativeMenuItem.HeaderProperty] = new Binding { Path = "Res.OpenMainWindow", Source = ResourceService.Current, Mode = BindingMode.OneWay },

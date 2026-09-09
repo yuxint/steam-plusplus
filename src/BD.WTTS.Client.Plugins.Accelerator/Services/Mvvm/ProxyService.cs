@@ -482,8 +482,29 @@ public sealed partial class ProxyService
     static string NormalizeGroupName(string name) =>
         string.Concat(name.Where(c => !char.IsWhiteSpace(c))).ToLowerInvariant();
 
+    // 注意：此处不能用 LINQ 的 Contains/Any 做字符串比较。
+    // publish 裁剪（assembly trimming）后的运行环境中，LINQ 对 string 序列的相等性判断会异常
+    // （码点完全相同的字符串被判定不等，导致加速分组白名单恒为空），须手写逐字符比较。
+    static bool IsWhitelistedGroupName(string? name)
+    {
+        if (string.IsNullOrEmpty(name)) return false;
+        var n = NormalizeGroupName(name);
+        foreach (var w in WhitelistGroupNames)
+        {
+            var nw = NormalizeGroupName(w);
+            if (nw.Length != n.Length) continue;
+            var all = true;
+            for (var i = 0; i < nw.Length; i++)
+            {
+                if (nw[i] != n[i]) { all = false; break; }
+            }
+            if (all) return true;
+        }
+        return false;
+    }
+
     static IEnumerable<AccelerateProjectGroupDTO> FilterWhitelistGroups(IEnumerable<AccelerateProjectGroupDTO> groups) =>
-        groups.Where(s => WhitelistGroupNames.Contains(NormalizeGroupName(s.Name ?? string.Empty)));
+        groups.Where(s => IsWhitelistedGroupName(s.Name));
 
     static IEnumerable<string> GetLeafIds(IEnumerable<AccelerateProjectDTO> nodes)
     {

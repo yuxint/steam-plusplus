@@ -27,6 +27,9 @@ partial class App
     [DllImport("/usr/lib/libobjc.A.dylib", EntryPoint = "objc_msgSend")]
     static extern nint objc_msgSend_SetActivationPolicy(nint receiver, nint selector, nint policy);
 
+    [DllImport("/usr/lib/libobjc.A.dylib", EntryPoint = "objc_msgSend")]
+    static extern void objc_msgSend_ActivateIgnoringOtherApps(nint receiver, nint selector, [MarshalAs(UnmanagedType.I1)] bool ignoreOtherApps);
+
     /// <summary>
     /// 设置 Dock 栏图标是否显示，隐藏后应用保留菜单栏图标继续后台运行
     /// </summary>
@@ -43,6 +46,24 @@ partial class App
         catch (Exception ex)
         {
             Log.Error(nameof(App), ex, "SetDockIconVisible fail.");
+        }
+    }
+
+    /// <summary>
+    /// 将应用激活到前台；应用处于后台（如从菜单栏图标恢复窗口）时，不激活应用则窗口不会置前显示
+    /// </summary>
+    public static void ActivateApp()
+    {
+        try
+        {
+            var nsapp = objc_msgSend(objc_getClass("NSApplication"), sel_registerName("sharedApplication"));
+            if (nsapp == nint.Zero)
+                return;
+            objc_msgSend_ActivateIgnoringOtherApps(nsapp, sel_registerName("activateIgnoringOtherApps:"), true);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(nameof(App), ex, "ActivateApp fail.");
         }
     }
 

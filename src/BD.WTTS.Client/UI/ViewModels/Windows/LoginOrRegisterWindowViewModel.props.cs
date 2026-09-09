@@ -130,8 +130,6 @@ public partial class LoginOrRegisterWindowViewModel
     [Reactive]
     public short LoginState { get; set; }
 
-    //public SteamUser? SteamUser { get; } = SteamConnectService.Current.CurrentSteamUser;
-
     public ICommand Submit { get; }
 
     public Action? TbPhoneNumberFocus { get; set; }

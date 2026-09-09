@@ -32,6 +32,12 @@ public sealed partial class App : Application
             Gesture = new KeyGesture(Key.M, KeyModifiers.Meta),
             Command = ReactiveCommand.Create(MinimizeMainWindow),
         });
+        menus.Add(new NativeMenuItem
+        {
+            Header = "关闭窗口",
+            Gesture = new KeyGesture(Key.W, KeyModifiers.Meta),
+            Command = ReactiveCommand.Create(HideMainWindowToBackground),
+        });
         menus.Add(new NativeMenuItemSeparator());
         menus.Add(new NativeMenuItem
         {
@@ -78,30 +84,6 @@ public sealed partial class App : Application
 #if WINDOWS || LINUX || MACOS
             if (GeneralSettings.MinimizeOnStartup.Value)
                 Startup.Instance.IsMinimize = true;
-
-            if (Startup.Instance.IsSteamRun)
-            {
-                try
-                {
-                    Steamworks.Dispatch.OnException = (e) =>
-                    {
-                        Log.Error(nameof(Steamworks), e, "Steamworks.SteamClient OnException.");
-                    };
-
-                    // Init Client
-                    Steamworks.SteamClient.Init(2425030);
-
-                    //if (Steamworks.SteamClient.IsValid)
-                    //{
-                    //    Steamworks.SteamFriends.SetRichPresence("steam_display", "#Status_AtMainMenu");
-                    //    //var r = Steamworks.SteamFriends.GetRichPresence("steam_display");
-                    //}
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(nameof(Steamworks), ex, "Steamworks.SteamClient Init");
-                }
-            }
 #endif
         }
         catch (Exception ex)

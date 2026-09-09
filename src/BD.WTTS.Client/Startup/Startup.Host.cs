@@ -30,6 +30,13 @@ partial class Startup // 配置 Host
         WatchTrace.Start();
 #endif
 
+        // 服务器 MemoryPack 响应格式与客户端 MemoryPack 1.21.4 不兼容（DTO 字段错位，加速分组等接口解析失败），
+        // 改走 JSON 通道；早于任何微服务请求前设置
+        if (IsMainProcess)
+        {
+            IMicroServiceClient.SerializableImplType = Serializable.ImplType.SystemTextJson;
+        }
+
         level ??= IsMainProcess ? AppServicesLevel.MainProcess : AppServicesLevel.Min;
 
         HasTrayIcon = level.Value.HasFlag(AppServicesLevel.AppUpdateAndTrayIcon);

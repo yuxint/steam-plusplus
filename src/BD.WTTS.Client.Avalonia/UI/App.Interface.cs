@@ -52,6 +52,10 @@ partial class App : IApplication
 
         if (mainWindow.WindowState == WindowState.Minimized)
             mainWindow.WindowState = WindowState.Normal;
+#if MACOS
+        // 应用在后台时窗口 Show 后不会自动置前，需先激活应用
+        ActivateApp();
+#endif
         mainWindow.Topmost = true;
         mainWindow.Topmost = false;
         mainWindow.BringIntoView();

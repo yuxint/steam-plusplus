@@ -29,7 +29,6 @@
             <TabStripItem Content="{Binding Path=Res.Settings_General, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" Tag="Settings_General" />
             <TabStripItem Content="{Binding Path=Res.Settings_UI, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" Tag="Settings_UI" />
             <TabStripItem Content="{Binding Path=Res.Settings_Plugin, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" Tag="Settings_Plugin" />
-            <TabStripItem Content="{Binding Path=Res.Settings_Steam, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" Tag="Settings_Steam" />
             <TabStripItem Content="{Binding Path=Res.About, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" Tag="AboutPage" />
         </TabStrip>
     </spp:PageBase.TabContent>
@@ -72,7 +71,6 @@
         <spp:Settings_General Name="Settings_General" />
         <spp:Settings_UI Name="Settings_UI" />
         <spp:Settings_Plugin Name="Settings_Plugin" />
-        <spp:Settings_Steam Name="Settings_Steam" />
         <spp:AboutPage Name="AboutPage" />
     </StackPanel>
 </spp:PageBase>

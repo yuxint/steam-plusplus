@@ -59,22 +59,6 @@ public sealed partial class SettingsPageViewModel : TabItemViewModel
     }
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-    public async void SelectSteamProgramLocation()
-    {
-        AvaloniaFilePickerFileTypeFilter fileTypes = new AvaloniaFilePickerFileTypeFilter.Item[] {
-            new("Steam") {
-                Patterns = new[] { "steam.exe", },
-                //MimeTypes =
-                //AppleUniformTypeIdentifiers =
-                },
-        };
-        await FilePicker2.PickAsync((path) =>
-        {
-            if (!string.IsNullOrEmpty(path))
-                SteamSettings.SteamProgramPath.Value = path;
-        }, fileTypes);
-    }
-
     public void SetBackgroundImagePath(string? imagePath)
     {
         if (string.IsNullOrWhiteSpace(imagePath))
@@ -95,19 +79,6 @@ public sealed partial class SettingsPageViewModel : TabItemViewModel
             }
         }
         Toast.Show(ToastIcon.Error, AppResources.Settings_UI_CustomBackgroundImage_Error);
-    }
-
-    public async void EditSteamParameter()
-    {
-        var vm = new TextBoxWindowViewModel
-        {
-            InputType = TextBoxWindowViewModel.TextBoxInputType.TextBox,
-            Value = SteamSettings.SteamStratParameter.Value,
-        };
-        if (await IWindowManager.Instance.ShowTaskDialogAsync(vm, AppResources.Edit + " " + AppResources.Settings_Steam_SteamStratParameter, subHeader: "可添加自定义的参数来启动 Steam", isDialog: false, isCancelButton: true))
-        {
-            SteamSettings.SteamStratParameter.Value = vm.Value;
-        }
     }
 #endif
 
