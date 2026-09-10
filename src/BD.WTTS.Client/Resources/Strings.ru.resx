@@ -485,10 +485,6 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Редактировать файл Host</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="CommunityFix_EnableScriptService" xml:space="preserve">
-    <value>Включить сценарий</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="CommunityFix_MenuName" xml:space="preserve">
     <value>Настройки ускорения</value>
     <comment>Comment=;Author=沙中金</comment>
@@ -509,32 +505,16 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Открыть папку с сертификатом</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="CommunityFix_ProxyMode" xml:space="preserve">
-    <value>Режим ускорения</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="ProxyMode_Hosts" xml:space="preserve">
     <value>Режим хоста прокси</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="CommunityFix_ProxyMode_HostsTip" xml:space="preserve">
-    <value>Измените файл Hosts, чтобы прослушивать локальные запросы для реализации прокси, это быстрее и влияет только на ускоренные сайты, и работает лучше всего, если локальный порт 443 не используется.</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="ProxyMode_System" xml:space="preserve">
     <value>Режим системного прокси</value>
     <comment>Comment=;Author=deepl</comment>
   </data>
-  <data name="CommunityFix_ProxyMode_WinSystemTip" xml:space="preserve">
-    <value>Настройка системного прокси для прослушивания запросов не требует порта 443 и глобально проксирует весь трафик на локальной машине, поэтому если у вас нет проблем с использованием метода Hosts, то вам не нужно использовать этот режим.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="CommunityFix_ScriptManage" xml:space="preserve">
     <value>Управление сценариями</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="CommunityFix_ScriptsEnable" xml:space="preserve">
-    <value>Включить службы сценариев</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="CommunityFix_SetupCertificate" xml:space="preserve">
@@ -620,14 +600,6 @@ AAAAA-BBBBB-CCCC3</value>
   <data name="Downloading" xml:space="preserve">
     <value>Скачивание: {0}%</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError" xml:space="preserve">
-    <value>Ошибка скачивания сценария, попробуйте ещё раз.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Download_ScriptOk" xml:space="preserve">
-    <value>Сценарий успешно установлен</value>
-    <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Изменить</value>
@@ -1427,16 +1399,8 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Сохранить изменения</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="ScriptConfig" xml:space="preserve">
-    <value>Конфигурация сценария</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="ScriptConfig_ScriptEmptyTip" xml:space="preserve">
     <value>Не найден подходящий файл сценария, вы можете скачать файл сценария с сайта Scriptworks.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="ScriptShop_GetTableError" xml:space="preserve">
-    <value>Не удалось получить список Scriptworks.</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="ScriptShop_NoDelete_Basics" xml:space="preserve">
@@ -1451,56 +1415,16 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Scriptworks</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="Script_AutoUpdate" xml:space="preserve">
-    <value>Включите автопроверку сценариев на наличие обновлений</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_DeleteItem" xml:space="preserve">
-    <value>Удалить этот сценарий?</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Edit" xml:space="preserve">
-    <value>Редактировать сценарий</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_EditTxt" xml:space="preserve">
-    <value>После завершения редактирования сценария, нажмите OK, чтобы обновить кэш.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="Script_FileError" xml:space="preserve">
     <value>Файл не найден, проверьте путь {0}</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Home" xml:space="preserve">
-    <value>Сайт сценария</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_ImportLoading" xml:space="preserve">
-    <value>Обработка импорта сценария</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="Script_Install" xml:space="preserve">
     <value>Установить сценарий</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="Script_NoFileDeleteItem" xml:space="preserve">
-    <value>Текстовый файл отсутствует, запись сценария удалена.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Refresh" xml:space="preserve">
-    <value>Обновить кэш</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="Script_ReplaceTips" xml:space="preserve">
     <value>Этот скрипт уже установлен. Заменить установленную версию?</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Update" xml:space="preserve">
-    <value>Обновление сценария</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_UpdateError" xml:space="preserve">
-    <value>Не удалось получить сведения о новой версии сценария.</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="Search" xml:space="preserve">
@@ -2255,10 +2179,6 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Настройки прокси</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Settings_Proxy_SystemProxyIp" xml:space="preserve">
-    <value>IP-адрес прокси</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Settings_Proxy_CustomDNS" xml:space="preserve">
     <value>Пользовательский DNS прокси</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2307,20 +2227,12 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Переключитесь на {0}, чтобы войти в Steam.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyOnlyOnScript" xml:space="preserve">
-    <value>Только сценарии с поддержкой прокси</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="About_AppReview" xml:space="preserve">
     <value>Отзыв и оценка</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_UseOpenGL" xml:space="preserve">
     <value>Рендеринг с помощью OpenGL</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError_" xml:space="preserve">
-    <value>Ошибка загрузки сценария {0}, повторите попытку.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="FixNetworkComplete" xml:space="preserve">
@@ -2416,20 +2328,8 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Сбой при удалении файла кэша: {0}</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_DeleteError" xml:space="preserve">
-    <value>Не удалось удалить</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_DeleteSuccess" xml:space="preserve">
-    <value>Удаление выполнено успешно</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_FileDeleteError" xml:space="preserve">
     <value>Сбой при удалении файла: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_FileRepeat" xml:space="preserve">
-    <value>Повтор сценария</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFile" xml:space="preserve">
@@ -2442,14 +2342,6 @@ AAAAA-BBBBB-CCCC3</value>
   </data>
   <data name="Script_ReadFileError" xml:space="preserve">
     <value>Исключение при чтении сценария, проверьте синтаксис на наличие ошибок: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDBError" xml:space="preserve">
-    <value>Ошибка сохранения данных, повторите попытку</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDbSuccess" xml:space="preserve">
-    <value>Добавлено успешно</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamInstallPathNotFound" xml:space="preserve">
@@ -3805,14 +3697,6 @@ AAAAA-BBBBB-CCCC3</value>
     <value>Загружайте только официальные плагины</value>
     <comment>Author=kotovasia5120</comment>
   </data>
-  <data name="Settings_Proxy_SystemProxyPortId" xml:space="preserve">
-    <value>порт прослушивания Proxy</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Settings_Proxy_SystemProxyPortId_Tip" xml:space="preserve">
-    <value>Действует только для режимов PAC и системного прокси.</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
   <data name="Settings_UI_EnableDesktopBackground_Error_" xml:space="preserve">
     <value>Включение этой функции, когда фоновый прозрачный материал {0} не поддерживается.</value>
     <comment>Author=kotovasia5120</comment>
@@ -3975,10 +3859,6 @@ AAAAA-BBBBB-CCCC3</value>
   </data>
   <data name="CommunityFix_SetAsSystemPACProxyFail" xml:space="preserve">
     <value>Не удалось включить прокси-сервер PAC.</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="CommunityFix_SetAsSystemProxyFail" xml:space="preserve">
-    <value>Не удалось включить системный прокси</value>
     <comment>Author=kotovasia5120</comment>
   </data>
   <data name="CommunityFix_SetupCertificate_Fail" xml:space="preserve">
@@ -4555,43 +4435,6 @@ AAAAA-BBBBB-CCCC3</value>
   </data>
   <data name="SaveEditedAppInfo_AppsEmpty" xml:space="preserve">
     <value>Информация об игре, которую необходимо сохранить в Steam, не получена. Сначала отредактируйте информацию об игре, которую вы хотите изменить.</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_BuildDownloadError__" xml:space="preserve">
-    <value>Ошибка загрузки зависимостей сценария: {0}
- {1}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_BuildError_" xml:space="preserve">
-    <value>Ошибка привязки сценария: {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_CacheDeleteError_" xml:space="preserve">
-    <value>Не удалось удалить файл кэша: {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_FileDeleteError_" xml:space="preserve">
-    <value>Не удалось удалить файл: {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_FileError_" xml:space="preserve">
-    <value>Файл не найден, проверьте путь {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_NoFile_" xml:space="preserve">
-    <value>Скрипт: {0} файл отсутствует, удален</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_NoFileDeleteError_" xml:space="preserve">
-    <value>Сценарий: файл {0} потерян, и удаление не удалось. Попробуйте удалить его вручную.</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_ReadFileError_" xml:space="preserve">
-    <value>Исключение чтения сценария. Проверьте, нет ли синтаксической ошибки: {0}.</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_Settings" xml:space="preserve">
-    <value>Настройки скрипта</value>
     <comment>Author=kotovasia5120</comment>
   </data>
   <data name="Settings_InvalidConfigurationFile" xml:space="preserve">

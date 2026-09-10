@@ -28,3 +28,9 @@
 - 主界面 tab 与设置页分组由插件列表自动派生，删工程即自动消失，无需逐页手改。
 - 未来若官方删光白名单分组，本地缓存合并机制是唯一防线，不可移除。
 - 官方版必须先卸载再装改造版，避免数据目录互踩。
+
+## 实施进度
+
+- 2026-09-08：基线编译跑通；四需求在 3.1.0 基线重做完成。
+- 2026-09-09：P1 物理裁剪（6 非加速插件、Plugins.Update、WebView2、XunYouSDK、Steam 进程管理）完成；P2 GM 脚本系统删除完成；P3 非 Hosts 代理模式（系统代理/PAC）删除完成。
+- 2026-09-09：P4 线上功能删除完成——自动更新（IAppUpdateService 全链 + 设置键/设置项）、AppCenter 统计上报（含子进程挂钩，TracepointHelper 保留空实现供插件调用）、ActiveUser 启动上报、首页广告与公告（服务 + AdControl + NoticeFlyout + 设置项）、首页/插件商店 tab（主窗口仅剩插件加速页 + 设置页，About 页随之删除"检查更新/复制 UID/账号注销"链接）；登录 UI 入口（标题栏用户菜单）删除。登录账户栈（UserService/LoginOrRegisterWindowViewModel/ThirdPartyLoginHelper）因插件内 XunYou 游戏加速（Windows-only，待后续裁剪）仍被引用而保留，macOS 上已无任何登录入口。顺带清理 resx 中脚本与 SystemProxy 死键、AcceleratorPage(2).axaml 中"加速模式/启用脚本"等注释块。三端编译通过，无头探针 304 类型全过，被删类型在 MonoBundle 加载域中确认不存在。

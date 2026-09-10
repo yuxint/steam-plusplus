@@ -325,10 +325,6 @@
     <value>Modifica del file hosts</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
-  <data name="CommunityFix_EnableScriptService" xml:space="preserve">
-    <value>Abilitare gli script</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
   <data name="CommunityFix_MenuName" xml:space="preserve">
     <value>Impostazioni di accelerazione</value>
     <comment>Comment=;Author=Zhengye</comment>
@@ -349,32 +345,16 @@
     <value>Aprire la cartella dei certificati</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
-  <data name="CommunityFix_ProxyMode" xml:space="preserve">
-    <value>Modalità di accelerazione</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
   <data name="ProxyMode_Hosts" xml:space="preserve">
     <value>Modalità proxy Hosts</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="CommunityFix_ProxyMode_HostsTip" xml:space="preserve">
-    <value>Modificare il file Hosts per ascoltare le richieste locali per ottenere il proxy, questo modo è più veloce e interesserà solo il sito accelerato, i migliori risultati, ma richiede che la porta locale 443 non sia usata.</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
   <data name="ProxyMode_System" xml:space="preserve">
     <value>Modello di agente di sistema</value>
     <comment>Comment=;Author=deepl</comment>
   </data>
-  <data name="CommunityFix_ProxyMode_WinSystemTip" xml:space="preserve">
-    <value>Impostate il proxy di sistema di Windows per ascoltare le richieste senza usare la porta 443, farà il proxy globale di tutto il traffico locale, se non avete problemi ad usare il metodo Hosts, allora non avete bisogno di usare questa modalità.</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
   <data name="CommunityFix_ScriptManage" xml:space="preserve">
     <value>Gestire gli script</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="CommunityFix_ScriptsEnable" xml:space="preserve">
-    <value>Servizi di scripting abilitati</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
   <data name="CommunityFix_SetupCertificate" xml:space="preserve">
@@ -448,14 +428,6 @@
   <data name="Downloading" xml:space="preserve">
     <value>Scaricamento: {0}%</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError" xml:space="preserve">
-    <value>Errore nel download dello script, per favore riprova.</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Download_ScriptOk" xml:space="preserve">
-    <value>Script installato con successo</value>
-    <comment>Comment=;Author=Zhengye</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Modifica</value>
@@ -1226,16 +1198,8 @@ Sicura di voler continuare?</value>
     <value>Salvare le modifiche</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
-  <data name="ScriptConfig" xml:space="preserve">
-    <value>Configurazione degli script</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
   <data name="ScriptConfig_ScriptEmptyTip" xml:space="preserve">
     <value>Nessun file di script corrispondente è stato interrogato, puoi scaricare il file di script dall'officina degli script.</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="ScriptShop_GetTableError" xml:space="preserve">
-    <value>Impossibile ottenere l'elenco delle officine di script.</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
   <data name="ScriptShop_NoDelete_Basics" xml:space="preserve">
@@ -1250,56 +1214,16 @@ Sicura di voler continuare?</value>
     <value>Scriptworks</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
-  <data name="Script_AutoUpdate" xml:space="preserve">
-    <value>Abilita lo script a controllare automaticamente gli aggiornamenti</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_DeleteItem" xml:space="preserve">
-    <value>Sei sicuro di voler cancellare questo script?</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_Edit" xml:space="preserve">
-    <value>Modifica lo script</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_EditTxt" xml:space="preserve">
-    <value>Se la modifica dello script è completa, clicca su OK per aggiornare la cache.</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
   <data name="Script_FileError" xml:space="preserve">
     <value>File non trovato, controllare il percorso {0}</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_Home" xml:space="preserve">
-    <value>Pagina iniziale dello script</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_ImportLoading" xml:space="preserve">
-    <value>Elaborazione nello script di importazione</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
   <data name="Script_Install" xml:space="preserve">
     <value>Installare lo script</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
-  <data name="Script_NoFileDeleteItem" xml:space="preserve">
-    <value>Il file di testo manca, il record dello script è stato cancellato.</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_Refresh" xml:space="preserve">
-    <value>Aggiorna la cache</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
   <data name="Script_ReplaceTips" xml:space="preserve">
     <value>Installato Questo script va bene per sostituire la versione installata?</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_Update" xml:space="preserve">
-    <value>Script di aggiornamento</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
-  <data name="Script_UpdateError" xml:space="preserve">
-    <value>Impossibile ottenere informazioni sulla nuova versione dello script.</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
   <data name="Search" xml:space="preserve">
@@ -2026,10 +1950,6 @@ Sicura di voler continuare?</value>
     <value>Passa a {0} accedi a Steam</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyOnlyOnScript" xml:space="preserve">
-    <value>L'agente abilita solo la funzionalità di scripting</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="About_AppReview" xml:space="preserve">
     <value>Punteggio e valutazione</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2091,20 +2011,8 @@ Sicura di voler continuare?</value>
     <value>Eliminazione del file di cache non riuscita: {0}</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_DeleteError" xml:space="preserve">
-    <value>Eliminazione non riuscita</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_DeleteSuccess" xml:space="preserve">
-    <value>Eliminazione riuscita</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_FileDeleteError" xml:space="preserve">
     <value>Eliminazione file non riuscita: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_FileRepeat" xml:space="preserve">
-    <value>Lo script viene ripetuto</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFile" xml:space="preserve">
@@ -2117,14 +2025,6 @@ Sicura di voler continuare?</value>
   </data>
   <data name="Script_ReadFileError" xml:space="preserve">
     <value>Eccezioni di lettura scriptControlla la sintassi per verificare la presenza di errori: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDBError" xml:space="preserve">
-    <value>Salva errore dati per riprovare</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDbSuccess" xml:space="preserve">
-    <value>Aggiunto con successo</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="NotificationChannelType_Description_NewVersion" xml:space="preserve">
@@ -2331,10 +2231,6 @@ Sicura di voler continuare?</value>
     <value>Materiale trasparente dello sfondo della finestra</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Settings_Proxy_SystemProxyIp" xml:space="preserve">
-    <value>Indirizzo IP di ascolto proxy</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Settings_Proxy_Socks5Proxy" xml:space="preserve">
     <value>Socks5 proxy locale</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2369,10 +2265,6 @@ Sicura di voler continuare?</value>
   </data>
   <data name="Settings_General_UseOpenGL" xml:space="preserve">
     <value>Utilizzare il rendering OpenGL</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError_" xml:space="preserve">
-    <value>Errore di download dello script {0}, riprova.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="FixNetworkComplete" xml:space="preserve">

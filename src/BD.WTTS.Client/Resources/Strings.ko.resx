@@ -325,10 +325,6 @@
     <value>호스트 파일 편집</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_EnableScriptService" xml:space="preserve">
-    <value>스크립팅 사용</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="CommunityFix_MenuName" xml:space="preserve">
     <value>가속 설정</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -349,32 +345,16 @@
     <value>인증서 폴더 열기</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyMode" xml:space="preserve">
-    <value>가속 모드</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="ProxyMode_Hosts" xml:space="preserve">
     <value>호스트 프록시 모드</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="CommunityFix_ProxyMode_HostsTip" xml:space="preserve">
-    <value>프록시를 구현하기 위한 네이티브 요청을 수신하도록 호스트 파일을 수정하는 것이 더 빠르며 가속화된 웹 사이트에만 영향을 주지만 기본 포트 443을 사용하지 않아야 합니다.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ProxyMode_System" xml:space="preserve">
     <value>시스템 프록시 모드</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyMode_WinSystemTip" xml:space="preserve">
-    <value>요청을 수신하기 위해 시스템 프록시를 설정하고, 포트 443을 차지할 필요가 없으며, 호스트 모드를 사용하는 경우 모든 네이티브 트래픽을 전역적으로 프록시합니다.</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="CommunityFix_ScriptManage" xml:space="preserve">
     <value>스크립트 관리</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="CommunityFix_ScriptsEnable" xml:space="preserve">
-    <value>스크립트 서비스 사용</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_SetupCertificate" xml:space="preserve">
@@ -447,14 +427,6 @@
   </data>
   <data name="Downloading" xml:space="preserve">
     <value>다운로드 중: {0}%</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError" xml:space="preserve">
-    <value>스크립트 다운로드 오류에 대해 다시 시도하십시오.</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptOk" xml:space="preserve">
-    <value>스크립트 설치가 성공했습니다.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Edit" xml:space="preserve">
@@ -1219,16 +1191,8 @@
     <value>변경 내용 저장</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="ScriptConfig" xml:space="preserve">
-    <value>스크립트 구성</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="ScriptConfig_ScriptEmptyTip" xml:space="preserve">
     <value>일치하는 스크립트 파일을 쿼리하지 않으면 스크립트 워크숍에서 스크립트 파일을 다운로드할 수 있습니다.</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="ScriptShop_GetTableError" xml:space="preserve">
-    <value>스크립트 워크샵 목록을 가져오지 못했습니다.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScriptShop_NoDelete_Basics" xml:space="preserve">
@@ -1243,56 +1207,16 @@
     <value>스크립트 워크샵</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_AutoUpdate" xml:space="preserve">
-    <value>스크립트가 업데이트를 자동으로 확인할 수 있도록 설정</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_DeleteItem" xml:space="preserve">
-    <value>이 스크립트를 삭제하시겠습니까?</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Edit" xml:space="preserve">
-    <value>스크립트 편집</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_EditTxt" xml:space="preserve">
-    <value>스크립트 수정을 마쳤으면 확인을 클릭하여 캐시를 새로 고칩니다.</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_FileError" xml:space="preserve">
     <value>파일을 찾을 수 없음, 경로 {0} 확인</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Home" xml:space="preserve">
-    <value>스크립트 홈 페이지</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_ImportLoading" xml:space="preserve">
-    <value>가져오기 스크립트에서 처리</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_Install" xml:space="preserve">
     <value>설치 스크립트</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_NoFileDeleteItem" xml:space="preserve">
-    <value>스크립트 레코드가 삭제되었는지 여부에 관계없이 텍스트 파일이 누락되었습니다.</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Refresh" xml:space="preserve">
-    <value>캐시 새로 고침</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_ReplaceTips" xml:space="preserve">
     <value>이 스크립트는 설치된 버전을 대체하여 설치되었습니까?</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Update" xml:space="preserve">
-    <value>스크립트 업데이트</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_UpdateError" xml:space="preserve">
-    <value>스크립트에 대한 새 버전 정보를 가져오지 못했습니다.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Search" xml:space="preserve">
@@ -2019,10 +1943,6 @@
     <value>{0}로 전환하여 Steam에 로그인합니다.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyOnlyOnScript" xml:space="preserve">
-    <value>에이전트는 스크립팅 기능만 사용하도록 설정합니다.</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="About_AppReview" xml:space="preserve">
     <value>점수 및 평가</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2084,20 +2004,8 @@
     <value>캐시 파일 삭제 실패: {0}</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_DeleteError" xml:space="preserve">
-    <value>삭제 실패</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_DeleteSuccess" xml:space="preserve">
-    <value>삭제 성공</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_FileDeleteError" xml:space="preserve">
     <value>파일 삭제 실패: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_FileRepeat" xml:space="preserve">
-    <value>스크립트가 반복됩니다.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFile" xml:space="preserve">
@@ -2110,14 +2018,6 @@
   </data>
   <data name="Script_ReadFileError" xml:space="preserve">
     <value>스크립트 읽기 예외오류에 대한 구문을 확인하십시오: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDBError" xml:space="preserve">
-    <value>데이터 저장 오류 다시 시도하십시오.</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDbSuccess" xml:space="preserve">
-    <value>성공적으로 추가됨</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="NotificationChannelType_Description_NewVersion" xml:space="preserve">
@@ -2324,10 +2224,6 @@
     <value>창 배경 투명한 재료</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Settings_Proxy_SystemProxyIp" xml:space="preserve">
-    <value>프록시 수신 대기 IP 주소</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Settings_Proxy_Socks5Proxy" xml:space="preserve">
     <value>Socks5 로컬 프록시</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2362,10 +2258,6 @@
   </data>
   <data name="Settings_General_UseOpenGL" xml:space="preserve">
     <value>OpenGL 렌더링 사용</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError_" xml:space="preserve">
-    <value>스크립트 다운로드 오류 {0}, 다시 시도하십시오.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="FixNetworkComplete" xml:space="preserve">

@@ -46,34 +46,7 @@
             </spp:OptionsDisplayItem.ActionButton>
         </spp:OptionsDisplayItem>
 
-        <spp:OptionsDisplayItem Header="{Binding Path=Res.Settings_General_AutoCheckUpdate, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
-            <spp:OptionsDisplayItem.Icon>
-                <ui:FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE895;" />
-            </spp:OptionsDisplayItem.Icon>
-            <spp:OptionsDisplayItem.ActionButton>
-                <ToggleSwitch Classes="LeftContent" IsChecked="{Binding Source={x:Static ms:GeneralSettings.AutoCheckAppUpdate}, Path=Value, Mode=TwoWay}" />
-            </spp:OptionsDisplayItem.ActionButton>
-        </spp:OptionsDisplayItem>
 
-        <spp:OptionsDisplayItem Header="{Binding Path=Res.Settings_General_UpdateChannel, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" IsVisible="{spp:OnPlatform OfficialRelease}">
-            <spp:OptionsDisplayItem.Icon>
-                <ui:FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE71D;" />
-            </spp:OptionsDisplayItem.Icon>
-            <spp:OptionsDisplayItem.ActionButton>
-                <ComboBox SelectedItem="{Binding Source={x:Static ms:GeneralSettings.UpdateChannel}, Path=Value, Mode=TwoWay, Converter={StaticResource EnumConverter}, ConverterParameter={x:Type spp_enums:UpdateChannelType}}">
-                    <ComboBox.Items>
-                        <spp_enums:UpdateChannelType>Auto</spp_enums:UpdateChannelType>
-                        <spp_enums:UpdateChannelType>GitHub</spp_enums:UpdateChannelType>
-                        <spp_enums:UpdateChannelType>Official</spp_enums:UpdateChannelType>
-                    </ComboBox.Items>
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate DataType="spp_enums:UpdateChannelType">
-                            <TextBlock Text="{Binding ., Converter={StaticResource EnumLocalizationNameConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </spp:OptionsDisplayItem.ActionButton>
-        </spp:OptionsDisplayItem>
 
         <spp:OptionsDisplayItem Description="{Binding Path=Res.Settings_RestartEffective, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" Header="{Binding Path=Res.Settings_General_UseGPURendering, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
             <spp:OptionsDisplayItem.Icon>
@@ -84,14 +57,6 @@
             </spp:OptionsDisplayItem.ActionButton>
         </spp:OptionsDisplayItem>
 
-        <spp:OptionsDisplayItem Header="启用消息推送通知">
-            <spp:OptionsDisplayItem.Icon>
-                <ui:FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE7E7;" />
-            </spp:OptionsDisplayItem.Icon>
-            <spp:OptionsDisplayItem.ActionButton>
-                <ToggleSwitch Classes="LeftContent" IsChecked="{Binding Source={x:Static ms:GeneralSettings.MessagePopupNotification}, Path=Value, Mode=TwoWay}" />
-            </spp:OptionsDisplayItem.ActionButton>
-        </spp:OptionsDisplayItem>
 
         <ui:SettingsExpander
             Header="{Binding Path=Res.Settings_General_StorageSpace, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"

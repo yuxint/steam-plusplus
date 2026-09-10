@@ -14,15 +14,15 @@ public partial class MainFramePage : UserControl
     {
         InitializeComponent();
 
-        //Tabs.Items.Add(new TabStripItem { Content = Strings.CommunityFix, Tag = typeof(AcceleratorPage) });
-
         Tabs.SelectionChanged += Tabs_SelectionChanged;
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-
+        // TabStrip 不会总是自动选中首项，落地时显式选中，否则 InnerNavFrame 为空、页面空白
+        if (Tabs.SelectedItem == null && Tabs.ItemCount > 0)
+            Tabs.SelectedIndex = 0;
         Tabs_SelectionChanged(null, null);
     }
 

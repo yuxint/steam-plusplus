@@ -50,11 +50,6 @@ public partial interface IUISettings
     HashSet<MessageBox.DontPromptType>? MessageBoxDontPrompts { get; set; }
 
     /// <summary>
-    /// 是否显示广告
-    /// </summary>
-    bool IsShowAdvertisement { get; set; }
-
-    /// <summary>
     /// 窗口位置大小
     /// </summary>
     ConcurrentDictionary<string, SizePosition>? WindowSizePositions { get; set; }
@@ -147,11 +142,6 @@ public partial interface IUISettings
     /// 不再提示的消息框的默认值
     /// </summary>
     const HashSet<MessageBox.DontPromptType>? DefaultMessageBoxDontPrompts = null;
-
-    /// <summary>
-    /// 是否显示广告的默认值
-    /// </summary>
-    const bool DefaultIsShowAdvertisement = true;
 
     /// <summary>
     /// 窗口位置大小的默认值

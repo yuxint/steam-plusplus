@@ -21,16 +21,6 @@ public partial interface IGeneralSettings
         => Ioc.Get_Nullable<IOptionsMonitor<IGeneralSettings>>()?.CurrentValue;
 
     /// <summary>
-    /// 自动检查应用更新
-    /// </summary>
-    bool AutoCheckAppUpdate { get; set; }
-
-    /// <summary>
-    /// 选择下载更新渠道
-    /// </summary>
-    UpdateChannelType UpdateChannel { get; set; }
-
-    /// <summary>
     /// 开机自启动
     /// </summary>
     bool AutoRunOnStartup { get; set; }
@@ -44,11 +34,6 @@ public partial interface IGeneralSettings
     /// 启用托盘图标
     /// </summary>
     bool TrayIcon { get; set; }
-
-    /// <summary>
-    /// 启用消息推送通知
-    /// </summary>
-    bool MessagePopupNotification { get; set; }
 
     /// <summary>
     /// 游戏列表使用本地缓存
@@ -89,11 +74,6 @@ public partial interface IGeneralSettings
     /// 插件安全模式
     /// </summary>
     bool PluginSafeMode { get; set; }
-
-    /// <summary>
-    /// 最后查看通知时间
-    /// </summary>
-    DateTimeOffset LastLookNoticeDateTime { get; set; }
 
     #region 配置应用程序的 Web 代理
 
@@ -140,16 +120,6 @@ public partial interface IGeneralSettings
     #endregion
 
     /// <summary>
-    /// 自动检查应用更新的默认值
-    /// </summary>
-    const bool DefaultAutoCheckAppUpdate = true;
-
-    /// <summary>
-    /// 选择下载更新渠道的默认值
-    /// </summary>
-    const UpdateChannelType DefaultUpdateChannel = UpdateChannelType.Auto;
-
-    /// <summary>
     /// 开机自启动的默认值
     /// </summary>
     const bool DefaultAutoRunOnStartup = false;
@@ -163,11 +133,6 @@ public partial interface IGeneralSettings
     /// 启用托盘图标的默认值
     /// </summary>
     const bool DefaultTrayIcon = true;
-
-    /// <summary>
-    /// 启用消息推送通知的默认值
-    /// </summary>
-    const bool DefaultMessagePopupNotification = true;
 
     /// <summary>
     /// 游戏列表使用本地缓存的默认值
@@ -208,11 +173,6 @@ public partial interface IGeneralSettings
     /// 插件安全模式的默认值
     /// </summary>
     const bool DefaultPluginSafeMode = true;
-
-    /// <summary>
-    /// 最后查看通知时间的默认值
-    /// </summary>
-    static readonly DateTimeOffset DefaultLastLookNoticeDateTime = default;
 
     /// <summary>
     /// Web 代理模式的默认值

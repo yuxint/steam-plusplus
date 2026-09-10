@@ -39,19 +39,6 @@
             </ui:SettingsExpander>
         </Border>
 
-        <Border IsEnabled="{Binding Path=User, Mode=OneWay, Source={x:Static s:UserService.Current}, Converter={StaticResource IsNullConverter}, ConverterParameter=invert}">
-            <ui:SettingsExpander
-                Description="{Binding Path=Res.Advertisement_NoShow_Tip, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
-                Header="{Binding Path=Res.Advertisement_NoShow, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
-                IsEnabled="{Binding Path=User.UserType, Mode=OneWay, Source={x:Static s:UserService.Current}, Converter={StaticResource EnumEqualValueConverter}, ConverterParameter={x:Static enum:UserType.Sponsor}}">
-                <ui:SettingsExpander.IconSource>
-                    <ui:FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="{StaticResource HeartBroken}" />
-                </ui:SettingsExpander.IconSource>
-                <ui:SettingsExpander.Footer>
-                    <ToggleSwitch Classes="LeftContent" IsChecked="{Binding Source={x:Static ms:UISettings.IsShowAdvertisement}, Path=!Value, Mode=TwoWay}" />
-                </ui:SettingsExpander.Footer>
-            </ui:SettingsExpander>
-        </Border>
 
         <spp:OptionsDisplayItem
             Description="{Binding Path=Res.Settings_UI_ThemeStyle, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"

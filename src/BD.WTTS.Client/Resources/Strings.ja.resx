@@ -325,10 +325,6 @@
     <value>Hosts ファイルを編集します</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_EnableScriptService" xml:space="preserve">
-    <value>スクリプトを有効にします</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="CommunityFix_MenuName" xml:space="preserve">
     <value>設定を高速化します</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -349,32 +345,16 @@
     <value>証明書フォルダーを開きます</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyMode" xml:space="preserve">
-    <value>加速モード</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="ProxyMode_Hosts" xml:space="preserve">
     <value>Hosts プロキシ モード</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="CommunityFix_ProxyMode_HostsTip" xml:space="preserve">
-    <value>Hosts ファイルを変更してネイティブ要求実装エージェントをリッスンすると、この方法はより高速になり、アクセラレーションされた Web サイトにのみ影響しますが、ネイティブ 443 ポートは使用されません。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ProxyMode_System" xml:space="preserve">
     <value>システム プロキシ モード</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyMode_WinSystemTip" xml:space="preserve">
-    <value>要求をリッスンするシステム エージェントを設定し、443 ポートを占有する必要はなく、すべてのトラフィックをネイティブにグローバル エージェントし、Hosts 方式で問題がない場合は、このモードを使用する必要はありません。</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="CommunityFix_ScriptManage" xml:space="preserve">
     <value>スクリプトを管理します</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="CommunityFix_ScriptsEnable" xml:space="preserve">
-    <value>有効なスクリプト サービス</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_SetupCertificate" xml:space="preserve">
@@ -447,14 +427,6 @@
   </data>
   <data name="Downloading" xml:space="preserve">
     <value>ダウンロード中: {0}%</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError" xml:space="preserve">
-    <value>スクリプトのダウンロード エラーを再試行してください。</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptOk" xml:space="preserve">
-    <value>スクリプトのインストールに成功しました</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Edit" xml:space="preserve">
@@ -1219,16 +1191,8 @@
     <value>変更を保存します</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="ScriptConfig" xml:space="preserve">
-    <value>スクリプト構成</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="ScriptConfig_ScriptEmptyTip" xml:space="preserve">
     <value>一致するスクリプト ファイルは照会されず、スクリプト ワークショップからスクリプト ファイルをダウンロードできます。</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="ScriptShop_GetTableError" xml:space="preserve">
-    <value>スクリプト ワークショップの一覧の取得に失敗しました。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScriptShop_NoDelete_Basics" xml:space="preserve">
@@ -1243,56 +1207,16 @@
     <value>スクリプト ワークショップ</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_AutoUpdate" xml:space="preserve">
-    <value>スクリプトが更新を自動的にチェックするようにします</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_DeleteItem" xml:space="preserve">
-    <value>このスクリプトを削除しますか?</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Edit" xml:space="preserve">
-    <value>スクリプトを編集します</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_EditTxt" xml:space="preserve">
-    <value>スクリプトの変更を完了するかどうか、[OK] をクリックしてキャッシュを更新します。</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_FileError" xml:space="preserve">
     <value>ファイルが見つかりませんので、パスを確認してください {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Home" xml:space="preserve">
-    <value>スクリプトのホーム ページ</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_ImportLoading" xml:space="preserve">
-    <value>インポート スクリプトを処理します</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_Install" xml:space="preserve">
     <value>スクリプトをインストールします</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_NoFileDeleteItem" xml:space="preserve">
-    <value>テキスト ファイルが失われ、スクリプト レコードを削除するかどうか。</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Refresh" xml:space="preserve">
-    <value>キャッシュをフラッシュします</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_ReplaceTips" xml:space="preserve">
     <value>インストールされているこのスクリプトは、インストールされているバージョンを置き換えることを決定しますか?</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_Update" xml:space="preserve">
-    <value>スクリプトを更新します</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_UpdateError" xml:space="preserve">
-    <value>スクリプトの新しいバージョン情報の取得に失敗しました。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Search" xml:space="preserve">
@@ -2019,10 +1943,6 @@
     <value>{0} に切り替えて Steam にサインインします</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyOnlyOnScript" xml:space="preserve">
-    <value>エージェントはスクリプト機能のみを有効にします</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="About_AppReview" xml:space="preserve">
     <value>採点&amp;評価</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2084,20 +2004,8 @@
     <value>キャッシュ ファイルの削除に失敗しました: {0}</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_DeleteError" xml:space="preserve">
-    <value>削除に失敗しました</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_DeleteSuccess" xml:space="preserve">
-    <value>削除に成功しました</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_FileDeleteError" xml:space="preserve">
     <value>ファイルの削除に失敗しました: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_FileRepeat" xml:space="preserve">
-    <value>スクリプトが繰り返されます</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFile" xml:space="preserve">
@@ -2110,14 +2018,6 @@
   </data>
   <data name="Script_ReadFileError" xml:space="preserve">
     <value>スクリプト読み取り例外構文にエラーがないかどうかを確認します{0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDBError" xml:space="preserve">
-    <value>データの保存中にエラーが発生しました</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDbSuccess" xml:space="preserve">
-    <value>追加に成功しました</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="NotificationChannelType_Description_NewVersion" xml:space="preserve">
@@ -2324,10 +2224,6 @@
     <value>ウィンドウの背景の透明なマテリアル</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Settings_Proxy_SystemProxyIp" xml:space="preserve">
-    <value>エージェントは IP アドレスをリッスンします</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Settings_Proxy_Socks5Proxy" xml:space="preserve">
     <value>Socks5 ローカル エージェント</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2362,10 +2258,6 @@
   </data>
   <data name="Settings_General_UseOpenGL" xml:space="preserve">
     <value>OpenGL レンダリングを使用します</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError_" xml:space="preserve">
-    <value>スクリプトのダウンロード エラー {0}、やり直してください。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="FixNetworkComplete" xml:space="preserve">

@@ -130,7 +130,6 @@ partial class AboutPageViewModel
 #endif
 
         //b.Append("[app.updcha] ");
-        //b.Append(ApplicationUpdateServiceBaseImpl.UpdateChannelType);
         //b.AppendLine();
 
         b.Append("[app.install] ");
@@ -217,7 +216,6 @@ partial class AboutPageViewModel
         //b.AppendLine();
 
         //b.Append("[app.center] ");
-        //b.AppendLine(VisualStudioAppCenterSDK.TryGetAppSecret(out var appSecret) ? appSecret.Split('-').FirstOrDefault() : string.Empty);
 
         b.Append("[webview.ver] ");
         GetWebViewImplementationVersionDisplayString(b);

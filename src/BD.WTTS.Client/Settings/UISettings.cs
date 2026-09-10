@@ -78,33 +78,27 @@ public sealed partial class UISettings_ : IUISettings, ISettings, ISettings<UISe
     public HashSet<MessageBox.DontPromptType>? MessageBoxDontPrompts { get; set; } = IUISettings.DefaultMessageBoxDontPrompts;
 
     /// <summary>
-    /// 是否显示广告
-    /// </summary>
-    [MPKey(5), MP2Key(5), JsonPropertyOrder(5)]
-    public bool IsShowAdvertisement { get; set; } = IUISettings.DefaultIsShowAdvertisement;
-
-    /// <summary>
     /// 窗口位置大小
     /// </summary>
-    [MPKey(6), MP2Key(6), JsonPropertyOrder(6)]
+    [MPKey(5), MP2Key(5), JsonPropertyOrder(5)]
     public ConcurrentDictionary<string, SizePosition>? WindowSizePositions { get; set; } = IUISettings.DefaultWindowSizePositions;
 
     /// <summary>
     /// 字体
     /// </summary>
-    [MPKey(7), MP2Key(7), JsonPropertyOrder(7)]
+    [MPKey(6), MP2Key(6), JsonPropertyOrder(6)]
     public string? FontName { get; set; } = IUISettings.DefaultFontName;
 
     /// <summary>
     /// 库存游戏网格布局大小
     /// </summary>
-    [MPKey(8), MP2Key(8), JsonPropertyOrder(8)]
+    [MPKey(7), MP2Key(7), JsonPropertyOrder(7)]
     public int GameListGridSize { get; set; } = IUISettings.DefaultGameListGridSize;
 
     /// <summary>
     /// 圆角
     /// </summary>
-    [MPKey(9), MP2Key(9), JsonPropertyOrder(9)]
+    [MPKey(8), MP2Key(8), JsonPropertyOrder(8)]
     public bool Fillet { get; set; } = IUISettings.DefaultFillet;
 
     #region WindowBackground 窗口背景
@@ -112,43 +106,43 @@ public sealed partial class UISettings_ : IUISettings, ISettings, ISettings<UISe
     /// <summary>
     /// 窗口背景不透明度
     /// </summary>
-    [MPKey(10), MP2Key(10), JsonPropertyOrder(10)]
+    [MPKey(9), MP2Key(9), JsonPropertyOrder(9)]
     public double WindowBackgroundOpacity { get; set; } = IUISettings.DefaultWindowBackgroundOpacity;
 
     /// <summary>
     /// 窗口背景材质
     /// </summary>
-    [MPKey(11), MP2Key(11), JsonPropertyOrder(11)]
+    [MPKey(10), MP2Key(10), JsonPropertyOrder(10)]
     public WindowBackgroundMaterial WindowBackgroundMaterial { get; set; } = IUISettings.DefaultWindowBackgroundMaterial;
 
     /// <summary>
     /// 动态桌面背景
     /// </summary>
-    [MPKey(12), MP2Key(12), JsonPropertyOrder(12)]
+    [MPKey(11), MP2Key(11), JsonPropertyOrder(11)]
     public bool WindowBackgroundDynamic { get; set; } = IUISettings.DefaultWindowBackgroundDynamic;
 
     /// <summary>
     /// 是否打开自定义背景图像
     /// </summary>
-    [MPKey(13), MP2Key(13), JsonPropertyOrder(13)]
+    [MPKey(12), MP2Key(12), JsonPropertyOrder(12)]
     public bool WindowBackgroundCustomImage { get; set; } = IUISettings.DefaultWindowBackgroundCustomImage;
 
     /// <summary>
     /// 自定义背景图像路径
     /// </summary>
-    [MPKey(14), MP2Key(14), JsonPropertyOrder(14)]
+    [MPKey(13), MP2Key(13), JsonPropertyOrder(13)]
     public string? WindowBackgroundCustomImagePath { get; set; } = IUISettings.DefaultWindowBackgroundCustomImagePath;
 
     /// <summary>
     /// 自定义背景图像不透明度
     /// </summary>
-    [MPKey(15), MP2Key(15), JsonPropertyOrder(15)]
+    [MPKey(14), MP2Key(14), JsonPropertyOrder(14)]
     public double WindowBackgroundCustomImageOpacity { get; set; } = IUISettings.DefaultWindowBackgroundCustomImageOpacity;
 
     /// <summary>
     /// 自定义背景图像缩放方式
     /// </summary>
-    [MPKey(16), MP2Key(16), JsonPropertyOrder(16)]
+    [MPKey(15), MP2Key(15), JsonPropertyOrder(15)]
     public XamlMediaStretch WindowBackgroundCustomImageStretch { get; set; } = IUISettings.DefaultWindowBackgroundCustomImageStretch;
 
     #endregion
@@ -156,13 +150,13 @@ public sealed partial class UISettings_ : IUISettings, ISettings, ISettings<UISe
     /// <summary>
     /// 菜单排序
     /// </summary>
-    [MPKey(17), MP2Key(17), JsonPropertyOrder(17)]
+    [MPKey(16), MP2Key(16), JsonPropertyOrder(16)]
     public HashSet<string>? SortMenuTabs { get; set; } = IUISettings.DefaultSortMenuTabs;
 
     /// <summary>
     /// 程序启动时默认页
     /// </summary>
-    [MPKey(18), MP2Key(18), JsonPropertyOrder(18)]
+    [MPKey(17), MP2Key(17), JsonPropertyOrder(17)]
     public string? StartDefaultPageName { get; set; } = IUISettings.DefaultStartDefaultPageName;
 
 }
@@ -202,12 +196,6 @@ public static partial class UISettings
     /// </summary>
     public static SettingsProperty<MessageBox.DontPromptType, HashSet<MessageBox.DontPromptType>, UISettings_> MessageBoxDontPrompts { get; }
         = new(DefaultMessageBoxDontPrompts);
-
-    /// <summary>
-    /// 是否显示广告
-    /// </summary>
-    public static SettingsStructProperty<bool, UISettings_> IsShowAdvertisement { get; }
-        = new(DefaultIsShowAdvertisement);
 
     /// <summary>
     /// 窗口位置大小

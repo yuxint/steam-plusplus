@@ -228,15 +228,6 @@ sealed partial class Program : Startup
             WatchTrace.Record("ConfigureDemandServices.Steam");
 #endif
         }
-        if (IsMainProcess)
-        {
-            // 应用程序更新服务
-            services.AddApplicationUpdateService();
-
-#if STARTUP_WATCH_TRACE || DEBUG
-            WatchTrace.Record("ConfigureDemandServices.AppUpdate");
-#endif
-        }
 
 #if STARTUP_WATCH_TRACE || DEBUG
         WatchTrace.Stop();
@@ -288,46 +279,5 @@ sealed partial class Program : Startup
     {
         base.InitSettingSubscribe();
         UI.App.Instance.InitSettingSubscribe();
-    }
-
-    protected override ActiveUserRecordDTO GetActiveUserRecord()
-    {
-        var result = new ActiveUserRecordDTO
-        {
-        };
-        SetScreen(result);
-        static void SetScreen(ActiveUserRecordDTO m)
-        {
-            try
-            {
-#if !__MOBILE__ && !MAUI
-                var app = UI.App.Instance;
-                var window = app.GetFirstOrDefaultWindow();
-                var screens = window?.Screens;
-
-                m.ScreenCount = screens?.ScreenCount ?? default;
-                m.PrimaryScreenPixelDensity = screens?.Primary?.Scaling ?? default;
-                m.PrimaryScreenWidth = screens?.Primary?.Bounds.Width ?? default;
-                m.PrimaryScreenHeight = screens?.Primary?.Bounds.Height ?? default;
-                m.SumScreenWidth = screens?.All?.Sum(x => x.Bounds.Width) ?? default;
-                m.SumScreenHeight = screens?.All?.Sum(x => x.Bounds.Height) ?? default;
-#else
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            var mainDisplayInfoH = mainDisplayInfo.Height.ToInt32(NumberToInt32Format.Ceiling);
-            var mainDisplayInfoW = mainDisplayInfo.Width.ToInt32(NumberToInt32Format.Ceiling);
-
-            m.ScreenCount = 1;
-            m.PrimaryScreenPixelDensity = mainDisplayInfo.Density;
-            m.PrimaryScreenWidth = mainDisplayInfoW;
-            m.PrimaryScreenHeight = mainDisplayInfoH;
-            m.SumScreenWidth = mainDisplayInfoW;
-            m.SumScreenHeight = mainDisplayInfoH;
-#endif
-            }
-            catch
-            {
-            }
-        }
-        return result;
     }
 }

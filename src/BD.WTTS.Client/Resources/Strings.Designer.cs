@@ -1269,15 +1269,6 @@ namespace BD.WTTS.Client.Resources {
         }
         
         /// <summary>
-        ///   查找类似 启用脚本 的本地化字符串。
-        /// </summary>
-        public static string CommunityFix_EnableScriptService {
-            get {
-                return ResourceManager.GetString("CommunityFix_EnableScriptService", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 启用 DoH 的本地化字符串。
         /// </summary>
         public static string CommunityFix_EnableUseDoh {
@@ -1368,42 +1359,6 @@ namespace BD.WTTS.Client.Resources {
         }
         
         /// <summary>
-        ///   查找类似 加速模式 的本地化字符串。
-        /// </summary>
-        public static string CommunityFix_ProxyMode {
-            get {
-                return ResourceManager.GetString("CommunityFix_ProxyMode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 修改 Hosts 文件来监听本机请求实现代理，此方式速度更快且只会影响加速的网站，效果最好，但需要本机 443 端口未被使用。 的本地化字符串。
-        /// </summary>
-        public static string CommunityFix_ProxyMode_HostsTip {
-            get {
-                return ResourceManager.GetString("CommunityFix_ProxyMode_HostsTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 设置系统代理来监听请求，不需要占用 443 端口，会全局代理本机所有流量，如果你使用 Hosts 方式没有问题，那就不需要使用此模式。 的本地化字符串。
-        /// </summary>
-        public static string CommunityFix_ProxyMode_WinSystemTip {
-            get {
-                return ResourceManager.GetString("CommunityFix_ProxyMode_WinSystemTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 代理仅启用脚本功能 的本地化字符串。
-        /// </summary>
-        public static string CommunityFix_ProxyOnlyOnScript {
-            get {
-                return ResourceManager.GetString("CommunityFix_ProxyOnlyOnScript", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 代理设置 的本地化字符串。
         /// </summary>
         public static string CommunityFix_ProxySettings {
@@ -1458,15 +1413,6 @@ namespace BD.WTTS.Client.Resources {
         }
         
         /// <summary>
-        ///   查找类似 启用的脚本服务 的本地化字符串。
-        /// </summary>
-        public static string CommunityFix_ScriptsEnable {
-            get {
-                return ResourceManager.GetString("CommunityFix_ScriptsEnable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 加速服务 的本地化字符串。
         /// </summary>
         public static string CommunityFix_Services {
@@ -1481,15 +1427,6 @@ namespace BD.WTTS.Client.Resources {
         public static string CommunityFix_SetAsSystemPACProxyFail {
             get {
                 return ResourceManager.GetString("CommunityFix_SetAsSystemPACProxyFail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 开启系统代理失败 的本地化字符串。
-        /// </summary>
-        public static string CommunityFix_SetAsSystemProxyFail {
-            get {
-                return ResourceManager.GetString("CommunityFix_SetAsSystemProxyFail", resourceCulture);
             }
         }
         
@@ -1850,33 +1787,6 @@ namespace BD.WTTS.Client.Resources {
         public static string Download_Failed_FileNameTip {
             get {
                 return ResourceManager.GetString("Download_Failed_FileNameTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本下载错误请重试。 的本地化字符串。
-        /// </summary>
-        public static string Download_ScriptError {
-            get {
-                return ResourceManager.GetString("Download_ScriptError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本下载错误 {0}，请重试。 的本地化字符串。
-        /// </summary>
-        public static string Download_ScriptError_ {
-            get {
-                return ResourceManager.GetString("Download_ScriptError_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本安装成功 的本地化字符串。
-        /// </summary>
-        public static string Download_ScriptOk {
-            get {
-                return ResourceManager.GetString("Download_ScriptOk", resourceCulture);
             }
         }
         
@@ -5802,246 +5712,11 @@ namespace BD.WTTS.Client.Resources {
         }
         
         /// <summary>
-        ///   查找类似 启用脚本自动检查更新 的本地化字符串。
-        /// </summary>
-        public static string Script_AutoUpdate {
-            get {
-                return ResourceManager.GetString("Script_AutoUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本依赖下载出错：{0}
-        ///    {1} 的本地化字符串。
-        /// </summary>
-        public static string Script_BuildDownloadError__ {
-            get {
-                return ResourceManager.GetString("Script_BuildDownloadError__", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本绑定出错：{0} 的本地化字符串。
-        /// </summary>
-        public static string Script_BuildError_ {
-            get {
-                return ResourceManager.GetString("Script_BuildError_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 缓存文件删除失败：{0} 的本地化字符串。
-        /// </summary>
-        public static string Script_CacheDeleteError_ {
-            get {
-                return ResourceManager.GetString("Script_CacheDeleteError_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 删除失败 的本地化字符串。
-        /// </summary>
-        public static string Script_DeleteError {
-            get {
-                return ResourceManager.GetString("Script_DeleteError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 确定要删除这个脚本吗？ 的本地化字符串。
-        /// </summary>
-        public static string Script_DeleteItem {
-            get {
-                return ResourceManager.GetString("Script_DeleteItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 删除成功 的本地化字符串。
-        /// </summary>
-        public static string Script_DeleteSuccess {
-            get {
-                return ResourceManager.GetString("Script_DeleteSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 编辑脚本 的本地化字符串。
-        /// </summary>
-        public static string Script_Edit {
-            get {
-                return ResourceManager.GetString("Script_Edit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 是否完成脚本修改，点击确定刷新缓存 的本地化字符串。
-        /// </summary>
-        public static string Script_EditTxt {
-            get {
-                return ResourceManager.GetString("Script_EditTxt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 文件删除失败：{0} 的本地化字符串。
-        /// </summary>
-        public static string Script_FileDeleteError_ {
-            get {
-                return ResourceManager.GetString("Script_FileDeleteError_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 找不到文件，请检查路径 {0} 的本地化字符串。
-        /// </summary>
-        public static string Script_FileError_ {
-            get {
-                return ResourceManager.GetString("Script_FileError_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本重复 的本地化字符串。
-        /// </summary>
-        public static string Script_FileRepeat {
-            get {
-                return ResourceManager.GetString("Script_FileRepeat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本主页 的本地化字符串。
-        /// </summary>
-        public static string Script_Home {
-            get {
-                return ResourceManager.GetString("Script_Home", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 处理导入脚本中 的本地化字符串。
-        /// </summary>
-        public static string Script_ImportLoading {
-            get {
-                return ResourceManager.GetString("Script_ImportLoading", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本：{0} 文件丢失已删除 的本地化字符串。
-        /// </summary>
-        public static string Script_NoFile_ {
-            get {
-                return ResourceManager.GetString("Script_NoFile_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本：{0} 文件丢失，删除失败去尝试手动删除 的本地化字符串。
-        /// </summary>
-        public static string Script_NoFileDeleteError_ {
-            get {
-                return ResourceManager.GetString("Script_NoFileDeleteError_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 该文本文件已丢失，是否删除脚本记录 的本地化字符串。
-        /// </summary>
-        public static string Script_NoFileDeleteItem {
-            get {
-                return ResourceManager.GetString("Script_NoFileDeleteItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本读取异常请检查语法是否有错误：{0} 的本地化字符串。
-        /// </summary>
-        public static string Script_ReadFileError_ {
-            get {
-                return ResourceManager.GetString("Script_ReadFileError_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 刷新缓存 的本地化字符串。
-        /// </summary>
-        public static string Script_Refresh {
-            get {
-                return ResourceManager.GetString("Script_Refresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 已安装此脚本确定替换已安装的版本？ 的本地化字符串。
         /// </summary>
         public static string Script_ReplaceTips {
             get {
                 return ResourceManager.GetString("Script_ReplaceTips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 保存数据出错请重试 的本地化字符串。
-        /// </summary>
-        public static string Script_SaveDBError {
-            get {
-                return ResourceManager.GetString("Script_SaveDBError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 添加成功 的本地化字符串。
-        /// </summary>
-        public static string Script_SaveDbSuccess {
-            get {
-                return ResourceManager.GetString("Script_SaveDbSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本设置 的本地化字符串。
-        /// </summary>
-        public static string Script_Settings {
-            get {
-                return ResourceManager.GetString("Script_Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 更新脚本 的本地化字符串。
-        /// </summary>
-        public static string Script_Update {
-            get {
-                return ResourceManager.GetString("Script_Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 获取脚本新版本信息失败 的本地化字符串。
-        /// </summary>
-        public static string Script_UpdateError {
-            get {
-                return ResourceManager.GetString("Script_UpdateError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 脚本配置 的本地化字符串。
-        /// </summary>
-        public static string ScriptConfig {
-            get {
-                return ResourceManager.GetString("ScriptConfig", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 获取脚本工坊列表失败 的本地化字符串。
-        /// </summary>
-        public static string ScriptShop_GetTableError {
-            get {
-                return ResourceManager.GetString("ScriptShop_GetTableError", resourceCulture);
             }
         }
         
@@ -6393,33 +6068,6 @@ namespace BD.WTTS.Client.Resources {
         public static string Settings_Proxy_ProxyType {
             get {
                 return ResourceManager.GetString("Settings_Proxy_ProxyType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 代理监听 IP 地址 的本地化字符串。
-        /// </summary>
-        public static string Settings_Proxy_SystemProxyIp {
-            get {
-                return ResourceManager.GetString("Settings_Proxy_SystemProxyIp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 代理监听端口 的本地化字符串。
-        /// </summary>
-        public static string Settings_Proxy_SystemProxyPortId {
-            get {
-                return ResourceManager.GetString("Settings_Proxy_SystemProxyPortId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 仅对 PAC 与 System 代理模式生效 的本地化字符串。
-        /// </summary>
-        public static string Settings_Proxy_SystemProxyPortId_Tip {
-            get {
-                return ResourceManager.GetString("Settings_Proxy_SystemProxyPortId_Tip", resourceCulture);
             }
         }
         

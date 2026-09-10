@@ -6,8 +6,6 @@ namespace BD.WTTS.UI.ViewModels;
 public sealed partial class MainWindowViewModel : WindowViewModel
 {
     #region 更改通知
-    //[Reactive]
-    //public TabItemViewModel? SelectedItem { get; set; }
 
     [Reactive]
     public int PluginCount { get; set; }
@@ -31,19 +29,6 @@ public sealed partial class MainWindowViewModel : WindowViewModel
 #endif
             Title = title;
 
-            //IUserManager.Instance.OnSignOut += () =>
-            //{
-            //    IsOpenUserMenu = false;
-            //};
-
-            //OpenUserMenu = ReactiveCommand.Create(() =>
-            //{
-            //    IsOpenUserMenu = UserService.Current.IsAuthenticated;
-            //    if (!IsOpenUserMenu)
-            //    {
-            //        UserService.Current.ShowWindow(CustomWindow.LoginOrRegister);
-            //    }
-            //});
         }
 
         if (Startup.Instance.TryGetPlugins(out var plugins))

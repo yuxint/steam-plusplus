@@ -254,9 +254,6 @@
 	<data name="CommunityFix_EditHostsFile" xml:space="preserve">
     <value>编辑 Hosts 文件</value>
   </data>
-	<data name="CommunityFix_EnableScriptService" xml:space="preserve">
-    <value>启用脚本</value>
-  </data>
 	<data name="CommunityFix_MenuName" xml:space="preserve">
     <value>加速设置</value>
   </data>
@@ -265,9 +262,6 @@
   </data>
 	<data name="CommunityFix_OpenCertificateDir" xml:space="preserve">
     <value>打开证书文件夹</value>
-  </data>
-	<data name="CommunityFix_ProxyMode" xml:space="preserve">
-    <value>加速模式</value>
   </data>
 	<data name="CommunityFix_SetupCertificate" xml:space="preserve">
     <value>安装证书</value>
@@ -337,12 +331,6 @@
   </data>
 	<data name="Download" xml:space="preserve">
     <value>下载</value>
-  </data>
-	<data name="Download_ScriptError" xml:space="preserve">
-    <value>脚本下载错误请重试。</value>
-  </data>
-	<data name="Download_ScriptOk" xml:space="preserve">
-    <value>脚本安装成功</value>
   </data>
 	<data name="Edit" xml:space="preserve">
     <value>编辑</value>
@@ -750,38 +738,11 @@
 	<data name="SaveChanges" xml:space="preserve">
     <value>保存修改</value>
   </data>
-	<data name="ScriptConfig" xml:space="preserve">
-    <value>脚本配置</value>
-  </data>
-	<data name="ScriptShop_GetTableError" xml:space="preserve">
-    <value>获取脚本工坊列表失败</value>
-  </data>
 	<data name="ScriptStore" xml:space="preserve">
     <value>脚本工坊</value>
   </data>
-	<data name="Script_AutoUpdate" xml:space="preserve">
-    <value>启用脚本自动检查更新</value>
-  </data>
-	<data name="Script_Edit" xml:space="preserve">
-    <value>编辑脚本</value>
-  </data>
-	<data name="Script_FileError_" xml:space="preserve">
-    <value>找不到文件，请检查路径 {0}</value>
-  </data>
-	<data name="Script_Home" xml:space="preserve">
-    <value>脚本主页</value>
-  </data>
-	<data name="Script_Refresh" xml:space="preserve">
-    <value>刷新缓存</value>
-  </data>
 	<data name="Script_ReplaceTips" xml:space="preserve">
     <value>已安装此脚本确定替换已安装的版本？</value>
-  </data>
-	<data name="Script_Update" xml:space="preserve">
-    <value>更新脚本</value>
-  </data>
-	<data name="Script_UpdateError" xml:space="preserve">
-    <value>获取脚本新版本信息失败</value>
   </data>
 	<data name="Search" xml:space="preserve">
     <value>搜索…</value>
@@ -1178,15 +1139,6 @@
 	<data name="CommunityFix_ProxySettings" xml:space="preserve">
     <value>代理设置</value>
   </data>
-	<data name="Settings_Proxy_SystemProxyIp" xml:space="preserve">
-    <value>代理监听 IP 地址</value>
-  </data>
-	<data name="Settings_Proxy_SystemProxyPortId" xml:space="preserve">
-    <value>代理监听端口</value>
-  </data>
-	<data name="Settings_Proxy_SystemProxyPortId_Tip" xml:space="preserve">
-    <value>仅对 PAC 与 System 代理模式生效</value>
-  </data>
 	<data name="Settings_Proxy_TwoLevelAgent" xml:space="preserve">
     <value>二级代理</value>
   </data>
@@ -1208,14 +1160,8 @@
 	<data name="Settings_Proxy_CustomDNS" xml:space="preserve">
     <value>自定义代理 DNS</value>
   </data>
-	<data name="CommunityFix_ProxyOnlyOnScript" xml:space="preserve">
-    <value>代理仅启用脚本功能</value>
-  </data>
 	<data name="CommunityFix_EnableHttpProxyToHttps" xml:space="preserve">
     <value>启用 Http 协议转发到 Https (需监听 80 端口)</value>
-  </data>
-	<data name="Download_ScriptError_" xml:space="preserve">
-    <value>脚本下载错误 {0}，请重试。</value>
   </data>
 	<data name="FixNetworkComplete" xml:space="preserve">
     <value>修复网络完成</value>
@@ -1274,43 +1220,6 @@
   </data>
 	<data name="OperationHostsError_" xml:space="preserve">
     <value>操作 Hosts 错误 {0}</value>
-  </data>
-	<data name="Script_BuildDownloadError__" xml:space="preserve">
-    <value>脚本依赖下载出错：{0}
-    {1}</value>
-  </data>
-	<data name="Script_BuildError_" xml:space="preserve">
-    <value>脚本绑定出错：{0}</value>
-  </data>
-	<data name="Script_CacheDeleteError_" xml:space="preserve">
-    <value>缓存文件删除失败：{0}</value>
-  </data>
-	<data name="Script_DeleteError" xml:space="preserve">
-    <value>删除失败</value>
-  </data>
-	<data name="Script_DeleteSuccess" xml:space="preserve">
-    <value>删除成功</value>
-  </data>
-	<data name="Script_FileDeleteError_" xml:space="preserve">
-    <value>文件删除失败：{0}</value>
-  </data>
-	<data name="Script_FileRepeat" xml:space="preserve">
-    <value>脚本重复</value>
-  </data>
-	<data name="Script_NoFile_" xml:space="preserve">
-    <value>脚本：{0} 文件丢失已删除</value>
-  </data>
-	<data name="Script_NoFileDeleteError_" xml:space="preserve">
-    <value>脚本：{0} 文件丢失，删除失败去尝试手动删除</value>
-  </data>
-	<data name="Script_ReadFileError_" xml:space="preserve">
-    <value>脚本读取异常请检查语法是否有错误：{0}</value>
-  </data>
-	<data name="Script_SaveDBError" xml:space="preserve">
-    <value>保存数据出错请重试</value>
-  </data>
-	<data name="Script_SaveDbSuccess" xml:space="preserve">
-    <value>添加成功</value>
   </data>
 	<data name="UpdateUnpackFail" xml:space="preserve">
     <value>更新包解压失败，请打开官网手动更新</value>
@@ -1557,9 +1466,6 @@
   </data>
 	<data name="CommunityFix_SetAsSystemPACProxyFail" xml:space="preserve">
     <value>开启 PAC 代理失败</value>
-  </data>
-	<data name="CommunityFix_SetAsSystemProxyFail" xml:space="preserve">
-    <value>开启系统代理失败</value>
   </data>
 	<data name="LocalAuth_DeleteAuthTip2" xml:space="preserve">
     <value>确定要永久删除此令牌吗，您将会彻底遗失此令牌数据。非常建议您「解绑令牌」后再进行此操作。</value>
@@ -2031,9 +1937,6 @@
 	<data name="PersonalCenter" xml:space="preserve">
     <value>个人中心</value>
   </data>
-	<data name="Script_Settings" xml:space="preserve">
-    <value>脚本设置</value>
-  </data>
 	<data name="SelectFilepath" xml:space="preserve">
     <value>选择文件路径</value>
   </data>
@@ -2279,15 +2182,6 @@
   </data>
 	<data name="LocalAuth_ExportAuth_Error" xml:space="preserve">
     <value>导入数据出现错误，错误代码：{0}</value>
-  </data>
-	<data name="Script_DeleteItem" xml:space="preserve">
-    <value>确定要删除这个脚本吗？</value>
-  </data>
-	<data name="Script_EditTxt" xml:space="preserve">
-    <value>是否完成脚本修改，点击确定刷新缓存</value>
-  </data>
-	<data name="Script_NoFileDeleteItem" xml:space="preserve">
-    <value>该文本文件已丢失，是否删除脚本记录</value>
   </data>
 	<data name="LocalAuth_Import_DecodePrivateKeyError" xml:space="preserve">
     <value>{0} 密钥解析失败，请检查密钥是否正确</value>
@@ -2621,20 +2515,11 @@
 	<data name="CommunityFix_FlowStatistics" xml:space="preserve">
     <value>流量统计</value>
   </data>
-	<data name="CommunityFix_ProxyMode_HostsTip" xml:space="preserve">
-    <value>修改 Hosts 文件来监听本机请求实现代理，此方式速度更快且只会影响加速的网站，效果最好，但需要本机 443 端口未被使用。</value>
-  </data>
-	<data name="CommunityFix_ProxyMode_WinSystemTip" xml:space="preserve">
-    <value>设置系统代理来监听请求，不需要占用 443 端口，会全局代理本机所有流量，如果你使用 Hosts 方式没有问题，那就不需要使用此模式。</value>
-  </data>
 	<data name="Message_AreYouSureYouWantToDeleteTheAccount" xml:space="preserve">
     <value>确定要移除 {0} 平台吗？</value>
   </data>
 	<data name="CommunityFix_AccelerationsEnable" xml:space="preserve">
     <value>启用的加速服务</value>
-  </data>
-	<data name="CommunityFix_ScriptsEnable" xml:space="preserve">
-    <value>启用的脚本服务</value>
   </data>
 	<data name="Error_AccountIdIsEmpty" xml:space="preserve">
     <value>账号 Id 为空</value>
@@ -2704,9 +2589,6 @@
   </data>
 	<data name="YouNeedSignInToGetUID_" xml:space="preserve">
     <value>需要登录 {0} 账号才能获取 UID</value>
-  </data>
-	<data name="Script_ImportLoading" xml:space="preserve">
-    <value>处理导入脚本中</value>
   </data>
 	<data name="SteamAccountPage_ShareEmpt" xml:space="preserve">
     <value>家庭共享库为空</value>

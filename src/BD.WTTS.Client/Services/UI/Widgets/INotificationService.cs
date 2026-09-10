@@ -85,15 +85,6 @@ public interface INotificationService
         NotificationType notificationType,
         string? title = default) => throw new PlatformNotSupportedException();
 
-    ///// <summary>
-    ///// 显示从服务端获取到通知纪录
-    ///// </summary> 
-    //static async void Notify(ActiveUserType type)
-    //{
-    //    if (type == ActiveUserType.OnStartup)
-    //        await NotificationService.Current.GetNewsAsync();
-    //}
-
     /// <summary>
     /// NotifyIcon / TrayIcon 右下角托盘菜单助手类
     /// </summary>

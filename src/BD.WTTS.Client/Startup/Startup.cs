@@ -548,17 +548,6 @@ Failed to initialize FileSystem, access denied.
 
                 }
 
-#if WINDOWS || LINUX || APP_REVERSE_PROXY
-                try
-                {
-                    VisualStudioAppCenterSDK.UtilsImpl.Instance.OnExit(null, EventArgs.Empty);
-                }
-                catch
-                {
-
-                }
-#endif
-
                 switch (ModuleName)
                 {
                     case IPlatformService.IPCRoot.moduleName:

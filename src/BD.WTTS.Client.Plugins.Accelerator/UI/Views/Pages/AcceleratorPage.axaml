@@ -33,18 +33,6 @@
                 DockPanel.Dock="Right"
                 IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=!ProxyStatus, Mode=OneWay}"
                 Theme="{StaticResource TransparentButton}">
-                <!--<SplitButton.Flyout>
-                    <ui:FAMenuFlyout>
-                        <ui:MenuFlyoutSubItem ItemsSource="{Binding Source={x:Static ms:ProxySettings.ProxyModes}, Path=., Mode=OneWay}" Text="加速模式">
-                            <ui:MenuFlyoutSubItem.ItemTemplate>
-                                <DataTemplate>
-                                    <ui:RadioMenuFlyoutItem GroupName="ProxyMode" Text="{Binding}" />
-                                </DataTemplate>
-                            </ui:MenuFlyoutSubItem.ItemTemplate>
-                        </ui:MenuFlyoutSubItem>
-                        <ui:ToggleMenuFlyoutItem Text="启用脚本" />
-                    </ui:FAMenuFlyout>
-                </SplitButton.Flyout>-->
                 <Panel>
                     <Viewbox
                         Width="16"
@@ -488,11 +476,5 @@
             </Carousel>
         </ScrollViewer>
 
-        <spp:AdControl
-            Grid.Column="1"
-            Width="165"
-            Height="390"
-            VerticalAlignment="Top"
-            Standard="Vertical" />
     </Grid>
 </spp:PageBase>

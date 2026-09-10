@@ -89,17 +89,6 @@ partial class Startup // 全局异常处理
 #endif
             Logger.Error(ex, message, args);
 
-#if WINDOWS || LINUX || APP_REVERSE_PROXY
-            try
-            {
-                VisualStudioAppCenterSDK.UtilsImpl.Instance.InvokeUnhandledExceptionOccurred?.Invoke(null, ex);
-            }
-            catch
-            {
-
-            }
-#endif
-
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
             Startup? s;

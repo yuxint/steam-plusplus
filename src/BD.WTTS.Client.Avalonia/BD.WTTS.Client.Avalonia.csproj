@@ -96,9 +96,6 @@
 		<!-- Windows Only -->
 		<ProjectReference Include="..\Avalonia.X11\Avalonia.X11.csproj" />
 		<ProjectReference Include="..\Avalonia.Native\Avalonia.Native.csproj" />
-		<!--<PackageReference Include="Aigio.Avalonia.AppCenter" />
-		<PackageReference Include="Aigio.Avalonia.AppCenter.Analytics" />
-		<PackageReference Include="Aigio.Avalonia.AppCenter.Crashes" />-->
 		<PackageReference Include="Avalonia.Win32" />
 		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Essentials.Maui.Runtime\BD.Common.Essentials.Maui.Runtime.csproj" />
 		<PackageReference Include="JumpLists.Win32.Avalonia" />
@@ -127,9 +124,6 @@
 	<ItemGroup>
 	  <Compile Update="UI\Views\Controls\Widgets\CarouselItems.cs">
 	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="UI\Views\Pages\PluginStorePage.axaml.cs">
-	    <DependentUpon>PluginStorePage.axaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

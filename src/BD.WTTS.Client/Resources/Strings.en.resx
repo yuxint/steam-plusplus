@@ -325,10 +325,6 @@
     <value>Edit hosts file</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="CommunityFix_EnableScriptService" xml:space="preserve">
-    <value>Run userscripts</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="CommunityFix_MenuName" xml:space="preserve">
     <value>Network routing settings</value>
     <comment>Comment=;Author=沙中金</comment>
@@ -349,32 +345,16 @@
     <value>Open enclosing folder of certificate</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="CommunityFix_ProxyMode" xml:space="preserve">
-    <value>Routing mode</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="ProxyMode_Hosts" xml:space="preserve">
     <value>Hosts routing mode</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="CommunityFix_ProxyMode_HostsTip" xml:space="preserve">
-    <value>Route your traffic by modifying the hosts file based on your preferences. This mode runs more smoothly and only affects those websites that you select below, but it requires port 443 not to be in use.</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="ProxyMode_System" xml:space="preserve">
     <value>System proxy mode</value>
     <comment>Comment=;Author=deepl</comment>
   </data>
-  <data name="CommunityFix_ProxyMode_WinSystemTip" xml:space="preserve">
-    <value>Route your traffic by setting up a Windows system proxy. It does not require a free port 443, yet it will affect all local network traffic. If hosts routing mode works, you won't be needing this mode.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="CommunityFix_ScriptManage" xml:space="preserve">
     <value>Userscript manager</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="CommunityFix_ScriptsEnable" xml:space="preserve">
-    <value>Enabled userscripts</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="CommunityFix_SetupCertificate" xml:space="preserve">
@@ -448,14 +428,6 @@
   <data name="Downloading" xml:space="preserve">
     <value>Downloading: {0}%</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError" xml:space="preserve">
-    <value>Error occurred while downloading userscript. Please try again.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Download_ScriptOk" xml:space="preserve">
-    <value>Userscript installed</value>
-    <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -1225,16 +1197,8 @@
     <value>Save changes</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="ScriptConfig" xml:space="preserve">
-    <value>Userscripts</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="ScriptConfig_ScriptEmptyTip" xml:space="preserve">
     <value>Matching userscript not found. You can download the userscript from the userscript workshop.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="ScriptShop_GetTableError" xml:space="preserve">
-    <value>Failed to retrieve userscript workshop content.</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="ScriptShop_NoDelete_Basics" xml:space="preserve">
@@ -1249,56 +1213,16 @@
     <value>Userscript workshop</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="Script_AutoUpdate" xml:space="preserve">
-    <value>Enable userscript auto-updates</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_DeleteItem" xml:space="preserve">
-    <value>Ready to delete this userscript?</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Edit" xml:space="preserve">
-    <value>Edit this userscript</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_EditTxt" xml:space="preserve">
-    <value>After editing the userscript, click Yes to refresh cache for changes to take effect.</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="Script_FileError" xml:space="preserve">
     <value>File not found. Please check path {0}</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Home" xml:space="preserve">
-    <value>Userscript homepage</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_ImportLoading" xml:space="preserve">
-    <value>Processing imported userscript</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="Script_Install" xml:space="preserve">
     <value>Install userscript</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="Script_NoFileDeleteItem" xml:space="preserve">
-    <value>The text file is missing. Do you want to delete this userscript history?</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Refresh" xml:space="preserve">
-    <value>Refresh cache</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
   <data name="Script_ReplaceTips" xml:space="preserve">
     <value>This userscript has been installed. Replace the installed version?</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_Update" xml:space="preserve">
-    <value>Update userscript</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="Script_UpdateError" xml:space="preserve">
-    <value>Failed to retrieve userscript update information.</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
   <data name="Search" xml:space="preserve">
@@ -2025,10 +1949,6 @@
     <value>Switch to {0} sign in to Steam</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="CommunityFix_ProxyOnlyOnScript" xml:space="preserve">
-    <value>The agent enables only the scripting feature</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="About_AppReview" xml:space="preserve">
     <value>Scoring &amp; Rating</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2090,20 +2010,8 @@
     <value>Cache file deletion failed: {0}</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Script_DeleteError" xml:space="preserve">
-    <value>Delete failed</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_DeleteSuccess" xml:space="preserve">
-    <value>Delete successful</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Script_FileDeleteError" xml:space="preserve">
     <value>File deletion failed: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_FileRepeat" xml:space="preserve">
-    <value>The script is repeated</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFile" xml:space="preserve">
@@ -2116,14 +2024,6 @@
   </data>
   <data name="Script_ReadFileError" xml:space="preserve">
     <value>Script read exceptionsCheck the syntax for errors: {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDBError" xml:space="preserve">
-    <value>Save data error please try again</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Script_SaveDbSuccess" xml:space="preserve">
-    <value>Added successfully</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="NotificationChannelType_Description_NewVersion" xml:space="preserve">
@@ -2330,10 +2230,6 @@
     <value>Window background transparent material</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="Settings_Proxy_SystemProxyIp" xml:space="preserve">
-    <value>Proxy listening IP address</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="Settings_Proxy_Socks5Proxy" xml:space="preserve">
     <value>Socks5 local proxy</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -2368,10 +2264,6 @@
   </data>
   <data name="Settings_General_UseOpenGL" xml:space="preserve">
     <value>Use OpenGL rendering</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="Download_ScriptError_" xml:space="preserve">
-    <value>Script download error {0}, please try again.</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="FixNetworkComplete" xml:space="preserve">
@@ -3800,14 +3692,6 @@ The system will {1} after {0} seconds.</value>
     <value>Only load official plugins</value>
     <comment>Author=kotovasia5120</comment>
   </data>
-  <data name="Settings_Proxy_SystemProxyPortId" xml:space="preserve">
-    <value>Proxy listening port</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Settings_Proxy_SystemProxyPortId_Tip" xml:space="preserve">
-    <value>Only valid for PAC and System proxy modes</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
   <data name="Settings_UI_EnableDesktopBackground_Error_" xml:space="preserve">
     <value>Enabling this feature when the background transparent material is {0} is not supported</value>
     <comment>Author=kotovasia5120</comment>
@@ -3970,10 +3854,6 @@ The system will {1} after {0} seconds.</value>
   </data>
   <data name="CommunityFix_SetAsSystemPACProxyFail" xml:space="preserve">
     <value>Failed to enable PAC proxy</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="CommunityFix_SetAsSystemProxyFail" xml:space="preserve">
-    <value>Failed to enable system proxy</value>
     <comment>Author=kotovasia5120</comment>
   </data>
   <data name="CommunityFix_SetupCertificate_Fail" xml:space="preserve">
@@ -4554,43 +4434,6 @@ Once the transaction is confirmed, it cannot be revoked, please choose carefully
   </data>
   <data name="SaveEditedAppInfo_AppsEmpty" xml:space="preserve">
     <value>The game information that needs to be saved to Steam has not been obtained. Please edit the game information you want to modify first.</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_BuildDownloadError__" xml:space="preserve">
-    <value>Script dependency download error: {0}
-{1}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_BuildError_" xml:space="preserve">
-    <value>Script binding error: {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_CacheDeleteError_" xml:space="preserve">
-    <value>Failed to delete cache file: {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_FileDeleteError_" xml:space="preserve">
-    <value>File deletion failed: {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_FileError_" xml:space="preserve">
-    <value>File not found, please check path {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_NoFile_" xml:space="preserve">
-    <value>Script: {0} file missing deleted</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_NoFileDeleteError_" xml:space="preserve">
-    <value>Script: {0} file is missing, deletion failed, try to delete manually</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_ReadFileError_" xml:space="preserve">
-    <value>Script reading exception, please check if there is any syntax error: {0}</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="Script_Settings" xml:space="preserve">
-    <value>Script Settings</value>
     <comment>Author=kotovasia5120</comment>
   </data>
   <data name="Settings_InvalidConfigurationFile" xml:space="preserve">

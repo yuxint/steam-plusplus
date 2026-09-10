@@ -147,7 +147,12 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
     {
         try
         {
-            await ProxyService.Current.ExitAsync();
+            // OnPeerConnected 未完成时（启动早期即退出），ProxyService.Current 的构造会在 DI 工厂处
+            // 同步等待 reverseProxyService Task，造成主线程永久阻塞，这里必须跳过
+            if (reverseProxyService.Task.IsCompleted)
+            {
+                await ProxyService.Current.ExitAsync();
+            }
             GameAcceleratorSettings.MyGames.Save();
         }
         catch

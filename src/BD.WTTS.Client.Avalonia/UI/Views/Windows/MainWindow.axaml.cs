@@ -38,8 +38,6 @@ public sealed partial class MainWindow : ReactiveAppWindow<MainWindowViewModel>
         base.OnClosing(e);
     }
 
-    DateTime lastOpenedTime;
-
     internal bool SetStartDefaultPageName()
     {
         if (NavigationService.Instance.CurrnetPage != null)
@@ -63,32 +61,16 @@ public sealed partial class MainWindow : ReactiveAppWindow<MainWindowViewModel>
                 pageType = page.PageType;
             }
         }
-        INavigationService.Instance.Navigate(pageType ?? typeof(HomePage));
+        INavigationService.Instance.Navigate(pageType ?? mw2.TabItems.FirstOrDefault()?.PageType);
         return true;
     }
 
-    protected override async void OnOpened(EventArgs e)
+    protected override void OnOpened(EventArgs e)
     {
         base.OnOpened(e);
         if (AppSplashScreen.IsInitialized)
         {
             SetStartDefaultPageName();
-        }
-        if (lastOpenedTime == default ||
-            (DateTime.Now - lastOpenedTime) > TimeSpan.FromMinutes(30))
-        {
-            lastOpenedTime = DateTime.Now;
-            await IViewModelManager.Instance.Get<HomePageViewModel>().GetServerContent();
-            await AdvertiseService.Current.RefrshAdvertiseAsync();
-            await NoticeService.Current.GetNewsAsync();
-        }
-        try // 在主窗口显示时调用此函数检查是否需要显示新版本通知窗口
-        {
-            Ioc.Get_Nullable<IAppUpdateService>()?.OnMainOpenTryShowNewVersionWindow();
-        }
-        catch
-        {
-
         }
     }
 }
@@ -186,22 +168,12 @@ public sealed class AppSplashScreen : IApplicationSplashScreen
                         }
                     });
 
-                    AdvertiseService.Current.InitAdvertise();
-                    NoticeService.Current.GetNews();
-
                     var mainWindow = App.Instance.MainWindow;
                     mainWindow.ThrowIsNull();
 
 #pragma warning disable SA1114 // Parameter list should follow declaration
-                    IViewModelManager.Instance.InitViewModels(new TabItemViewModel[]
-                    {
-                        new MenuTabItemViewModel("Welcome")
-                        {
-                           PageType = typeof(HomePage),
-                           IsResourceGet = true,
-                           IconKey = "avares://BD.WTTS.Client.Avalonia/UI/Assets/Icons/home.ico",
-                        },
-                    },
+                    IViewModelManager.Instance.InitViewModels(
+                    Enumerable.Empty<TabItemViewModel>(),
                     ImmutableArray.Create<TabItemViewModel>(
 #if DEBUG
                     new MenuTabItemViewModel("Debug")
@@ -211,12 +183,6 @@ public sealed class AppSplashScreen : IApplicationSplashScreen
                         IconKey = "avares://BD.WTTS.Client.Avalonia/UI/Assets/Icons/bug.ico",
                     },
 #endif
-                    new MenuTabItemViewModel("Plugin_Store")
-                    {
-                        PageType = typeof(PluginStorePage),
-                        IsResourceGet = true,
-                        IconKey = "avares://BD.WTTS.Client.Avalonia/UI/Assets/Icons/store.ico",
-                    },
                     new MenuTabItemViewModel("Settings")
                     {
                         PageType = typeof(SettingsPage),

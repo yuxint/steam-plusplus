@@ -125,23 +125,8 @@ Avalonia is a cross-platform UI framework for dotnet, providing a flexible styli
 
     static IEnumerable<HL> GetHyperlinks() // links
     {
-        // 检查更新
-        yield return new HL(Strings.CheckUpdate, ReactiveCommand.CreateFromTask(async () =>
-        {
-            await IAppUpdateService.Instance.CheckUpdateAsync(showIsExistUpdateFalse: true);
-        }));
         // 打开官网 https://steampp.net
         yield return new HL(Strings.OpenOfficialWebsite, Constants.Urls.OfficialWebsite);
-        // 打分并评价
-        static HL GetRatingsAndReviews()
-        {
-#if WINDOWS
-            return new HL(Strings.RatingsAndReviews, Constants.Urls.MicrosoftStoreReviewLink);
-#else
-            return new HL(Strings.RatingsAndReviews, Constants.Urls.MicrosoftStoreAppWebsite);
-#endif
-        }
-        yield return GetRatingsAndReviews();
         // 赞助我们
         yield return new HL(Strings.SponsorUs, Constants.Urls.OfficialWebsite_Sponsor);
         // 更新日志 https://steampp.net/changelog
@@ -156,23 +141,6 @@ Avalonia is a cross-platform UI framework for dotnet, providing a flexible styli
         yield return new HL(Strings.User_Agreement, Constants.Urls.OfficialWebsite_Agreement);
         // 隐私政策 https://steampp.net/privacy
         yield return new HL(Strings.User_Privacy, Constants.Urls.OfficialWebsite_Privacy);
-        // 复制 UID
-        yield return new HL(Strings.CopyUserId, ReactiveCommand.CreateFromTask(async () =>
-        {
-            var uid = UserService.Current.User?.Id;
-            if (uid.HasValue)
-            {
-                await IApplication.CopyToClipboardAsync(uid.Value.ToString());
-            }
-            else
-            {
-                Toast.Show(ToastIcon.Info,
-                    Strings.YouNeedSignInToGetUID_.Format(AssemblyInfo.Trademark));
-                UserService.Current.ShowWindow();
-            }
-        }));
-        // 账号注销
-        yield return new HL(Strings.DelAccount, Constants.Urls.OfficialWebsite_Account_Safe);
         // Bug 提交(GitHub) https://github.com/BeyondDimension/SteamTools/issues
         yield return new HL($"{Strings.BugReport}(GitHub)", Constants.Urls.GitHub_Issues);
         // Bug 提交(Gitee) https://gitee.com/rmbgame/SteamTools/issues

@@ -46,8 +46,6 @@ try
 {
     var exitCode = await IPCSubProcessService.MainAsync(moduleName, pluginName, ConfigureServices, static ipcProvider =>
     {
-        VisualStudioAppCenterSDK.Init();
-
         // 添加反向代理服务（供主进程的 IPC 远程访问）
         ipcProvider.CreateIpcJoint(LazyReverseProxyServiceImpl.Instance);
         ipcProvider.CreateIpcJoint(LazyCertificateManager.Instance);
@@ -69,14 +67,6 @@ catch (Exception ex)
 }
 finally
 {
-    try
-    {
-        VisualStudioAppCenterSDK.UtilsImpl.Instance.OnExit(null, EventArgs.Empty);
-    }
-    catch
-    {
-
-    }
 }
 
 static void ConfigureServices(IServiceCollection services)

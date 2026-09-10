@@ -274,19 +274,6 @@ public class PageBase : UserControl
         ec.ImplicitAnimations = ani;
     }
 
-    //private void FrameNavigatingFrom(object? sender, NavigatingCancelEventArgs e)
-    //{
-    //    // Only setup the ConnectedAnimation if it makes sense
-    //    if ((e.SourcePageType == typeof(HomePageViewModel)) ||
-    //        (e.SourcePageType == typeof(PluginStorePageViewModel)))
-    //    {
-    //        // Only setup the Back connected animation if we're going back to the
-    //        // controls list pages
-    //        var svc = ConnectedAnimationService.GetForView(TopLevel.GetTopLevel(this));
-    //        svc.PrepareToAnimate("BackAnimation", (Control)_previewImageHost.Parent);
-    //        //NavigationService.Instance.PreviousPage = this;
-    //    }
-    //}
 
     //private void FrameNavigatedTo(object? sender, NavigationEventArgs e)
     //{

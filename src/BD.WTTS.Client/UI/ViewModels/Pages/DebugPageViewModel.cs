@@ -88,12 +88,6 @@ public sealed partial class DebugPageViewModel : TabItemViewModel
             case "gc":
                 GC.Collect();
                 break;
-            case "refreshnews":
-#if DEBUG
-                NoticeService.Current.ClrearLastLookNoticeDateTime();
-#endif
-                await NoticeService.Current.GetNewsAsync();
-                break;
             case "login":
                 if (cmds.Length > 1)
                 {
