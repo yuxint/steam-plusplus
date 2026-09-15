@@ -257,19 +257,6 @@ public sealed partial class App : Application
                 Toast.Show(ToastIcon.Warning, "打开链接失败");
                 return;
             }
-            try
-            {
-                Uri uri = new(urlString);
-                if (uri.Host.EndsWith(Constants.Urls.OfficialWebsiteHost, StringComparison.OrdinalIgnoreCase) &&
-                    uri.Query.EndsWith(Constants.Urls.Komaasharu_IsAuthQuery, StringComparison.OrdinalIgnoreCase))
-                {
-                    await UserService.Current.OpenAuthUrl(urlString);
-                    return;
-                }
-            }
-            catch
-            {
-            }
             Browser2.Open(urlString);
         }
         catch (Exception ex)

@@ -180,11 +180,7 @@
                         <HyperlinkButton
                             VerticalAlignment="Center"
                             Content="RockStar Games 关于 NAT 文档"
-                            NavigateUri="https://support.rockstargames.com/tw/articles/206210548/%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BA-GTA-%E7%B7%9A%E4%B8%8A%E6%A8%A1%E5%BC%8F%E4%B8%AD%E8%88%87%E5%9A%B4%E6%A0%BC-Strict-NAT-%E9%A1%9E%E5%9E%8B%E7%9B%B8%E9%97%9C%E7%9A%84%E9%8C%AF%E8%AA%A4" />
-                        <HyperlinkButton
-                            VerticalAlignment="Center"
-                            Content="迅游关于 NAT 文档"
-                            NavigateUri="https://cs.xunyou.com/html/282/15271.shtml" />
+                            NavigateUri="https://support.rockstargames.com/tw/articles/206210548/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-GTA-%E7%B7%9A%E4%B8%8A%E6%A8%A1%E5%BC%8F%E4%B8%AD%E8%88%87%E5%9A%B4%E6%A0%BC-Strict-NAT-%E9%A1%9E%E5%9E%8B%E7%9B%B8%E9%97%9C%E7%9A%84%E9%8C%AF%E8%AA%A4" />
                     </WrapPanel>
                 </StackPanel>
             </ui:SettingsExpander>

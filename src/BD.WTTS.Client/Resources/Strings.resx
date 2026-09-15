@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<!-- 
     Microsoft ResX Schema 
@@ -672,9 +672,6 @@
 	<data name="Login" xml:space="preserve">
     <value>登 录</value>
   </data>
-	<data name="LoginAndRegister" xml:space="preserve">
-    <value>登录 / 注册</value>
-  </data>
 	<data name="Logining" xml:space="preserve">
     <value>正在登录中...</value>
   </data>
@@ -740,9 +737,6 @@
   </data>
 	<data name="ScriptStore" xml:space="preserve">
     <value>脚本工坊</value>
-  </data>
-	<data name="Script_ReplaceTips" xml:space="preserve">
-    <value>已安装此脚本确定替换已安装的版本？</value>
   </data>
 	<data name="Search" xml:space="preserve">
     <value>搜索…</value>
@@ -867,9 +861,6 @@
 	<data name="Steam_UserLoginTip" xml:space="preserve">
     <value>此导入方式可直接替换原有令牌，完成导入后2天无法交易，如果您未绑定令牌则会有市场交易15天冷却期。(请记得启用 Steam 加速)</value>
   </data>
-	<data name="Success_" xml:space="preserve">
-    <value>{0}成功</value>
-  </data>
 	<data name="Toolbox" xml:space="preserve">
     <value>工具箱</value>
   </data>
@@ -955,12 +946,6 @@
 	<data name="User_FastLoginTip" xml:space="preserve">
     <value>选择如何登录您的 Watt Toolkit 账户</value>
   </data>
-	<data name="User_GetSMSCode" xml:space="preserve">
-    <value>获取验证码</value>
-  </data>
-	<data name="User_Login" xml:space="preserve">
-    <value>登录</value>
-  </data>
 	<data name="User_UnLogin" xml:space="preserve">
     <value>未登录</value>
   </data>
@@ -992,9 +977,6 @@
 	<data name="User_QQLogin" xml:space="preserve">
     <value>使用 QQ 登录</value>
   </data>
-	<data name="User_Register" xml:space="preserve">
-    <value>注册</value>
-  </data>
 	<data name="User_RegisterAgreed" xml:space="preserve">
     <value>注册即代表您已阅读并同意</value>
   </data>
@@ -1006,12 +988,6 @@
   </data>
 	<data name="User_SMSCode_Error" xml:space="preserve">
     <value>请先获取验证码</value>
-  </data>
-	<data name="User_UseExternalLoginChannel_" xml:space="preserve">
-    <value>使用 {0} 登录</value>
-  </data>
-	<data name="User_UsePhoneNumLoginChannel" xml:space="preserve">
-    <value>使用手机号码登录</value>
   </data>
 	<data name="Warning" xml:space="preserve">
     <value>警告</value>
@@ -2806,45 +2782,6 @@
   </data>
 	<data name="ASF_Settings" xml:space="preserve">
     <value>ASF 设置</value>
-  </data>
-	<data name="GameAccelerator" xml:space="preserve">
-    <value>游戏加速</value>
-  </data>
-	<data name="GameAccelerator_ImmediatelyAccelerate" xml:space="preserve">
-    <value>立即加速</value>
-  </data>
-	<data name="GameAccelerator_Accelerate" xml:space="preserve">
-    <value>加速</value>
-  </data>
-	<data name="GameAccelerator_Stop" xml:space="preserve">
-    <value>停止</value>
-  </data>
-	<data name="GameAccelerator_AccelerateAreaSelectTip" xml:space="preserve">
-    <value>请先选择要加速的区服</value>
-  </data>
-	<data name="GameAccelerator_SearchGame" xml:space="preserve">
-    <value>搜索游戏</value>
-  </data>
-	<data name="GameAccelerator_WattAcceleratorInstallPath" xml:space="preserve">
-    <value>Watt加速器安装位置</value>
-  </data>
-	<data name="GameAccelerator_ShowWattAccelerator" xml:space="preserve">
-    <value>打开 Watt 加速器</value>
-  </data>
-	<data name="GameAccelerator_InstallWattAccelerator" xml:space="preserve">
-    <value>安装 Watt 加速器插件</value>
-  </data>
-	<data name="GameAccelerator_UninstallWattAccelerator" xml:space="preserve">
-    <value>卸载 Watt 加速器插件</value>
-  </data>
-	<data name="GameAccelerator_GamesEmptyTip" xml:space="preserve">
-    <value>未获取到加速游戏列表，请搜索添加</value>
-  </data>
-	<data name="GameAccelerator_SetShowWattWindow" xml:space="preserve">
-    <value>加速后唤起 Watt 加速器界面</value>
-  </data>
-	<data name="GameAccelerator_ChangeArea" xml:space="preserve">
-    <value>切换加速区服</value>
   </data>
 	<data name="Settings_UI_StartDefaultPage" xml:space="preserve">
     <value>启动时默认打开页面</value>

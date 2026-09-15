@@ -2537,122 +2537,18 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 游戏加速 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator {
-            get {
-                return ResourceManager.GetString("GameAccelerator", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 加速 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_Accelerate {
-            get {
-                return ResourceManager.GetString("GameAccelerator_Accelerate", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 请先选择要加速的区服 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_AccelerateAreaSelectTip {
-            get {
-                return ResourceManager.GetString("GameAccelerator_AccelerateAreaSelectTip", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 切换加速区服 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_ChangeArea {
-            get {
-                return ResourceManager.GetString("GameAccelerator_ChangeArea", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 未获取到加速游戏列表，请搜索添加 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_GamesEmptyTip {
-            get {
-                return ResourceManager.GetString("GameAccelerator_GamesEmptyTip", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 立即加速 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_ImmediatelyAccelerate {
-            get {
-                return ResourceManager.GetString("GameAccelerator_ImmediatelyAccelerate", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 安装 Watt 加速器插件 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_InstallWattAccelerator {
-            get {
-                return ResourceManager.GetString("GameAccelerator_InstallWattAccelerator", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 搜索游戏 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_SearchGame {
-            get {
-                return ResourceManager.GetString("GameAccelerator_SearchGame", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 加速后唤起 Watt 加速器界面 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_SetShowWattWindow {
-            get {
-                return ResourceManager.GetString("GameAccelerator_SetShowWattWindow", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 打开 Watt 加速器 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_ShowWattAccelerator {
-            get {
-                return ResourceManager.GetString("GameAccelerator_ShowWattAccelerator", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 停止 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_Stop {
-            get {
-                return ResourceManager.GetString("GameAccelerator_Stop", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 卸载 Watt 加速器插件 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_UninstallWattAccelerator {
-            get {
-                return ResourceManager.GetString("GameAccelerator_UninstallWattAccelerator", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 Watt加速器安装位置 的本地化字符串。
-        /// </summary>
-        public static string GameAccelerator_WattAcceleratorInstallPath {
-            get {
-                return ResourceManager.GetString("GameAccelerator_WattAcceleratorInstallPath", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 添加新账号 的本地化字符串。
@@ -4610,14 +4506,6 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 登录 / 注册 的本地化字符串。
-        /// </summary>
-        public static string LoginAndRegister {
-            get {
-                return ResourceManager.GetString("LoginAndRegister", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 正在登录中... 的本地化字符串。
@@ -5711,14 +5599,6 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 已安装此脚本确定替换已安装的版本？ 的本地化字符串。
-        /// </summary>
-        public static string Script_ReplaceTips {
-            get {
-                return ResourceManager.GetString("Script_ReplaceTips", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 脚本工坊 的本地化字符串。
@@ -7173,14 +7053,6 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 {0}成功 的本地化字符串。
-        /// </summary>
-        public static string Success_ {
-            get {
-                return ResourceManager.GetString("Success_", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 令牌加载成功 的本地化字符串。
@@ -7632,14 +7504,6 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 获取验证码 的本地化字符串。
-        /// </summary>
-        public static string User_GetSMSCode {
-            get {
-                return ResourceManager.GetString("User_GetSMSCode", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 等级 的本地化字符串。
@@ -7650,14 +7514,6 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 登录 的本地化字符串。
-        /// </summary>
-        public static string User_Login {
-            get {
-                return ResourceManager.GetString("User_Login", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 重新获取({0}) 的本地化字符串。
@@ -7749,14 +7605,6 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 注册 的本地化字符串。
-        /// </summary>
-        public static string User_Register {
-            get {
-                return ResourceManager.GetString("User_Register", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 注册即代表您已阅读并同意 的本地化字符串。
@@ -7830,23 +7678,7 @@ namespace BD.WTTS.Client.Resources {
             }
         }
         
-        /// <summary>
-        ///   查找类似 使用 {0} 登录 的本地化字符串。
-        /// </summary>
-        public static string User_UseExternalLoginChannel_ {
-            get {
-                return ResourceManager.GetString("User_UseExternalLoginChannel_", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   查找类似 使用手机号码登录 的本地化字符串。
-        /// </summary>
-        public static string User_UsePhoneNumLoginChannel {
-            get {
-                return ResourceManager.GetString("User_UsePhoneNumLoginChannel", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 我们已使用您的系统浏览器打开快速登录窗口，请进入该页面并登录，保持该窗口打开 的本地化字符串。

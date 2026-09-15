@@ -285,34 +285,6 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
-
-            <StackPanel IsVisible="{x:Static spp:XunYouSDK.IsSupported}}" Spacing="10">
-                <Separator Margin="0,8" Classes="Horizontal" />
-
-                <TextBlock Text="Watt 加速器相关" Theme="{StaticResource BodyStrongTextBlockStyle}" />
-
-                <ToggleSwitch
-                    VerticalAlignment="Center"
-                    Classes="NoContent"
-                    IsChecked="{Binding Source={x:Static ms:ProxySettings.AutoShowWattAcceleratorWindow}, Path=Value, Mode=TwoWay}"
-                    OffContent="{x:Static spp:Strings.GameAccelerator_SetShowWattWindow}"
-                    OnContent="{x:Static spp:Strings.GameAccelerator_SetShowWattWindow}" />
-
-                                <Button
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding ShowXunYouWindow, Source={x:Static s:GameAcceleratorService.Current}}"
-                    CommandParameter="True"
-                    Content="{x:Static spp:Strings.GameAccelerator_ShowWattAccelerator}" />
-                <Button
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding InstallAcceleratorCommand, Source={x:Static s:GameAcceleratorService.Current}}"
-                    Content="{x:Static spp:Strings.GameAccelerator_InstallWattAccelerator}" />
-                <Button
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding UninstallAcceleratorCommand, Source={x:Static s:GameAcceleratorService.Current}}"
-                    Content="{x:Static spp:Strings.GameAccelerator_UninstallWattAccelerator}" />
-
-            </StackPanel>
         </StackPanel>
     </spp:PageBase.PaneContent>
     <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,*">
@@ -379,28 +351,6 @@
             <TabStripItem Content="{x:Static spp:Strings.CommunityFix_Services}" IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=ProxyStatus, Mode=OneWay}" />
             <TabStripItem Content="{x:Static spp:Strings.CommunityFix_ProxyLog}" IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=ProxyStatus, Mode=OneWay}" />
             <TabStripItem Content="{x:Static spp:Strings.CommunityFix_FlowStatistics}" IsVisible="{Binding Source={x:Static s:ProxyService.Current}, Path=ProxyStatus, Mode=OneWay}" />
-            <TabStripItem Name="GameAccTab">
-                <!--<WrapPanel>-->
-                <TextBlock Text="游戏加速" />
-                <!--<Border
-                        Margin="5,0,0,0"
-                        Padding="5,1"
-                        VerticalAlignment="Center"
-                        CornerRadius="2">
-						<Border.Background>
-							<LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-								<GradientStop Offset="0.0" Color="#EEAD92" />
-								<GradientStop Offset="1.0" Color="#6018DC" />
-							</LinearGradientBrush>
-						</Border.Background>
-						<TextBlock
-                            VerticalAlignment="Center"
-                            FontSize="10"
-                            Foreground="White"
-                            Text="收费" />
-                    </Border>-->
-                <!--</WrapPanel>-->
-            </TabStripItem>
             <TabStripItem Content="网络检测" IsVisible="True" />
             <TabStripItem Content="dummy_tab_for_transisit_animation" IsVisible="False" />
         </TabStrip>
@@ -497,161 +447,11 @@
             <!--  流量统计  -->
             <spp:ProxyChartView Margin="5,0" />
 
-            <!--  游戏加速  -->
-            <Panel x:DataType="spp:GameAcceleratorPageViewModel">
-                <Panel.DataContext>
-                    <spp:GameAcceleratorPageViewModel />
-                </Panel.DataContext>
-                <spp:ContentLoader
-                    IsLoading="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=IsLoadingGames, Mode=OneWay}"
-                    IsShowNoResultText="{Binding !!!Games.Count}"
-                    IsVisible="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=!CurrentAcceleratorGame.IsAccelerated}"
-                    NoResultMessage="{x:Static spp:Strings.GameAccelerator_GamesEmptyTip}}">
-                    <ScrollViewer
-                        Name="GameScrollViewer"
-                        Padding="0,0,10,0"
-                        HorizontalScrollBarVisibility="Disabled"
-                        IsVisible="{Binding !!Games.Count}"
-                        VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
-                            <ItemsRepeater ItemsSource="{Binding Games}" VerticalCacheLength="30">
-                                <ItemsRepeater.Layout>
-                                    <UniformGridLayout
-                                        ItemsJustification="Start"
-                                        ItemsStretch="Uniform"
-                                        MinColumnSpacing="10"
-                                        MinItemHeight="240"
-                                        MinItemWidth="200"
-                                        MinRowSpacing="10" />
-                                </ItemsRepeater.Layout>
-                                <ItemsRepeater.ItemTemplate>
-                                    <DataTemplate DataType="spp:XunYouGameViewModel">
-                                        <spp:GameAppItem ButtonCommand="{Binding GameAcceleratorCommand, Source={x:Static s:GameAcceleratorService.Current}}" />
-                                    </DataTemplate>
-                                </ItemsRepeater.ItemTemplate>
-                            </ItemsRepeater>
-
-                            <StackPanel
-                                Margin="0,30"
-                                HorizontalAlignment="Center"
-                                Spacing="10">
-                                <spp:Image2
-                                    Width="100"
-                                    Height="100"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    RenderOptions.BitmapInterpolationMode="HighQuality"
-                                    Source="avares://BD.WTTS.Client.Avalonia/UI/Assets/Icons/empty.png"
-                                    Stretch="UniformToFill" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Text="已经到底啦! 没有找到想加速的游戏的话可以搜索添加哦~" />
-                            </StackPanel>
-                        </StackPanel>
-                    </ScrollViewer>
-                </spp:ContentLoader>
-                <spp:GameDetail
-                    Margin="0,0,10,0"
-                    Content="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=CurrentAcceleratorGame}"
-                    IsVisible="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=CurrentAcceleratorGame.IsAccelerated}" />
-            </Panel>
-
             <!--  网络检测  -->
             <spp:NetworkCheck DataContext="{Binding NetworkCheckControlViewModel}" />
 
             <TabItem Content="dummy_tab_for_transisit_animation" />
         </Carousel>
-
-        <!--  Side tab of paid game spped up  -->
-        <StackPanel
-            Grid.ColumnSpan="2"
-            IsVisible="{Binding #GameAccTab.IsSelected}"
-            Orientation="Horizontal"
-            Spacing="5">
-
-            <i:Interaction.Behaviors>
-                <spp:AdaptiveBehavior SourceControl="{Binding $parent[TopLevel]}">
-                    <ir:AdaptiveClassSetter
-                        MinWidth="0"
-                        MaxWidth="{StaticResource AdaptiveWidth}"
-                        ClassName="small" />
-                    <ir:AdaptiveClassSetter
-                        MinWidth="{StaticResource AdaptiveWidth}"
-                        MaxWidth="Infinity"
-                        ClassName="wide" />
-                </spp:AdaptiveBehavior>
-            </i:Interaction.Behaviors>
-            <Border
-                Padding="5,1"
-                VerticalAlignment="Center"
-                CornerRadius="2"
-                IsVisible="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=VipEndTimeString, Converter={StaticResource IsNullConverter}, ConverterParameter=invert}">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                        <GradientStop Offset="0.0" Color="#453a94" />
-                        <GradientStop Offset="1.0" Color="#f43b47" />
-                    </LinearGradientBrush>
-                </Border.Background>
-                <TextBlock
-                    VerticalAlignment="Center"
-                    FontSize="12"
-                    Foreground="White"
-                    Text="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=VipEndTimeString}" />
-            </Border>
-            <Button
-                Command="{Binding OpenBrowserCommand, Source={x:Static spp:App.Instance}}"
-                CommandParameter="https://steampp.net/customer/service"
-                Cursor="Hand"
-                Theme="{StaticResource TransparentButton}"
-                ToolTip.Tip="联系客服">
-                <ui:FontIcon FontSize="22" Glyph="&#xE95B;" />
-            </Button>
-            <AutoCompleteBox
-                Name="SearchGameBox"
-                Width="240"
-                VerticalAlignment="Center"
-                Classes="Search"
-                FilterMode="ContainsOrdinal"
-                ItemsSource="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=AllGames}"
-                MaxDropDownHeight="300"
-                ValueMemberBinding="{Binding Name, x:DataType=spp:XunYouGame}"
-                Watermark="{x:Static spp:Strings.GameAccelerator_SearchGame}">
-                <AutoCompleteBox.ItemTemplate>
-                    <DataTemplate DataType="spp:XunYouGame">
-                        <WrapPanel>
-                            <spp:Image2
-                                Width="20"
-                                Height="20"
-                                Margin="0,0,5,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                DecodeWidth="20"
-                                Source="{Binding IconUrl}">
-                                <spp:Image2.Transitions>
-                                    <Transitions>
-                                        <DoubleTransition
-                                            Easing="0,0 0,1"
-                                            Property="Width"
-                                            Duration="00:00:00.25" />
-                                        <DoubleTransition
-                                            Easing="0,0 0,1"
-                                            Property="Height"
-                                            Duration="00:00:00.25" />
-                                    </Transitions>
-                                </spp:Image2.Transitions>
-                            </spp:Image2>
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                MaxLines="2"
-                                Text="{Binding Name}"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="WrapWithOverflow" />
-                        </WrapPanel>
-                    </DataTemplate>
-                </AutoCompleteBox.ItemTemplate>
-            </AutoCompleteBox>
-        </StackPanel>
 
         <!--  Side tab after speed up  -->
         <StackPanel
@@ -673,15 +473,6 @@
                         ClassName="wide" />
                 </spp:AdaptiveBehavior>
             </i:Interaction.Behaviors>
-            <StackPanel.IsVisible>
-                <MultiBinding Converter="{x:Static BoolConverters.And}">
-                    <CompiledBinding
-                        Mode="OneWay"
-                        Path="ProxyStatus"
-                        Source="{x:Static s:ProxyService.Current}" />
-                    <Binding Path="!#GameAccTab.IsSelected" />
-                </MultiBinding>
-            </StackPanel.IsVisible>
             <StackPanel.Styles>
                 <Style Selector="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />

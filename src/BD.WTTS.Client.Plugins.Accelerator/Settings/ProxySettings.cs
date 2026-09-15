@@ -174,15 +174,9 @@ public sealed partial class ProxySettings_ : IProxySettings, ISettings, ISetting
     public int AcceleratorTabsSelectedIndex { get; set; } = IProxySettings.DefaultAcceleratorTabsSelectedIndex;
 
     /// <summary>
-    /// 加速后自动唤起 Watt 加速器界面
-    /// </summary>
-    [MPKey(19), MP2Key(19), JsonPropertyOrder(19)]
-    public bool AutoShowWattAcceleratorWindow { get; set; } = IProxySettings.DefaultAutoShowWattAcceleratorWindow;
-
-    /// <summary>
     /// 加速前进行 DNS 可用性检查
     /// </summary>
-    [MPKey(20), MP2Key(20), JsonPropertyOrder(20)]
+    [MPKey(19), MP2Key(19), JsonPropertyOrder(19)]
     public bool ProxyBeforeDNSCheck { get; set; } = IProxySettings.DefaultProxyBeforeDNSCheck;
 
 }
@@ -322,12 +316,6 @@ public static partial class ProxySettings
     /// </summary>
     public static SettingsStructProperty<int, ProxySettings_> AcceleratorTabsSelectedIndex { get; }
         = new(DefaultAcceleratorTabsSelectedIndex);
-
-    /// <summary>
-    /// 加速后自动唤起 Watt 加速器界面
-    /// </summary>
-    public static SettingsStructProperty<bool, ProxySettings_> AutoShowWattAcceleratorWindow { get; }
-        = new(DefaultAutoShowWattAcceleratorWindow);
 
     /// <summary>
     /// 加速前进行 DNS 可用性检查

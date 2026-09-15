@@ -10,13 +10,6 @@ namespace BD.WTTS.Plugins;
 #endif
 public sealed class Plugin : PluginBase<Plugin>, IPlugin
 {
-    static Plugin()
-    {
-#if WINDOWS
-        XunYouSDK.Initialize();
-#endif
-    }
-
     const string moduleName = AssemblyInfo.Accelerator;
 
     public override Guid Id => Guid.Parse(AssemblyInfo.AcceleratorId);
@@ -44,7 +37,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
 
     readonly TaskCompletionSource<IReverseProxyService> reverseProxyService = new();
     readonly TaskCompletionSource<ICertificateManager> certificateManager = new();
-    //readonly TaskCompletionSource<IAcceleratorService> acceleratorService = new();
 
     public override void ConfigureDemandServices(IServiceCollection services, Startup startup)
     {
@@ -58,25 +50,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
         }
 
         services.AddSingleton<INetworkTestService, NetworkTestService>();
-
-        //if (startup.HasIPCRoot)
-        //{
-        //    services.AddSingleton<IAcceleratorService, BackendAcceleratorServiceImpl>();
-        //}
-        //else if (startup.IsMainProcess)
-        {
-            //services.AddSingleton(_ => acceleratorService.Task.GetAwaiter().GetResult());
-            services.AddSingleton<IAcceleratorService, BackendAcceleratorServiceImpl>();
-            services.AddSingleton<IXunYouAccelStateToFrontendCallback, XunYouAccelStateToFrontendCallbackImpl>();
-        }
-    }
-
-    sealed class XunYouAccelStateToFrontendCallbackImpl : IXunYouAccelStateToFrontendCallback
-    {
-        public void XunYouAccelStateToFrontendCallback(XunYouAccelStateModel m)
-        {
-            GameAcceleratorService.Current.XYAccelState = m;
-        }
     }
 
     public override void ConfigureRequiredServices(IServiceCollection services, Startup startup)
@@ -88,14 +61,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
 
     public override void ConfigureServices(IpcProvider ipcProvider, Startup startup)
     {
-        //if (startup.HasIPCRoot)
-        //{
-        //    ipcProvider.CreateIpcJoint(Ioc.Get<IAcceleratorService>());
-        //}
-        //else if (startup.IsMainProcess)
-        //{
-        //    ipcProvider.CreateIpcJoint(Ioc.Get<IXunYouAccelStateToFrontendCallback>());
-        //}
     }
 
     public override async ValueTask OnInitializeAsync()
@@ -153,7 +118,6 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
             {
                 await ProxyService.Current.ExitAsync();
             }
-            GameAcceleratorSettings.MyGames.Save();
         }
         catch
         {
@@ -225,6 +189,5 @@ public sealed class Plugin : PluginBase<Plugin>, IPlugin
     public override IEnumerable<(Action<IServiceCollection>? @delegate, bool isInvalid, string name)>? GetConfiguration(bool directoryExists)
     {
         yield return GetConfiguration<ProxySettings_>(directoryExists);
-        yield return GetConfiguration<GameAcceleratorSettings_>(directoryExists);
     }
 }

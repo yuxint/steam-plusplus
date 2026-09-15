@@ -32,7 +32,6 @@ public sealed class NavigationService : INavigationService
             nameof(DebugPageViewModel) => typeof(DebugPage),
             nameof(TextBoxWindowViewModel) => typeof(TextInputDialogPage),
             nameof(MessageBoxWindowViewModel) => typeof(MessageBoxPage),
-            nameof(LoginOrRegisterWindowViewModel) => typeof(LoginOrRegisterPage),
             _ => null,
         };
 

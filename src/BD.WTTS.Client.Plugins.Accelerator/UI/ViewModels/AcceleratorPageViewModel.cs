@@ -65,9 +65,6 @@ public sealed partial class AcceleratorPageViewModel
                 await ProxyService.Current.InitializeAccelerateAsync();
             else
                 Toast.Show(ToastIcon.Warning, AppResources.Warning_PleaseStopAccelerate);
-
-            // 刷新时重新加载迅游游戏数据
-            GameAcceleratorService.Current.LoadGames();
         });
 
         ProxySettingsCommand = ReactiveCommand.Create(() =>
