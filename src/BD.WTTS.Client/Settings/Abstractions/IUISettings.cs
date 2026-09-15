@@ -60,11 +60,6 @@ public partial interface IUISettings
     string? FontName { get; set; }
 
     /// <summary>
-    /// 库存游戏网格布局大小
-    /// </summary>
-    int GameListGridSize { get; set; }
-
-    /// <summary>
     /// 圆角
     /// </summary>
     bool Fillet { get; set; }
@@ -152,11 +147,6 @@ public partial interface IUISettings
     /// 字体的默认值
     /// </summary>
     const string? DefaultFontName = null;
-
-    /// <summary>
-    /// 库存游戏网格布局大小的默认值
-    /// </summary>
-    const int DefaultGameListGridSize = 150;
 
     /// <summary>
     /// 圆角的默认值

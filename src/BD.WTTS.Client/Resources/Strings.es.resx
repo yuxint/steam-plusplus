@@ -133,10 +133,6 @@
     <value>y</value>
     <comment>Comment=;Author=EspRoy</comment>
   </data>
-  <data name="ArchiSteamFarmPlus" xml:space="preserve">
-    <value>ASF Plus</value>
-    <comment>Comment=;Author=EspRoy</comment>
-  </data>
   <data name="Bind" xml:space="preserve">
     <value>Enlazar</value>
     <comment>Comment=;Author=EspRoy</comment>
@@ -531,10 +527,6 @@
   </data>
   <data name="OperationHostsError_" xml:space="preserve">
     <value>{0} de error de hosts de operación</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="ASF_AddBot" xml:space="preserve">
-    <value>Agregar un bot</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SelectFile" xml:space="preserve">

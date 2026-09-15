@@ -487,12 +487,6 @@ public static class PluginsCore
         static int OrderPlugin(IPlugin plugin) => plugin.UniqueEnglishName switch
         {
             Accelerator => 25,
-            GameAccount => 35,
-            GameList => 45,
-            Authenticator => 55,
-            ArchiSteamFarmPlus => 65,
-            SteamIdleCard => 75,
-            GameTools => 85,
             _ => ushort.MaxValue,
         };
 

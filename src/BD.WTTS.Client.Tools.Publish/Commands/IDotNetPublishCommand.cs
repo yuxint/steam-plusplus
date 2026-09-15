@@ -1154,18 +1154,9 @@ publish -c {0} -p:OutputType={1} -p:PublishDir=bin\{0}\Publish\win-any -p:Publis
         argumentList.Add("--nologo");
     }
 
-    static IEnumerable<string> GetPluginNames(Platform platform)
+    static IEnumerable<string> GetPluginNames()
     {
         yield return AssemblyInfo.Accelerator;
-        yield return AssemblyInfo.GameAccount;
-        yield return AssemblyInfo.GameList;
-        yield return AssemblyInfo.Authenticator;
-        yield return AssemblyInfo.SteamIdleCard;
-        if (platform == Platform.Windows)
-        {
-            yield return AssemblyInfo.ArchiSteamFarmPlus;
-            yield return AssemblyInfo.GameTools;
-        }
     }
 
     /// <summary>
@@ -1183,7 +1174,7 @@ publish -c {0} -p:OutputType={1} -p:PublishDir=bin\{0}\Publish\win-any -p:Publis
                 string configuration,
                 string framework)
     {
-        foreach (var pluginName in GetPluginNames(platform))
+        foreach (var pluginName in GetPluginNames())
         {
             var projRootPath = Path.Combine(ProjectUtils.ProjPath, "src", $"BD.WTTS.Client.Plugins.{pluginName}");
             StartProcessAndWaitForExit(projRootPath, $"build -c {configuration} --nologo -v q /property:WarningLevel=1");

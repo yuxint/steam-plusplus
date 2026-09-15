@@ -7,7 +7,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/0.Root/">
-    <File Path=".github/workflows/CI.yml" />
     <File Path=".gitignore" />
     <File Path=".gitmodules" />
     <File Path="nuget.config" />
@@ -41,7 +40,6 @@
     <File Path="src/Utils.cs" />
   </Folder>
   <Folder Name="/0.Root/Source/ImplicitUsings/">
-    <File Path="src/ImplicitUsings.ArchiSteamFarm.cs" />
     <File Path="src/ImplicitUsings.AspNetCore.cs" />
     <File Path="src/ImplicitUsings.AutoMapper.cs" />
     <File Path="src/ImplicitUsings.Avalonia.cs" />
@@ -86,13 +84,7 @@
     <Project Path="src/BD.WTTS.Client.AppHost/BD.WTTS.Client.AppHost.csproj" />
   </Folder>
   <Folder Name="/2.Reference/" />
-  <Folder Name="/2.Reference/AppCenter/">
-    <Project Path="ref/appcenter-sdk-dotnet/SDK/AppCenter/BD.AppCenter.Any/BD.AppCenter.Any.csproj" />
-    <Project Path="ref/appcenter-sdk-dotnet/SDK/AppCenterAnalytics/BD.AppCenter.Analytics.Any/BD.AppCenter.Analytics.Any.csproj" />
-  </Folder>
   <Folder Name="/2.Reference/Avalonia/">
-    <Project Path="ref/Avalonia.Image2/Avalonia.Gif/Avalonia.Gif.csproj" />
-    <Project Path="ref/Avalonia.Image2/LibAPNG/LibAPNG.csproj" />
   </Folder>
   <Folder Name="/2.Reference/Common/">
     <Project Path="ref/Common/src/BD.Common.Area/BD.Common.Area.csproj" />
@@ -112,15 +104,9 @@
     <Project Path="ref/Common/src/BD.Common/BD.Common.csproj" />
   </Folder>
   <Folder Name="/2.Reference/Steam/">
-    <Project Path="ref/ArchiSteamFarm/ArchiSteamFarm/ArchiSteamFarm.csproj" />
-    <Project Path="ref/Gameloop.Vdf/Gameloop.Vdf/Gameloop.Vdf.csproj" />
-    <Project Path="ref/Steam4NET/Steam4NET/Steam4NET.csproj" />
     <Project Path="ref/SteamClient/ref/ValveKeyValue/ValveKeyValue/ValveKeyValue/ValveKeyValue.csproj" />
     <Project Path="ref/SteamClient/src/BD.SteamClient.Models.Protobuf/BD.SteamClient.Models.Protobuf.csproj" />
     <Project Path="ref/SteamClient/src/BD.SteamClient/BD.SteamClient.csproj" />
-  </Folder>
-  <Folder Name="/2.Reference/WinAuth/">
-    <Project Path="ref/WinAuth/src/WinAuth/WinAuth.csproj" />
   </Folder>
   <Folder Name="/3.Test/">
     <Project Path="src/BD.WTTS.UnitTest/BD.WTTS.UnitTest.csproj" />
@@ -140,7 +126,6 @@
     <Project Path="src/Avalonia.Diagnostics/Avalonia.Diagnostics.csproj" />
     <Project Path="src/Avalonia.Native/Avalonia.Native.csproj" />
     <Project Path="src/Avalonia.Skia.Internals/Avalonia.Skia.Internals.csproj" />
-    <Project Path="src/Avalonia.WebView2/Avalonia.WebView2.csproj" />
     <Project Path="src/Avalonia.Win32/Avalonia.Win32.csproj" />
     <Project Path="src/Avalonia.X11/Avalonia.X11.csproj" />
   </Folder>
@@ -158,12 +143,6 @@
   <Folder Name="/5.Plugins/">
     <Project Path="src/BD.WTTS.Client.Plugins.Accelerator.ReverseProxy/BD.WTTS.Client.Plugins.Accelerator.ReverseProxy.csproj" />
     <Project Path="src/BD.WTTS.Client.Plugins.Accelerator/BD.WTTS.Client.Plugins.Accelerator.csproj" />
-    <Project Path="src/BD.WTTS.Client.Plugins.ArchiSteamFarmPlus/BD.WTTS.Client.Plugins.ArchiSteamFarmPlus.csproj" />
-    <Project Path="src/BD.WTTS.Client.Plugins.Authenticator/BD.WTTS.Client.Plugins.Authenticator.csproj" />
-    <Project Path="src/BD.WTTS.Client.Plugins.GameAccount/BD.WTTS.Client.Plugins.GameAccount.csproj" />
-    <Project Path="src/BD.WTTS.Client.Plugins.GameList/BD.WTTS.Client.Plugins.GameList.csproj" />
-    <Project Path="src/BD.WTTS.Client.Plugins.GameTools/BD.WTTS.Client.Plugins.GameTools.csproj" />
-    <Project Path="src/BD.WTTS.Client.Plugins.SteamIdleCard/BD.WTTS.Client.Plugins.SteamIdleCard.csproj" />
   </Folder>
   <Folder Name="/6.Tools/">
     <Project Path="ref/Common/src/BD.Common.Settings.V4.SourceGenerator.Tools/BD.Common.Settings.V4.SourceGenerator.Tools.csproj" />

@@ -28,9 +28,6 @@ sealed partial class Program : Startup
         // 平台服务 此项放在其他通用业务实现服务之前
         services.AddPlatformService(this);
 #if WINDOWS
-        //#if !MAUI TODO
-        //        services.AddMSAppCenterApplicationSettings();
-        //#endif
         services.AddJumpListService();
 #endif
 

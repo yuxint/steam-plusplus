@@ -158,24 +158,6 @@ partial class PluginBase
                     AssemblyInfo.Accelerator => // IsEmbeddedPlugin() &&
                         UniqueEnglishName == AssemblyInfo.Accelerator &&
                         Id.ToString() == AssemblyInfo.AcceleratorId,
-                    AssemblyInfo.ArchiSteamFarmPlus => // IsEmbeddedPlugin() &&
-                        UniqueEnglishName == AssemblyInfo.ArchiSteamFarmPlus &&
-                        Id.ToString() == AssemblyInfo.ArchiSteamFarmPlusId,
-                    AssemblyInfo.Authenticator => // IsEmbeddedPlugin() &&
-                        UniqueEnglishName == AssemblyInfo.Authenticator &&
-                        Id.ToString() == AssemblyInfo.AuthenticatorId,
-                    AssemblyInfo.GameAccount => // IsEmbeddedPlugin() &&
-                        UniqueEnglishName == AssemblyInfo.GameAccount &&
-                        Id.ToString() == AssemblyInfo.GameAccountId,
-                    AssemblyInfo.GameList => // IsEmbeddedPlugin() &&
-                        UniqueEnglishName == AssemblyInfo.GameList &&
-                        Id.ToString() == AssemblyInfo.GameListId,
-                    AssemblyInfo.GameTools => // IsEmbeddedPlugin() &&
-                        UniqueEnglishName == AssemblyInfo.GameTools &&
-                        Id.ToString() == AssemblyInfo.GameToolsId,
-                    AssemblyInfo.SteamIdleCard => // IsEmbeddedPlugin() &&
-                        UniqueEnglishName == AssemblyInfo.SteamIdleCard &&
-                        Id.ToString() == AssemblyInfo.SteamIdleCardId,
                     _ => false,
                 };
             return value;

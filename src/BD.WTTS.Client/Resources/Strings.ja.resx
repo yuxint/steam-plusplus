@@ -133,10 +133,6 @@
     <value>と</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="ArchiSteamFarmPlus" xml:space="preserve">
-    <value>ASF Plus</value>
-    <comment>Comment=;Author=AigioL</comment>
-  </data>
   <data name="Bind" xml:space="preserve">
     <value>バインドします</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -531,10 +527,6 @@
   </data>
   <data name="OperationHostsError_" xml:space="preserve">
     <value>Hosts エラー {0}の操作</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="ASF_AddBot" xml:space="preserve">
-    <value>新しいボット</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SelectFile" xml:space="preserve">

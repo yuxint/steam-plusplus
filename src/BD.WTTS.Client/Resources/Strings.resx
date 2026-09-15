@@ -135,12 +135,6 @@
 	<data name="And" xml:space="preserve">
     <value>和</value>
   </data>
-	<data name="ArchiSteamFarmPlus" xml:space="preserve">
-    <value>ASF 控制台</value>
-  </data>
-	<data name="ASF_AddBot" xml:space="preserve">
-    <value>新增 Bot</value>
-  </data>
 	<data name="SelectFile" xml:space="preserve">
     <value>选择文件</value>
   </data>
@@ -814,9 +808,6 @@
 	<data name="Plugin_FileError" xml:space="preserve">
     <value>找不到文件</value>
   </data>
-	<data name="WinAuth" xml:space="preserve">
-    <value>WinAuth </value>
-  </data>
 	<data name="Google" xml:space="preserve">
     <value>Google 令牌</value>
   </data>
@@ -873,9 +864,6 @@
   </data>
 	<data name="Plugin_UnknownAuthor" xml:space="preserve">
     <value>未知</value>
-  </data>
-	<data name="SteamIdleCard" xml:space="preserve">
-    <value>Steam 挂卡</value>
   </data>
 	<data name="CommunityFix_DeleteCertificate_Fail" xml:space="preserve">
     <value>删除 CA 证书失败</value>

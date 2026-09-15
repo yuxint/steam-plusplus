@@ -2,7 +2,6 @@
 using Avalonia.Data;
 using BD.WTTS.Helpers;
 using Google.Protobuf.WellKnownTypes;
-using Org.BouncyCastle.Bcpg.OpenPgp;
 using System.Linq;
 
 namespace BD.WTTS.Services;

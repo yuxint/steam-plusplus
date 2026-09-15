@@ -133,10 +133,6 @@
     <value>e</value>
     <comment>Comment=;Author=Zhengye</comment>
   </data>
-  <data name="ArchiSteamFarmPlus" xml:space="preserve">
-    <value>ASF Plus</value>
-    <comment>Comment=;Author=Zhengye</comment>
-  </data>
   <data name="Bind" xml:space="preserve">
     <value>guinzaglio</value>
     <comment>Comment=;Author=Zhengye</comment>
@@ -531,10 +527,6 @@
   </data>
   <data name="OperationHostsError_" xml:space="preserve">
     <value>Errore Operazione Hosts {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="ASF_AddBot" xml:space="preserve">
-    <value>Aggiungere un bot</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SelectFile" xml:space="preserve">

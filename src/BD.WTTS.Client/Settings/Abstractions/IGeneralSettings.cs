@@ -36,11 +36,6 @@ public partial interface IGeneralSettings
     bool TrayIcon { get; set; }
 
     /// <summary>
-    /// 游戏列表使用本地缓存
-    /// </summary>
-    bool GameListUseLocalCache { get; set; }
-
-    /// <summary>
     /// 文本阅读器提供商，值为程序路径
     /// </summary>
     Dictionary<Platform, string>? TextReaderProvider { get; set; }
@@ -133,11 +128,6 @@ public partial interface IGeneralSettings
     /// 启用托盘图标的默认值
     /// </summary>
     const bool DefaultTrayIcon = true;
-
-    /// <summary>
-    /// 游戏列表使用本地缓存的默认值
-    /// </summary>
-    const bool DefaultGameListUseLocalCache = false;
 
     /// <summary>
     /// 文本阅读器提供商，值为程序路径的默认值

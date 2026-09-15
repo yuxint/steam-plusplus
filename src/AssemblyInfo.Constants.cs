@@ -121,28 +121,9 @@ false
 
     public const string Accelerator = "Accelerator";
 
-    public const string GameAccount = "GameAccount";
-
-    public const string GameList = "GameList";
-
-    public const string SteamIdleCard = "SteamIdleCard";
-
-    public const string ArchiSteamFarmPlus = "ArchiSteamFarmPlus";
-
-    public const string Authenticator = "Authenticator";
-
-    public const string GameTools = "GameTools";
-    //public const string Update = "Update";
-
     public const string Plugins = "Plugins";
 
     public const string AcceleratorId = "00000000-0000-0000-0000-000000000001";
-    public const string GameAccountId = "00000000-0000-0000-0000-000000000002";
-    public const string GameListId = "00000000-0000-0000-0000-000000000003";
-    public const string ArchiSteamFarmPlusId = "00000000-0000-0000-0000-000000000004";
-    public const string AuthenticatorId = "00000000-0000-0000-0000-000000000005";
-    public const string GameToolsId = "00000000-0000-0000-0000-000000000006";
-    public const string SteamIdleCardId = "00000000-0000-0000-0000-000000000007";
 
     #endregion
 

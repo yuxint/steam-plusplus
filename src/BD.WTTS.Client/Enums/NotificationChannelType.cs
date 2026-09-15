@@ -37,7 +37,6 @@ public enum NotificationChannelType
     /// <summary>
     /// Android 前台服务
     /// <para><see cref="NotificationType.ProxyForegroundService"/></para>
-    /// <para><see cref="NotificationType.ArchiSteamFarmForegroundService"/></para>
     /// </summary>
     ForegroundService,
 }
@@ -59,8 +58,7 @@ public static partial class NotificationType_Channel_EnumExtensions
         NotificationType.Announcement => NotificationChannelType.Announcement,
         NotificationType.NewVersion => NotificationChannelType.NewVersion,
         NotificationType.Message => NotificationChannelType.Message,
-        NotificationType.ProxyForegroundService or
-        NotificationType.ArchiSteamFarmForegroundService => NotificationChannelType.ForegroundService,
+        NotificationType.ProxyForegroundService => NotificationChannelType.ForegroundService,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 

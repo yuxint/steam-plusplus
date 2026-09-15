@@ -3,7 +3,6 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using AvaloniaEdit;
 using AvaloniaEdit.TextMate;
-using Org.BouncyCastle.Math;
 using TextMateSharp.Grammars;
 
 namespace BD.WTTS.UI.Views.Controls;

@@ -133,14 +133,6 @@
     <value>и</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
-  <data name="ArchiSteamFarmPlus" xml:space="preserve">
-    <value>Автодобыча карт</value>
-    <comment>Comment=;Author=沙中金</comment>
-  </data>
-  <data name="ASF_AddBot" xml:space="preserve">
-    <value>Добавить бота</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
   <data name="SelectFile" xml:space="preserve">
     <value>Выберите файл</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -959,14 +951,6 @@
   </data>
   <data name="Settings_General_LogsData" xml:space="preserve">
     <value>Данные журналов</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="SteamIdleCard" xml:space="preserve">
-    <value>SteamIdleCard</value>
-    <comment>Author=kotovasia5120</comment>
-  </data>
-  <data name="WinAuth" xml:space="preserve">
-    <value>WinAuth </value>
     <comment>Author=kotovasia5120</comment>
   </data>
   <data name="Error_BaseDir_StartsWith_Temp" xml:space="preserve">

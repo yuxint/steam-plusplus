@@ -133,10 +133,6 @@
     <value>和</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
-  <data name="ArchiSteamFarmPlus" xml:space="preserve">
-    <value>ASF Plus</value>
-    <comment>Comment=;Author=AigioL</comment>
-  </data>
   <data name="Bind" xml:space="preserve">
     <value>綁定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
@@ -531,10 +527,6 @@
   </data>
   <data name="OperationHostsError_" xml:space="preserve">
     <value>操作 Hosts 錯誤 {0}</value>
-    <comment>Comment=;Author=MicrosoftTranslator</comment>
-  </data>
-  <data name="ASF_AddBot" xml:space="preserve">
-    <value>新增 Bot</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SelectFile" xml:space="preserve">

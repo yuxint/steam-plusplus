@@ -130,29 +130,11 @@ namespace BD.WTTS.Client.Resources {
         }
         
         /// <summary>
-        ///   查找类似 ASF 控制台 的本地化字符串。
-        /// </summary>
-        public static string ArchiSteamFarmPlus {
-            get {
-                return ResourceManager.GetString("ArchiSteamFarmPlus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 启动参数 的本地化字符串。
         /// </summary>
         public static string Arguments {
             get {
                 return ResourceManager.GetString("Arguments", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 新增 Bot 的本地化字符串。
-        /// </summary>
-        public static string ASF_AddBot {
-            get {
-                return ResourceManager.GetString("ASF_AddBot", resourceCulture);
             }
         }
         
@@ -2350,14 +2332,6 @@ namespace BD.WTTS.Client.Resources {
         ///   查找类似 登录的账号与当前 Steam 客户端账号不一致，可能会导致挂卡出现问题。
         ///请注销切换登录账号与 Steam 客户端账号一致，
         ///或切换 Steam 客户端登录账号与挂卡账号一致！ 的本地化字符串。
-        /// <summary>
-        ///   查找类似 Steam 挂卡 的本地化字符串。
-        /// </summary>
-        public static string SteamIdleCard {
-            get {
-                return ResourceManager.GetString("SteamIdleCard", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   查找类似 停止 的本地化字符串。
@@ -2493,16 +2467,7 @@ namespace BD.WTTS.Client.Resources {
                 return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   查找类似 WinAuth  的本地化字符串。
-        /// </summary>
-        public static string WinAuth {
-            get {
-                return ResourceManager.GetString("WinAuth", resourceCulture);
-            }
-        }
-        
+
         /// <summary>
         ///   查找类似 工作目录 的本地化字符串。
         /// </summary>
