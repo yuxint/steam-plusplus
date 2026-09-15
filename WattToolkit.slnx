@@ -113,8 +113,6 @@
   </Folder>
   <Folder Name="/2.Reference/Steam/">
     <Project Path="ref/ArchiSteamFarm/ArchiSteamFarm/ArchiSteamFarm.csproj" />
-    <Project Path="ref/Facepunch.Steamworks/Facepunch.Steamworks/Facepunch.Steamworks.Posix.csproj" />
-    <Project Path="ref/Facepunch.Steamworks/Facepunch.Steamworks/Facepunch.Steamworks.Win64.csproj" />
     <Project Path="ref/Gameloop.Vdf/Gameloop.Vdf/Gameloop.Vdf.csproj" />
     <Project Path="ref/Steam4NET/Steam4NET/Steam4NET.csproj" />
     <Project Path="ref/SteamClient/ref/ValveKeyValue/ValveKeyValue/ValveKeyValue/ValveKeyValue.csproj" />
