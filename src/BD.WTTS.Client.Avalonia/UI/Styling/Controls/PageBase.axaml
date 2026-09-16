@@ -123,49 +123,32 @@
                             <Panel
                                 Name="PageDetails"
                                 Grid.Row="1"
-                                Margin="20,30,0,0"
+                                Margin="24,18,0,0"
                                 ClipToBounds="False">
                                 <Border
                                     Name="ImageHost"
-                                    Width="120"
-                                    Height="120"
+                                    Width="44"
+                                    Height="44"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Background="{DynamicResource ControlOnImageFillColorDefaultBrush}"
                                     ClipToBounds="False"
-                                    CornerRadius="{DynamicResource OverlayCornerRadius}">
-                                    <Border.Transitions>
-                                        <Transitions>
-                                            <DoubleTransition
-                                                Easing="0,0 0,1"
-                                                Property="Width"
-                                                Duration="00:00:00.25" />
-                                            <DoubleTransition
-                                                Easing="0,0 0,1"
-                                                Property="Height"
-                                                Duration="00:00:00.25" />
-                                        </Transitions>
-                                    </Border.Transitions>
-                                    <Viewbox Margin="12" ClipToBounds="False">
+                                    CornerRadius="10">
+                                    <Viewbox Margin="7" ClipToBounds="False">
                                         <ui:IconSourceElement Name="PreviewImageElement" IconSource="{TemplateBinding PreviewImage}" />
                                     </Viewbox>
                                 </Border>
                                 <StackPanel
                                     Name="DetailsTextHost"
-                                    Margin="130,0,0,0"
-                                    VerticalAlignment="Bottom">
+                                    Margin="56,0,0,0"
+                                    VerticalAlignment="Top">
                                     <TextBlock
                                         Name="ControlNameTextBlock"
-                                        FontSize="36"
+                                        FontSize="26"
+                                        FontWeight="SemiBold"
                                         MaxLines="2"
                                         Text="{TemplateBinding Title}"
-                                        Theme="{StaticResource TitleTextBlockStyle}">
-                                        <TextBlock.Transitions>
-                                            <Transitions>
-                                                <DoubleTransition Property="FontSize" Duration="00:00:00.167" />
-                                            </Transitions>
-                                        </TextBlock.Transitions>
-                                    </TextBlock>
+                                        Theme="{StaticResource TitleTextBlockStyle}" />
                                     <Button
                                         Name="NamespaceText"
                                         Padding="0"
@@ -173,7 +156,6 @@
                                         IsVisible="False"
                                         Theme="{StaticResource TransparentButton}">
                                         <TextBlock
-                                            FontStyle="Italic"
                                             Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"
                                             MaxLines="2"
                                             Text="{TemplateBinding Subtitle}"
@@ -181,7 +163,6 @@
                                     </Button>
                                     <TextBlock
                                         Name="WinUINamespaceText"
-                                        FontStyle="Italic"
                                         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                                         IsVisible="False"
                                         MaxLines="4"
@@ -288,14 +269,14 @@
 
     <Style Selector="spp|PageBase:smallWidth">
         <Style Selector="^ /template/ TextBlock#ControlNameTextBlock">
-            <Setter Property="FontSize" Value="28" />
+            <Setter Property="FontSize" Value="22" />
         </Style>
         <Style Selector="^ /template/ StackPanel#DetailsTextHost">
-            <Setter Property="Margin" Value="110 0 0 0" />
+            <Setter Property="Margin" Value="52 0 0 0" />
         </Style>
         <Style Selector="^ /template/ Border#ImageHost">
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="100" />
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="40" />
         </Style>
     </Style>
 

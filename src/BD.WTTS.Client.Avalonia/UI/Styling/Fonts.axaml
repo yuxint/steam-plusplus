@@ -11,6 +11,6 @@
     </ResourceDictionary.ThemeDictionaries>-->
     <sys:Double x:Key="MinFontSize">8</sys:Double>
     <sys:Double x:Key="DescriptionFontSize">10</sys:Double>
-    <sys:Double x:Key="DefaultFontSize">12</sys:Double>
+    <sys:Double x:Key="DefaultFontSize">13</sys:Double>
     <sys:Double x:Key="MediumFontSize">14</sys:Double>
 </ResourceDictionary>

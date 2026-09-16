@@ -23,3 +23,11 @@ find src -type d \( -name bin -o -name obj \) -prune -exec rm -rf {} +
 ```
 
 不要清理 `~/.nuget/packages`（NuGet 全局包缓存，删了会触发重新联网下载）。
+
+**安装方式（2026-09-17 起改为实体拷贝，不再用软链）：** `/Applications/Steam++.app` 是实体目录（约 320MB）。软链方式有已验证的事故：删 bin/obj 会让软链悬空，运行中的进程文件被删后，打开主面板触发懒加载资源（`avares://` 流、图标）失败，页面白屏。因清理规则要求删 bin，两者冲突，故改为构建后手动拷贝安装：
+
+```bash
+rm -rf /Applications/Steam++.app && cp -R <build输出>/Steam++.app /Applications/Steam++.app
+```
+
+注意：build.sh 检测到 `/Applications/Steam++.app` 是实体目录时会跳过自动安装（提示"跳过安装"），属预期行为；更新安装必须手动执行上面的拷贝命令。清理 bin/obj 前确认应用已退出或已从 `/Applications` 启动，绝不能删除正在运行的进程的文件。

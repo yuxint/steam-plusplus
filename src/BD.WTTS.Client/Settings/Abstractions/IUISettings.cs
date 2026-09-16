@@ -156,12 +156,12 @@ public partial interface IUISettings
     /// <summary>
     /// 窗口背景不透明度的默认值
     /// </summary>
-    static readonly double DefaultWindowBackgroundOpacity = OperatingSystem2.IsWindows11AtLeast() ? .0 : .8;
+    static readonly double DefaultWindowBackgroundOpacity = OperatingSystem2.IsWindows11AtLeast() || !OperatingSystem2.IsWindows() ? .0 : .8;
 
     /// <summary>
     /// 窗口背景材质的默认值
     /// </summary>
-    static readonly WindowBackgroundMaterial DefaultWindowBackgroundMaterial = OperatingSystem2.IsWindows11AtLeast() ? Enums.WindowBackgroundMaterial.Mica : Enums.WindowBackgroundMaterial.AcrylicBlur;
+    static readonly WindowBackgroundMaterial DefaultWindowBackgroundMaterial = OperatingSystem2.IsWindows11AtLeast() ? Enums.WindowBackgroundMaterial.Mica : OperatingSystem2.IsWindows() ? Enums.WindowBackgroundMaterial.AcrylicBlur : Enums.WindowBackgroundMaterial.None;
 
     /// <summary>
     /// 动态桌面背景的默认值

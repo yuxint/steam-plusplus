@@ -19,7 +19,7 @@
 	<UserControl.Styles>
 		<Style Selector="ui|NavigationView.AppNav">
 			<Setter Property="IsPaneToggleButtonVisible" Value="False" />
-			<Setter Property="OpenPaneLength" Value="72" />
+			<Setter Property="OpenPaneLength" Value="220" />
 			<Setter Property="IsPaneOpen" Value="True" />
 		</Style>
 
@@ -41,67 +41,58 @@
 		</Style>
 
 		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter">
-			<Setter Property="Width" Value="72" />
-			<Setter Property="MinHeight" Value="75" />
+			<Setter Property="MinHeight" Value="36" />
 			<Setter Property="Cursor" Value="Hand" />
-			<Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />
-			<Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+			<Setter Property="CornerRadius" Value="7" />
+			<Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
 			<Setter Property="Template">
 				<ControlTemplate>
 					<Border
                         Name="LayoutRoot"
-                        Margin="4,6"
+                        Margin="8,2"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         TemplatedControl.IsTemplateFocusTarget="True">
 						<Panel>
-							<Panel HorizontalAlignment="Left" VerticalAlignment="Center">
+							<Border
+                                Name="SelectionIndicator"
+                                Width="3"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                CornerRadius="2"
+                                Opacity="0" />
 
-								<Border
-                                    Name="SelectionIndicator"
-                                    Width="3"
+							<StackPanel Margin="12,0" Orientation="Horizontal" VerticalAlignment="Center">
+								<ContentPresenter
+                                    Name="Icon"
+                                    Width="20"
                                     Height="20"
                                     VerticalAlignment="Center"
-                                    Background="{DynamicResource NavigationViewSelectionIndicatorForeground}"
-                                    CornerRadius="{StaticResource ControlCornerRadius}"
-                                    Opacity="0" />
-							</Panel>
-
-
-							<DockPanel>
+                                    Content="{Binding TemplateSettings.Icon, RelativeSource={RelativeSource TemplatedParent}}" />
 								<ContentPresenter
                                     Name="ContentPresenter"
-                                    Grid.Row="1"
-                                    Margin="0,-15,0,3"
-                                    Padding="0,4"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
+                                    Margin="12,0,4,0"
+                                    VerticalAlignment="Center"
                                     Content="{TemplateBinding Content}"
                                     ContentTemplate="{TemplateBinding ContentTemplate}"
-                                    DockPanel.Dock="Bottom"
-                                    FontSize="10">
+                                    FontSize="13">
 									<ContentPresenter.Styles>
 										<Style Selector="TextBlock">
-											<Setter Property="TextWrapping" Value="Wrap" />
+											<Setter Property="TextTrimming" Value="CharacterEllipsis" />
 										</Style>
 									</ContentPresenter.Styles>
 								</ContentPresenter>
-
-								<Viewbox
-                                    Name="IconBox"
-                                    Height="28"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
-									<ContentPresenter Name="Icon" Content="{Binding TemplateSettings.Icon, RelativeSource={RelativeSource TemplatedParent}}" />
-								</Viewbox>
-
-							</DockPanel>
+							</StackPanel>
 						</Panel>
 					</Border>
 				</ControlTemplate>
 			</Setter>
 		</Style>
 
+		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:pointerover /template/ Border#LayoutRoot">
+			<Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
+		</Style>
 		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:pointerover /template/ ContentPresenter#ContentPresenter">
 			<Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
 		</Style>
@@ -109,6 +100,9 @@
 			<Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
 		</Style>
 
+		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:pressed /template/ Border#LayoutRoot">
+			<Setter Property="Background" Value="{DynamicResource SubtleFillColorTertiaryBrush}" />
+		</Style>
 		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:pressed /template/ ContentPresenter#ContentPresenter">
 			<Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
 		</Style>
@@ -116,13 +110,14 @@
 			<Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
 		</Style>
 
-		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:selected /template/ ContentPresenter#ContentPresenter">
-			<Setter Property="IsVisible" Value="False" />
-			<Setter Property="Foreground" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:selected /template/ Border#LayoutRoot">
+			<Setter Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}" />
 		</Style>
-
+		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:selected /template/ ContentPresenter#ContentPresenter">
+			<Setter Property="Foreground" Value="White" />
+		</Style>
 		<Style Selector="ui|NavigationViewItem.AppNav uip|NavigationViewItemPresenter:selected /template/ ContentPresenter#Icon">
-			<Setter Property="Foreground" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+			<Setter Property="Foreground" Value="White" />
 		</Style>
 	</UserControl.Styles>
 
@@ -160,16 +155,16 @@
 				</Style>
 			</ui:NavigationView.Styles>
 			<ui:NavigationView.MenuItemTemplate>
-				<DataTemplate DataType="spp:TabItemViewModel">
-					<ui:NavigationViewItem Classes="AppNav" Content="{Binding Name}">
-						<ui:NavigationViewItem.IconSource>
-							<!--<ui:FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="{Binding IconKey, Converter={StaticResource ResourceKeyValueConverter}, ConverterParameter=fonticon}" />-->
-							<ui:ImageIconSource Source="{Binding IconKey, Converter={StaticResource BitmapAssetValueConverter}}" />
-						</ui:NavigationViewItem.IconSource>
-					</ui:NavigationViewItem>
-				</DataTemplate>
-			</ui:NavigationView.MenuItemTemplate>
-			<ui:Frame Name="FrameView" />
+					<DataTemplate DataType="spp:TabItemViewModel">
+						<ui:NavigationViewItem Classes="AppNav" Content="{Binding Name}">
+							<ui:NavigationViewItem.IconSource>
+								<!--<ui:FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="{Binding IconKey, Converter={StaticResource ResourceKeyValueConverter}, ConverterParameter=fonticon}" />-->
+								<ui:ImageIconSource Source="{Binding IconKey, Converter={StaticResource BitmapAssetValueConverter}}" />
+							</ui:NavigationViewItem.IconSource>
+						</ui:NavigationViewItem>
+					</DataTemplate>
+				</ui:NavigationView.MenuItemTemplate>
+				<ui:Frame Name="FrameView" />
 		</ui:NavigationView>
 	</Grid>
 </UserControl>
