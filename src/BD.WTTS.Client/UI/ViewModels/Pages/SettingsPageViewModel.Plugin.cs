@@ -13,11 +13,6 @@ public sealed partial class SettingsPageViewModel : TabItemViewModel
         }
     }
 
-    public void CheckUpdate()
-    {
-        Toast.Show(ToastIcon.Info, Strings.IsExistUpdateFalse);
-    }
-
     public void SwitchEnablePlugin(PluginResult<IPlugin> plugin)
     {
         // 禁用插件配置文件修改

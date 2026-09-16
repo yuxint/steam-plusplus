@@ -87,9 +87,6 @@ public sealed partial class SettingsPageViewModel : TabItemViewModel
     public ICommand? DeletePlugin_Click { get; }
 
     [IgnoreDataMember, MPIgnore, MP2Ignore, N_JsonIgnore, S_JsonIgnore]
-    public ICommand? CheckUpdate_Click { get; }
-
-    [IgnoreDataMember, MPIgnore, MP2Ignore, N_JsonIgnore, S_JsonIgnore]
     public ICommand? OpenPluginDirectory_Click { get; }
 
     [IgnoreDataMember, MPIgnore, MP2Ignore, N_JsonIgnore, S_JsonIgnore]

@@ -71,21 +71,6 @@
                                 IsChecked="{Binding !IsDisable, Mode=TwoWay}" />
                         </ui:SettingsExpander.Footer>
                         <ui:SettingsExpanderItem
-                            ActionIconSource="Refresh"
-                            Command="{Binding $parent[spp:Settings_Plugin].((spp:SettingsPageViewModel)DataContext).CheckUpdate_Click}"
-                            Content="{Binding Path=Res.CheckUpdate, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
-                            IsClickEnabled="True">
-                            <ui:SettingsExpanderItem.Description>
-                                <MultiBinding StringFormat="{}{0}{1}">
-                                    <CompiledBinding
-                                        Mode="OneWay"
-                                        Path="Res.Plugin_Version"
-                                        Source="{x:Static s:ResourceService.Current}" />
-                                    <CompiledBinding Mode="OneWay" Path="Data.Version" />
-                                </MultiBinding>
-                            </ui:SettingsExpanderItem.Description>
-                        </ui:SettingsExpanderItem>
-                        <ui:SettingsExpanderItem
                             ActionIconSource="Open"
                             Command="{Binding $parent[spp:Settings_Plugin].((spp:SettingsPageViewModel)DataContext).OpenPluginDirectory_Click}"
                             CommandParameter="{Binding Data.AssemblyLocation}"

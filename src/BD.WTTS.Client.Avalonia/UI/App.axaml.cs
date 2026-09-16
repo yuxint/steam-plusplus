@@ -120,6 +120,12 @@ public sealed partial class App : Application
                 Task2.InBackground(() => appWindow.SplashScreen?.RunTasks(CancellationToken.None));
             }
 
+#if MACOS
+            // 启动时最小化：隐藏 Dock 栏图标，仅保留菜单栏（托盘）图标，可从菜单栏打开主面板
+            if (Startup.Instance.IsMinimize)
+                SetDockIconVisible(false);
+#endif
+
             IPlatformService.Instance.SetSystemSessionEnding(() =>
             {
                 Log.Info("System Shutdown", "Application SafeExit...");

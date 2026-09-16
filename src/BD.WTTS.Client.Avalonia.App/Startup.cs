@@ -171,8 +171,6 @@ sealed partial class Program : Startup
                 }
             });
 
-            // 业务平台用户管理
-            services.TryAddUserManager();
 #if STARTUP_WATCH_TRACE || DEBUG
             WatchTrace.Record("ConfigureDemandServices.ServerApiClient");
 #endif

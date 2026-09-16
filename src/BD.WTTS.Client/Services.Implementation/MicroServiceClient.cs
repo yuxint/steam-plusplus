@@ -4,15 +4,12 @@ namespace BD.WTTS.Services.Implementation;
 
 sealed class MicroServiceClient : MicroServiceClientBase
 {
-    readonly IUserManager userManager;
-
     internal const string ClientName = ClientName_;
 
     public MicroServiceClient(
         ILoggerFactory loggerFactory,
         IHttpClientFactory clientFactory,
         IHttpPlatformHelperService httpPlatformHelper,
-        IUserManager userManager,
         IToast toast,
         IOptions<AppSettings> options,
         IModelValidator validator,
@@ -22,12 +19,11 @@ sealed class MicroServiceClient : MicroServiceClientBase
             clientFactory,
             httpPlatformHelper,
             toast,
-            userManager,
+            NullAuthHelper.Instance,
             options.Value,
             validator,
             appVerService)
     {
-        this.userManager = userManager;
     }
 
     protected sealed override HttpClient CreateClient(HttpHandlerCategory category)
@@ -51,47 +47,6 @@ sealed class MicroServiceClient : MicroServiceClientBase
         return client;
     }
 
-    public sealed override async Task SaveAuthTokenAsync(JWTEntity authToken)
-    {
-        var user = await userManager.GetCurrentUserAsync();
-        if (user != null)
-        {
-            user.AuthToken = authToken;
-            await userManager.SetCurrentUserAsync(user);
-        }
-    }
-
-    public sealed override async Task SaveShopAuthTokenAsync(JWTEntity authToken)
-    {
-        var user = await userManager.GetCurrentUserAsync();
-        if (user != null)
-        {
-            user.ShopAuthToken = authToken;
-            await userManager.SetCurrentUserAsync(user);
-        }
-    }
-
-    public sealed override async Task OnLoginedAsync(
-        IReadOnlyPhoneNumber? phoneNumber,
-        ILoginResponse response)
-    {
-        if (response is LoginOrRegisterResponse loginOrRegisterResponse)
-        {
-            var user = loginOrRegisterResponse.User;
-            if (user != null)
-                await userManager.SetCurrentUserInfoAsync(user, true);
-        }
-
-        CurrentUser cUser = new()
-        {
-            UserId = response.UserId,
-            AuthToken = response.AuthToken,
-            PhoneNumber = phoneNumber?.PhoneNumber ?? string.Empty,
-        };
-
-        await userManager.SetCurrentUserAsync(cUser);
-    }
-
     protected sealed override void SetDeviceId(IDeviceId deviceId)
     {
         var deviceIdG = DeviceIdHelper.DeviceIdG;
@@ -101,5 +56,19 @@ sealed class MicroServiceClient : MicroServiceClientBase
         deviceId.DeviceIdG = deviceIdG;
         deviceId.DeviceIdR = deviceIdR;
         deviceId.DeviceIdN = deviceIdN;
+    }
+
+    /// <summary>
+    /// 无登录态：改造版已裁掉个人中心，接口一律匿名调用
+    /// </summary>
+    sealed class NullAuthHelper : IAuthHelper
+    {
+        public static readonly NullAuthHelper Instance = new();
+
+        ValueTask<JWTEntity?> IAuthHelper.GetAuthTokenAsync() => ValueTask.FromResult<JWTEntity?>(default);
+
+        ValueTask<JWTEntity?> IAuthHelper.GetShopAuthTokenAsync() => ValueTask.FromResult<JWTEntity?>(default);
+
+        Task IAuthHelper.SignOutAsync() => Task.CompletedTask;
     }
 }

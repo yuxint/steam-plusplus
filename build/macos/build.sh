@@ -8,6 +8,7 @@
 #
 # 全量编译日志: /tmp/steampp-macos-build.log (可用 LOG_FILE 覆盖)
 # 可选代码签名: CODESIGN_IDENTITY="Apple Development: ..." ./build.sh (默认不签名)
+# 可选安装开关: INSTALL_APP=0 ./build.sh 跳过软链安装 (默认打完包自动 ln -sfn 到 /Applications/Steam++.app)
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -75,7 +76,20 @@ else
     log "跳过代码签名 (设 CODESIGN_IDENTITY 以启用)"
 fi
 
-# ---- 6. 产物核验 ----
+# ---- 6. 安装 (软链接方式, 默认开启; INSTALL_APP=0 跳过) ----
+APP_LINK="/Applications/Steam++.app"
+if [ "${INSTALL_APP:-1}" = "1" ]; then
+    if [ -d "$APP_LINK" ] && [ ! -L "$APP_LINK" ]; then
+        log "跳过安装: $APP_LINK 是实体目录, 未自动替换 (删除后重跑即可改用软链接)"
+    else
+        ln -sfn "$APP_PATH" "$APP_LINK"
+        log "已软链: $APP_LINK -> $APP_PATH"
+    fi
+else
+    log "跳过安装 (INSTALL_APP=0)"
+fi
+
+# ---- 7. 产物核验 ----
 log "---- 产物核验 ----"
 du -sh "$APP_PATH"
 lipo -archs "$MODULES_DIR/Steam++.Accelerator" 2>/dev/null | sed 's/^/[build] 子进程架构: /'
@@ -83,3 +97,4 @@ for f in "$MODULES_DIR"/*; do
     printf '[build] %s  %s\n' "$(md5 -q "$f")" "$(basename "$f")"
 done
 log "完成: $APP_PATH"
+[ "${INSTALL_APP:-1}" = "1" ] && [ -L "$APP_LINK" ] && log "已安装(软链): $APP_LINK"
