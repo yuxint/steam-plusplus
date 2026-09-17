@@ -193,6 +193,10 @@
     <value>停止加速</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
+  <data name="CommunityFix_StartAccelerate" xml:space="preserve">
+    <value>啟動加速</value>
+    <comment>Comment=;Author=MicrosoftTranslator</comment>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>確定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>

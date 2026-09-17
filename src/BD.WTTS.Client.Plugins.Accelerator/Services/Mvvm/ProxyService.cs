@@ -1,5 +1,4 @@
 // ReSharper disable once CheckNamespace
-using Avalonia.Data;
 using BD.WTTS.Helpers;
 using Google.Protobuf.WellKnownTypes;
 using System.Linq;
@@ -73,6 +72,12 @@ public sealed partial class ProxyService
                   IsChangeSupportProxyServicesStatus = true;
                   ProxySettings.SupportProxyServicesStatus.Value = GetAccelerateEnableAllIds(EnableProxyDomains).ToImmutableHashSet();
               }));
+
+        // 加速状态变化时同步菜单栏：菜单项文案切换、图标亮灰（跳过订阅时的初始值，初始同步由 InitializeAsync 负责）
+        this.WhenAnyValue(x => x.ProxyStatus, x => x.ProxyStarting)
+            .Skip(1)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe(_ => UpdateTrayVisuals());
     }
 
     public SourceCache<AccelerateProjectGroupDTO, string> ProxyDomains { get; }
@@ -282,47 +287,26 @@ public sealed partial class ProxyService
             // 程序启动时启动加速服务失败，可忽略
         }
 
-        UpdateProxyTrayMenuItems();
+        UpdateTrayVisuals();
     }
 
     private void UpdateProxyTrayMenuItems()
     {
         try
         {
+            // 菜单栏一级单项随加速状态切换文案：启动加速 / 停止加速，启动过渡期禁用防止连点
             IApplication.Instance.UpdateMenuItems(Plugin.Instance.UniqueEnglishName, new TrayMenuItem
             {
-                Name = Plugin.Instance.Name,
-                Items = new List<TrayMenuItem>
+                Name = ProxyStarting
+                    ? Strings.CommunityFix_Starting
+                    : ProxyStatus
+                        ? Strings.CommunityFix_StopProxy
+                        : Strings.CommunityFix_StartAccelerate,
+                IsEnabled = !ProxyStarting,
+                Command = ReactiveCommand.CreateFromTask(async () =>
                 {
-                    new TrayMenuItem
-                    {
-                        Name = "启动",
-                        //IsEnabled = new Binding()
-                        //{
-                        //    Source = ProxyService.Current,
-                        //    Mode = BindingMode.OneWay,
-                        //    Path = "!" + nameof(ProxyStatus),
-                        //},
-                        Command = ReactiveCommand.CreateFromTask(async () =>
-                        {
-                            await StartOrStopProxyService(true);
-                        }),
-                    },
-                    new TrayMenuItem
-                    {
-                        Name = "停止",
-                        //IsEnabled = new Binding()
-                        //{
-                        //    Source = ProxyService.Current,
-                        //    Mode = BindingMode.OneWay,
-                        //    Path = nameof(ProxyStatus),
-                        //},
-                        Command = ReactiveCommand.CreateFromTask(async () =>
-                        {
-                            await StartOrStopProxyService(false);
-                        }),
-                    },
-                },
+                    await StartOrStopProxyService(!ProxyStatus);
+                }),
             });
         }
         catch (Exception ex)
@@ -330,6 +314,15 @@ public sealed partial class ProxyService
             ex.LogAndShowT();
             //托盘菜单添加异常
         }
+    }
+
+    /// <summary>
+    /// 同步菜单栏视觉：菜单项随加速状态切换文案与可用性，图标随加速状态亮灰
+    /// </summary>
+    void UpdateTrayVisuals()
+    {
+        UpdateProxyTrayMenuItems();
+        IApplication.Instance.UpdateTrayIconStatus(ProxyStatus);
     }
 
     /// <summary>

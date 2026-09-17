@@ -193,6 +193,10 @@
     <value>Stop routing</value>
     <comment>Comment=;Author=沙中金</comment>
   </data>
+  <data name="CommunityFix_StartAccelerate" xml:space="preserve">
+    <value>Start routing</value>
+    <comment>Comment=;Author=沙中金</comment>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Yes</value>
     <comment>Comment=;Author=沙中金</comment>

@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Threading;
 using BD.WTTS.Client.Resources;
 using System.Collections.Specialized;
 using static BD.WTTS.Services.INotificationService;
@@ -43,6 +44,10 @@ partial class App
                 });
 
                 UpdateMenuItems();
+#if MACOS
+                // 菜单栏图标改为 template 单色图标：启动时 NSStatusItem 可能尚未创建，重试应用
+                StartTrayAccelerateTemplateImageRetry();
+#endif
 
                 //IViewModelManager.Instance.InitTaskBarWindowViewModel();
                 //NotifyIconHelper.Init(this,
@@ -110,6 +115,55 @@ partial class App
     //}
 #endif
 
+#if MACOS
+    /// <summary>
+    /// 当前待应用的菜单栏图标加速状态；NSStatusItem 按钮可能尚未创建，先记录状态待按钮就绪后应用
+    /// </summary>
+    static bool trayIconAccelerating;
+
+    /// <summary>
+    /// 应用菜单栏图标加速状态视觉：加速中正常显色、未加速灰显（template 图标以 alpha 表达）
+    /// </summary>
+    /// <returns>图标是否已应用（按钮尚未创建时返回 false）</returns>
+    static bool ApplyTrayAccelerateTemplateImage()
+    {
+        var uri = new Uri(trayIconAccelerating
+            ? "avares://BD.WTTS.Client.Avalonia/UI/Assets/TrayAccelerateOn.png"
+            : "avares://BD.WTTS.Client.Avalonia/UI/Assets/TrayAccelerateOff.png");
+        using var stream = AssetLoader.Open(uri);
+        using var memory = new MemoryStream();
+        stream.CopyTo(memory);
+        return ApplyTrayTemplateImage(memory.ToArray());
+    }
+
+    /// <summary>
+    /// 启动时 NSStatusItem 可能尚未由 Avalonia 创建，定时重试应用 template 图标直到成功
+    /// </summary>
+    static void StartTrayAccelerateTemplateImageRetry()
+    {
+        var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };
+        var attempts = 0;
+        timer.Tick += (_, _) =>
+        {
+            attempts++;
+            if (ApplyTrayAccelerateTemplateImage() || attempts >= 20)
+                timer.Stop();
+        };
+        timer.Start();
+    }
+#endif
+
+    /// <summary>
+    /// 更新菜单栏图标加速状态：加速中正常显色，未加速灰显
+    /// </summary>
+    public void UpdateTrayIconStatus(bool isAccelerating)
+    {
+#if MACOS
+        trayIconAccelerating = isAccelerating;
+        MainThread2.BeginInvokeOnMainThread(() => ApplyTrayAccelerateTemplateImage());
+#endif
+    }
+
     public void UpdateMenuItems()
     {
         MainThread2.BeginInvokeOnMainThread(() =>
@@ -166,12 +220,21 @@ partial class App
                         }
                         else
                         {
-                            menus.Add(new NativeMenuItem
+                            var menu = new NativeMenuItem
                             {
                                 Header = item.Value.Name,
                                 Command = item.Value.Command,
                                 CommandParameter = item.Value.CommandParameter,
-                            });
+                            };
+                            if (item.Value.IsVisible is Avalonia.Data.IBinding visibleBinding)
+                                menu[!NativeMenuItem.IsVisibleProperty] = visibleBinding;
+                            else if (item.Value.IsVisible is bool isVisible)
+                                menu.IsVisible = isVisible;
+                            if (item.Value.IsEnabled is Avalonia.Data.IBinding enabledBinding)
+                                menu[!NativeMenuItem.IsEnabledProperty] = enabledBinding;
+                            else if (item.Value.IsEnabled is bool isEnabled)
+                                menu.IsEnabled = isEnabled;
+                            menus.Add(menu);
                         }
                     }
                     menus.Add(new NativeMenuItemSeparator());

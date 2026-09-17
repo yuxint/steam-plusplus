@@ -10,4 +10,10 @@ public partial interface IApplication
     /// <param name="menuKey"></param>
     /// <param name="trayMenuItem"></param>
     void UpdateMenuItems(string menuKey, TrayMenuItem trayMenuItem);
+
+    /// <summary>
+    /// 更新菜单栏图标加速状态：加速中正常显色，未加速灰显
+    /// </summary>
+    /// <param name="isAccelerating"></param>
+    void UpdateTrayIconStatus(bool isAccelerating);
 }

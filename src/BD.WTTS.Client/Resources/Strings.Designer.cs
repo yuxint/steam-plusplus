@@ -542,7 +542,16 @@ namespace BD.WTTS.Client.Resources {
                 return ResourceManager.GetString("CommunityFix_StopProxy", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   查找类似 启动加速 的本地化字符串。
+        /// </summary>
+        public static string CommunityFix_StartAccelerate {
+            get {
+                return ResourceManager.GetString("CommunityFix_StartAccelerate", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   查找类似 网络加速子进程文件不存在 的本地化字符串。
         /// </summary>
